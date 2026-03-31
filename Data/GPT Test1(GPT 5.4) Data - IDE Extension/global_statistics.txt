@@ -1,0 +1,11 @@
+No.	API Method	Count	Avg Dur(ms)	Error %
+1	ces/intake	150	74	0.0%
+2	otlp/metrics	32	37	0.0%
+3	backend-api/usage	9	558	0.0%
+4	backend-api/check	4	788	0.0%
+5	backend-api/environments	4	606	0.0%
+6	v1/rgstr	4	44	0.0%
+7	v1/initialize	3	101	0.0%
+8	backend-api/responses	2	2071	0.0%
+9	backend-api/models	1	797	0.0%
+10	backend-api/list	1	504	0.0%

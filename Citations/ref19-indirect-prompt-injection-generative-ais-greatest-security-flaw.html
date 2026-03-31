@@ -1,0 +1,725 @@
+﻿<!DOCTYPE html>
+<html lang="en" class=" js cssall csspositionsticky no-touchevents flexbox csstransforms csstransitions cssanimations svg"><head>
+    <meta charset="utf-8">
+<link rel="canonical" href="https://cetas.turing.ac.uk/publications/indirect-prompt-injection-generative-ais-greatest-security-flaw">
+<meta name="citation_title" content="Indirect Prompt Injection: Generative AI’s Greatest Security Flaw">
+<meta name="citation_author" content="Matt Sutton">
+<meta name="citation_author" content="Damian Ruck">
+<meta name="citation_author" content="">
+<meta property="og:site_name" content="Centre for Emerging Technology and Security">
+<meta property="og:type" content="Research publications and software">
+<meta property="og:url" content="https://cetas.turing.ac.uk/publications/indirect-prompt-injection-generative-ais-greatest-security-flaw">
+<meta property="og:title" content="Indirect Prompt Injection: Generative AI’s Greatest Security Flaw">
+<meta property="og:image" content="https://cetas.turing.ac.uk/sites/default/files/2024-10/getty-images-b3dxa-obzyk-unsplash.jpg">
+<meta property="og:image:url" content="https://cetas.turing.ac.uk/sites/default/files/2024-10/getty-images-b3dxa-obzyk-unsplash.jpg">
+<meta property="og:image:secure_url" content="https://cetas.turing.ac.uk/sites/default/files/2024-10/getty-images-b3dxa-obzyk-unsplash.jpg">
+<meta name="twitter:title" content="Indirect Prompt Injection: Generative AI’s Greatest Security Flaw">
+<meta name="twitter:image" content="https://cetas.turing.ac.uk/sites/default/files/2024-10/getty-images-b3dxa-obzyk-unsplash.jpg">
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)">
+<meta name="MobileOptimized" content="width">
+<meta name="HandheldFriendly" content="true">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/themes/custom/alanturing/favicon.ico" type="image/vnd.microsoft.icon">
+
+    <title>Indirect Prompt Injection: Generative AI’s Greatest Security Flaw | Centre for Emerging Technology and Security</title>
+        <script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-EWS527WWNQ&amp;cx=c&amp;gtm=4e63p1h1"></script><script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-TM7PZZQ"></script><script>
+    // Include the following lines to define the gtag() function when
+    // calling this code prior to your gtag.js or Tag Manager snippet
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+
+    // Call the default command before gtag.js or Tag Manager runs to
+    // adjust how the tags operate when they run. Modify the defaults
+    // per your business requirements and prior consent granted/denied, e.g.:
+    gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'analytics_storage': 'denied'
+    });
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TM7PZZQ');</script>
+    <!-- End Google Tag Manager -->
+    <script>
+        var html = document.getElementsByTagName("html")[0];
+        html.classList.remove("no-js");
+    </script>
+    <!-- AddEvent script -->
+    <script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async="" defer=""></script>
+    <link rel="stylesheet" media="all" href="/sites/default/files/css/css_wQbumvpslIWOesCrO63SYZaY9LYu3XYYzdOXA8hzNoA.css?delta=0&amp;language=en&amp;theme=alanturing&amp;include=eJxNjFEOgzAMQy_E6NfOU4UmqzrSBCXtNnb6wRASP5afnRgYpHUrkkNmnYBv3lbecEgzYWlq97hwz0XiAmmORZCkxYk1zeEKl3sjwKpG4WEqjQSHxOC-hgmcTl_JHTL5yaK4dfsXWl-AR3jC5whErQKXLw2-eqN67LwKvT38dayKnekHECBPmA">
+<link rel="stylesheet" media="all" href="/sites/default/files/css/css_lah1syKMMuTIsYJQhji55w55eG08iuKu2oAjxYxttNg.css?delta=1&amp;language=en&amp;theme=alanturing&amp;include=eJxNjFEOgzAMQy_E6NfOU4UmqzrSBCXtNnb6wRASP5afnRgYpHUrkkNmnYBv3lbecEgzYWlq97hwz0XiAmmORZCkxYk1zeEKl3sjwKpG4WEqjQSHxOC-hgmcTl_JHTL5yaK4dfsXWl-AR3jC5whErQKXLw2-eqN67LwKvT38dayKnekHECBPmA">
+<link rel="stylesheet" media="print" href="/sites/default/files/css/css_h5_DtmFMk_sW31umfNjz4kMpMz9DUBzs7xAFP8yN4EI.css?delta=2&amp;language=en&amp;theme=alanturing&amp;include=eJxNjFEOgzAMQy_E6NfOU4UmqzrSBCXtNnb6wRASP5afnRgYpHUrkkNmnYBv3lbecEgzYWlq97hwz0XiAmmORZCkxYk1zeEKl3sjwKpG4WEqjQSHxOC-hgmcTl_JHTL5yaK4dfsXWl-AR3jC5whErQKXLw2-eqN67LwKvT38dayKnekHECBPmA">
+<link rel="stylesheet" media="all" href="/sites/default/files/css/css_aAHTiRGrN6OiE7P9c98ifNyqAXft6l1eoFQ-dIaURno.css?delta=3&amp;language=en&amp;theme=alanturing&amp;include=eJxNjFEOgzAMQy_E6NfOU4UmqzrSBCXtNnb6wRASP5afnRgYpHUrkkNmnYBv3lbecEgzYWlq97hwz0XiAmmORZCkxYk1zeEKl3sjwKpG4WEqjQSHxOC-hgmcTl_JHTL5yaK4dfsXWl-AR3jC5whErQKXLw2-eqN67LwKvT38dayKnekHECBPmA">
+
+    
+  <style>.ccc-disable-scroll{overflow-y:scroll;position:fixed}#ccc{font-family:Arial,sans-serif;font-size:16px;line-height:1.4em;position:fixed;z-index:2147483647}#ccc-icon{background:transparent;border:0;bottom:0;cursor:pointer;height:80px;padding:0;position:fixed;width:80px;z-index:20}#ccc-icon.ccc-icon--left{left:0}#ccc-icon.ccc-icon--right{right:0}#ccc-icon.ccc-icon--dark{fill:#000025}#ccc-icon.ccc-icon--dark #star path{fill:#fff}#ccc-icon.ccc-icon--light{fill:#555}#ccc-icon.ccc-icon--light #star path{fill:#f4f4f4}#ccc-overlay{animation-duration:.4s;animation-iteration-count:1;animation-name:fade-in;backface-visibility:hidden;background:rgba(0,0,0,.4);bottom:0;left:0;opacity:1;perspective:0;position:fixed;right:0;top:0;will-change:opacity;z-index:1}#ccc-module{height:100%;position:fixed;width:100%;z-index:2}#ccc-module.ccc-module--slideout{bottom:0;max-width:520px;top:0;width:90%}#ccc-module.ccc-module--slideout.ccc-module--left{animation-duration:.4s;animation-iteration-count:1;animation-name:slide-right;left:0}#ccc-module.ccc-module--slideout.ccc-module--right{animation-duration:.4s;animation-iteration-count:1;animation-name:slide-left;right:0}#ccc-content{box-sizing:border-box;height:100%;overflow-y:auto;padding:24px;position:absolute;width:100%}.ccc-content--dark{fill:#fff;background-color:#313147;color:#fff}.ccc-content--light{fill:#333;background-color:#f4f4f4;color:#333}#ccc-close{align-items:center;background-color:transparent;border:0;cursor:pointer;display:flex;padding:0!important;position:absolute;right:16px;top:16px;z-index:10}#ccc-title,.ccc-title{font-size:1.2em;font-weight:700;line-height:1.5em;margin:0;padding-right:32px;text-align:left}#ccc #ccc-recommended-settings{clear:both;float:none;margin-left:0}#ccc h2,#ccc h3{font-weight:700;margin:0;padding-right:120px}#ccc h2,#ccc h3,#ccc p,.ccc-intro{font-size:1em;line-height:1.5em;text-align:left}#ccc p,.ccc-intro{font-weight:400;margin:1em 0}#ccc hr{border:0;height:1px;margin:24px 0;opacity:.25}#ccc .ccc-svg-element{display:inline-block;height:16px;margin-left:8px;position:relative;top:6px;width:16px}#ccc .ccc-content--dark hr{background-color:#fff}#ccc .ccc-content--dark a,#ccc .ccc-content--dark h1,#ccc .ccc-content--dark h2,#ccc .ccc-content--dark h3,#ccc .ccc-content--dark p,#ccc .ccc-content--dark span{fill:#fff;color:#fff}#ccc .ccc-content--light hr{background-color:#333}#ccc .ccc-content--light a,#ccc .ccc-content--light h1,#ccc .ccc-content--light h2,#ccc .ccc-content--light h3,#ccc .ccc-content--light p,#ccc .ccc-content--light span{fill:#333;color:#333}#ccc .optional-cookie{position:relative}.checkbox-toggle{margin:0;position:absolute;right:0;top:-3px}#ccc .checkbox-toggle-input{bottom:0;display:block;height:100%;left:0;margin:0;opacity:0;padding:0;position:absolute;right:0;top:0;width:100%;z-index:1}#ccc .checkbox-toggle--checkbox{border:2px solid #fff;border-radius:4px}#ccc .checkbox-toggle--checkbox .checkbox-toggle-label{display:block;height:24px;width:24px}#ccc .checkbox-toggle--checkbox .checkbox-toggle-off,#ccc .checkbox-toggle--checkbox .checkbox-toggle-on{display:none}#ccc .checkbox-toggle--checkbox .checkbox-toggle-toggle{border-radius:4px;display:block;height:100%;position:relative;width:100%}#ccc .checkbox-toggle--checkbox input:checked~.checkbox-toggle-toggle:after{border:solid #fff;border-width:0 3px 3px 0;content:"";height:10px;left:9px;position:absolute;top:5px;transform:rotate(45deg);width:5px}#ccc .checkbox-toggle--slider{border:4px solid #fff;border-radius:50px}#ccc .checkbox-toggle--slider .checkbox-toggle-label{cursor:pointer;display:flex;margin:0;z-index:1}#ccc .checkbox-toggle--slider .checkbox-toggle-off,#ccc .checkbox-toggle--slider .checkbox-toggle-on{flex:1;flex-basis:50%;font-size:.75em;font-weight:700;min-width:40px;padding:0 6px;text-align:center;white-space:nowrap;width:50%;z-index:2}#ccc .checkbox-toggle--slider .checkbox-toggle-off{opacity:.65}#ccc .checkbox-toggle--slider .checkbox-toggle-toggle{background-color:#000;border-radius:50px;cursor:pointer;display:block;height:100%;left:0;position:absolute;top:0;transition:all .4s ease;width:50%;z-index:3}#ccc .checkbox-toggle--slider input:checked~.checkbox-toggle-toggle{left:50%}#ccc .checkbox-toggle--slider.checkbox-toggle--dark{background-color:#111125;border-color:#111125}#ccc .checkbox-toggle--checkbox.checkbox-toggle--dark{background-color:#111125;border-color:#fff}#ccc .checkbox-toggle--dark .checkbox-toggle-toggle{background-color:#2f2f5f}#ccc .checkbox-toggle--light{background-color:#555;border-color:#555}#ccc .checkbox-toggle--light .checkbox-toggle-toggle{background-color:#000}#ccc .checkbox-toggle--light .checkbox-toggle-on,#ccc .checkbox-toggle--slider.checkbox-toggle--light .checkbox-toggle-off{color:#fff}#ccc .checkbox-toggle--slider input:checked~.checkbox-toggle-toggle{background-color:#fff}#ccc .ccc-alert{border-radius:8px;margin:24px 0;padding:16px}#ccc .ccc-alert-title{align-items:center;display:flex;padding:0}#ccc .ccc-alert-icon{display:inline-block;flex-shrink:0;height:30px;margin:0 8px 0 0;width:30px}#ccc .ccc-alert-break{margin:12px 0}.third-party-cookie-link{align-items:center;display:flex;margin:16px 0}.third-party-cookie-name{font-size:1em;font-weight:700}.third-party-cookie-icon{display:inline-block;height:16px;margin-left:16px;width:16px}#ccc .ccc-content--dark .ccc-alert{fill:#fff;background:#111125;color:#fff}#ccc .ccc-content--dark .third-party-cookie-link{background:#111125;color:#fff}#ccc .ccc-content--light .ccc-alert,#ccc .ccc-content--light .third-party-cookie-link{background:#eaeaea}#ccc .ccc-module--popup{animation-duration:.4s;animation-iteration-count:1;animation-name:slide-up;bottom:0;left:0;opacity:1;right:0;top:0}#ccc .ccc-module--popup #ccc-content{border-radius:12px;height:90%;left:50%;max-height:600px;max-width:600px;top:50%;transform:translate(-50%,-50%);width:90%}#ccc .ccc-notify-box-dismiss{display:none!important}@media (min-width:600px){#ccc #ccc-notify.ccc-notify__box{animation-duration:.8s;animation-iteration-count:1;animation-name:box-slide-up;border-radius:12px;box-sizing:border-box;flex-direction:column;height:90%;left:50%;max-height:240px;max-width:600px;opacity:1;padding:32px 64px;top:50%;transform:translate(-50%,-50%);width:90%}#ccc .ccc-notify-box-dismiss{display:block!important;position:absolute!important;right:16px!important;top:16px!important}}#ccc #ccc-notify{animation-duration:.4s;animation-iteration-count:1;animation-name:slide-up;border-radius:0;bottom:0;display:flex;flex-direction:column;height:auto;justify-content:space-between;left:0;margin:0;max-height:80vh;min-height:48px;opacity:1;overflow:hidden;overflow-y:auto;padding:16px;position:fixed;right:0;z-index:30}.ccc-notify-text h1{font-size:1em;font-weight:700;line-height:1.5em;margin:0;padding-right:120px;text-align:left}#ccc #ccc-notify.ccc-notify__top{animation-duration:.4s;animation-iteration-count:1;animation-name:slide-down;bottom:auto;top:0}#ccc #ccc-notify h3{padding:0}#ccc #ccc-notify p{font-size:.9em;margin:0;opacity:.8}#ccc .ccc-notify-buttons{margin-top:16px;padding-right:24px;position:relative}#ccc .ccc-notify-button{background:transparent;border:2px solid;border-radius:4px;cursor:pointer;font-size:1em;font-weight:400;line-height:1.5em;margin:4px 8px 16px 0;padding:8px 16px!important}#ccc #ccc-notify-dismiss{background-color:transparent;border:0;cursor:pointer;display:inline-flex;height:24px;padding:0!important;position:absolute;right:0;top:-4px;width:24px}@media (min-width:400px){#ccc #ccc-notify-dismiss{position:relative;right:auto}#ccc .ccc-notify-buttons{padding-right:0}}@media (min-width:1020px){#ccc #ccc-notify{align-items:center;flex-direction:row}#ccc .ccc-notify-text{margin-right:16px}#ccc .ccc-notify-buttons{flex-shrink:0;white-space:nowrap}}@media (min-width:1200px){#ccc #ccc-notify{font-size:16px;padding:16px 100px;z-index:10}}#ccc .ccc-content--dark #ccc-notify,#ccc .ccc-content--dark #ccc-notify span{fill:#fff;background-color:#313147;color:#fff}#ccc .ccc-content--dark .ccc-notify-button,#ccc .ccc-content--dark .ccc-notify-button span{border-color:#fff;color:#fff}#ccc .ccc-content--dark .ccc-button-solid,#ccc .ccc-content--dark .ccc-button-solid span{background:#fff;color:#111125;font-weight:700}.ccc-notify-link{border:0!important;text-decoration:underline}#ccc .ccc-content--light #ccc-notify,#ccc .ccc-content--light #ccc-notify span{fill:#000;background:#f4f4f4;color:#000}#ccc .ccc-content--light .ccc-notify-button,#ccc .ccc-content--light .ccc-notify-button span{border-color:#000;color:#000}#ccc .ccc-content--light .ccc-button-solid,#ccc .ccc-content--light .ccc-button-solid span{background:#000;color:#fff;font-weight:700}.ccc-info-link{font-size:.8em;font-weight:700;text-decoration:none}.ccc-info-link .svg-element{height:14px;margin-left:6px;width:14px}#ccc .ccc-module--slideout .ccc-info{height:100px}#ccc[popup] .ccc-info{height:40px}@media print{#ccc{display:none!important}}#ccc-close-label{display:block;font-size:16px}#ccc .ccc-panel--indent #ccc-title{padding-right:180px}#ccc-close.ccc-close--labelled{padding:8px!important;right:0;top:0}#ccc-content.ccc-content--light #ccc-close.ccc-close--labelled{background-color:#eaeaea}#ccc-content.ccc-content--dark #ccc-close.ccc-close--labelled{background-color:#111125}#ccc-end{margin:16px 0 32px}#ccc-dismiss-button{display:block}#ccc .ccc-content--highlight .ccc-link.ccc-tabbable:focus{filter:invert(100%);padding:8px}#ccc .ccc-content--highlight.ccc-content--light .ccc-link.ccc-tabbable:focus{background-color:#eaeaea!important;border-color:#eaeaea!important}#ccc .ccc-content--highlight.ccc-content--dark .ccc-link.ccc-tabbable:focus{background-color:#111125!important;border-color:#111125!important}#ccc .ccc-content--highlight #ccc-close:focus,#ccc .ccc-content--highlight .ccc-button-solid:focus,#ccc .ccc-content--highlight .third-party-cookie-link:focus{filter:invert(100%)}#ccc .ccc-content--highlight.ccc-content--light .ccc-tabbable:focus{box-shadow:0 4px 8px 0 hsla(0,0%,100%,.2),0 6px 20px 0 hsla(0,0%,100%,.2)}#ccc .ccc-content--highlight.ccc-content--dark .ccc-tabbable:focus{box-shadow:0 4px 8px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.2)}#ccc .checkbox-toggle:focus-within{outline:auto}#ccc .checkbox-toggle--slider.checkbox-toggle--light:focus-within{box-shadow:0 0 0 4px rgba(0,0,0,.8);outline:3px solid #f2ab3d}#ccc #ccc-icon.ccc-icon--no-outline,#ccc .ccc-content--no-outline *,#ccc .ccc-content--no-outline .ccc-tabbable{outline:none}#ccc .ccc-content--highlight .ccc-tabbable:active,#ccc .ccc-content--highlight .ccc-tabbable:hover,#ccc .ccc-icon--highlight:active,#ccc .ccc-icon--highlight:hover{box-shadow:none!important;filter:none!important}.ccc-panel{left:24px;position:absolute;right:24px;top:24px}.ccc-panel.hidden{height:0;opacity:0;overflow:hidden}.ccc-panel.visible{height:auto;opacity:1;transition:opacity .4s}#ccc .iab-vendor,#ccc .optional-vendor{margin:0 0 8px}#ccc .optional-vendor{font-size:.875em}#ccc .optional-vendor-heading{font-weight:700;padding-left:24px;text-decoration:underline}#ccc .ccc-vendor-reveal{align-items:center;background:transparent;border:1px dotted;display:flex;font-size:.875em;opacity:.5;transition:opacity .4s}#ccc .ccc-vendor-reveal:focus,#ccc .ccc-vendor-reveal:hover{opacity:1}#ccc .ccc-legal-description{margin-top:1rem}#ccc .ccc-vendor-reveal svg{height:16px;margin-left:8px;width:16px}#ccc .optional-vendor-warning{align-items:center;display:flex}#ccc .optional-vendor-warning svg{height:16px;margin-right:8px;width:16px}#ccc .optional-vendor-content{padding-left:24px}#ccc .iab-vendor-heading{font-size:.875em;font-weight:400;text-decoration:underline}#ccc .cmp-button-holder{display:flex;font-size:.75em;justify-content:space-between}#ccc .cmp-back{opacity:.5;transition:opacity .4s}#ccc .cmp-back:hover{opacity:1}.ccc-sr-only{clip:rect(0,0,0,0);border:0;height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}@keyframes fade-in{0%{opacity:0}to{opacity:1}}@keyframes slide-right{0%{transform:translate3d(-100%,0,0)}to{transform:translateZ(0)}}@keyframes slide-left{0%{transform:translate3d(100%,0,0)}to{transform:translateZ(0)}}@keyframes slide-up{0%{transform:translate3d(0,100%,0)}to{transform:translateZ(0)}}@keyframes box-slide-up{0%{transform:translate3d(-50%,100%,0)}to{transform:translate3d(-50%,-50%,0)}}@keyframes slide-down{0%{transform:translate3d(0,-100%,0)}to{transform:translateZ(0)}}#ccc .iab-object{height:48px;position:relative;width:98%}#ccc .iab-object.iab-object--vendor{width:85%}#ccc .iab-object .checkbox-toggle{left:0;right:auto;top:4px}#ccc .iab-object .checkbox-toggle-label{height:18px;width:18px}#ccc .iab-object .checkbox-toggle--checkbox input:checked~.checkbox-toggle-toggle:after{border-width:0 2px 2px 0;height:8px;left:7px;top:3px;width:3px}#ccc .iab-object-label{display:block;font-size:.75em;margin-left:32px}#ccc .vendor-details{font-size:.75rem;margin-bottom:16px}#ccc .vendor-details h4{margin:.5rem 0}#ccc .ccc-title.ccc-title--iab{margin-bottom:1rem}#ccc .iab-header-toggle{align-items:center;display:flex;margin-bottom:1rem}#ccc .iab-header-toggle .ccc-title{margin:0 0 0 16px}#ccc .iab-header-toggle .ccc-vendor-reveal svg{margin:0}#ccc .iab-vendor-toggle .checkbox-toggle{top:auto}#ccc .iab-vendor-toggle h3{padding-right:180px}#ccc .iab-disclosure-load{align-items:center;display:flex}#ccc .iab-disclosure-load button{margin-right:12px}#ccc .iab-disclosure-load a{text-decoration:none}#ccc .iab-disclosure-load a>span{position:relative;top:-2px}#ccc .iab-disclosure-load a>.ccc-svg-element{top:4px}#ccc .iab-disclosure-table{border-collapse:collapse;margin:2em 0;width:100%}#ccc .iab-disclosure-table td,#ccc .iab-disclosure-table th{border:1px solid}#ccc .iab-disclosure-table thead td{border:none}#ccc .ccc-content--dark td,#ccc .ccc-content--dark th{border-color:#fff}#ccc .iab-disclosure-table dl{display:grid;grid-template:auto;width:150px}#ccc .iab-disclosure-table ul{list-style:none}#ccc .iab-disclosure-table dl,#ccc .iab-disclosure-table ul{margin:0;padding:0}#ccc .iab-disclosure-table dd,#ccc .iab-disclosure-table dt,#ccc .iab-disclosure-table li{border-bottom:1px solid rgba(0,0,0,.1);margin:0;padding:.3em .5em}#ccc .iab-disclosure-table dd{padding-left:20px}#ccc .ccc-content--dark .iab-disclosure-table dd,#ccc .ccc-content--dark .iab-disclosure-table dt,#ccc .ccc-content--dark .iab-disclosure-table li{border-bottom:1px solid hsla(0,0%,100%,.1)}#ccc .ccc-content--dark .iab-disclosure-table li:last-child{border:none}#ccc .iab-disclosure-table td,#ccc .iab-disclosure-table th{padding:1em;vertical-align:top}#ccc .iab-disclosure-table tr:nth-child(2n){background:rgba(0,0,0,.1)}#ccc .ccc-content--highlight .ccc-tabbable:hover{outline:auto}#ccc h1,#ccc h2,#ccc h3{font-style:normal}#ccc .iab-illustrations{display:block;font-size:90%;margin:0 0 0 1rem;opacity:.95;padding:0}#ccc .iab-illustrations li{padding:1rem}#ccc .ccc-vendor-count{font-size:.8rem;font-weight:400;opacity:.8}</style><style>#ccc, #ccc #ccc-content, #ccc #ccc-notify, #ccc h1, #ccc h2, #ccc h3, #ccc p, #ccc p span, #ccc a, #ccc a span, #ccc-content button, #ccc-content button span, #ccc-content span {color: #333 !important; fill: #333 !important;} #ccc hr {background-color: #333 !important;}#ccc #ccc-content, #ccc #ccc-notify { background-color: #e9e9e9 !important;}#ccc h2, #ccc h3 { font-size: 1.1em !important;}#ccc, #ccc p, #ccc .third-party-cookie-link { font-size: 0.9em !important;}#ccc #ccc-title { font-size: 1.2em !important;}#ccc .checkbox-toggle-on, #ccc .checkbox-toggle-off { color: #333 !important;}#ccc .checkbox-toggle-toggle { background-color: #333 !important;}#ccc .checkbox-toggle { background-color: #fff !important; border-color: #fff !important;}</style><style type="text/css" id="ate_css">@import url("https://fonts.googleapis.com/css2?family=Inter&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap");.addeventatc 							{display:inline-block;position:relative;z-index:99998;font-family:"Open Sans",Roboto,"Helvetica Neue",Helvetica,Optima,Segoe,"Segoe UI",Candara,Calibri,Arial,sans-serif;color:#000!important;font-weight:600;line-height:100%;background:#fff;font-size:15px;text-decoration:none;border:1px solid transparent;padding:13px 12px 12px 43px;-webkit-border-radius:3px;border-radius:3px;cursor:pointer;-webkit-font-smoothing:antialiased!important;outline-color:rgba(0,78,255,0.5);text-shadow:1px 1px 1px rgba(0,0,0,0.004);-webkit-user-select:none;-webkit-tap-highlight-color:rgba(0,0,0,0);box-shadow:0 0 0 0.5px rgba(50,50,93,.17), 0 2px 5px 0 rgba(50,50,93,.1), 0 1px 1.5px 0 rgba(0,0,0,.07), 0 1px 2px 0 rgba(0,0,0,.08), 0 0 0 0 transparent!important;background-image:url(https://cdn.addevent.com/libs/imgs/icon-calendar-t5.png), url(https://cdn.addevent.com/libs/imgs/icon-calendar-t1.svg), url(https://cdn.addevent.com/libs/imgs/icon-apple-t5.svg), url(https://cdn.addevent.com/libs/imgs/icon-facebook-t5.svg), url(https://cdn.addevent.com/libs/imgs/icon-google-t5.svg), url(https://cdn.addevent.com/libs/imgs/icon-office365-t5.svg), url(https://cdn.addevent.com/libs/imgs/icon-outlook-t5.svg), url(https://cdn.addevent.com/libs/imgs/icon-outlookcom-t5.svg), url(https://cdn.addevent.com/libs/imgs/icon-yahoo-t5.svg);background-position:-9999px -9999px;background-repeat:no-repeat;}.addeventatc:hover 						{background-color:#fafafa;color:#000;font-size:15px;text-decoration:none;}.addeventatc:active 					{border-width:2px 1px 0px 1px;}.addeventatc-selected 					{background-color:#f9f9f9;}.addeventatc .addeventatc_icon 			{width:18px;height:18px;position:absolute;z-index:1;left:12px;top:10px;background:url(https://cdn.addevent.com/libs/imgs/icon-calendar-t1.svg) no-repeat;background-size:18px 18px;}.addeventatc .start, .addeventatc .end, .addeventatc .timezone, .addeventatc .title, .addeventatc .description, .addeventatc .location, .addeventatc .organizer, .addeventatc .organizer_email, .addeventatc .facebook_event, .addeventatc .all_day_event, .addeventatc .date_format, .addeventatc .alarm_reminder, .addeventatc .recurring, .addeventatc .attendees, .addeventatc .calname, .addeventatc .uid, .addeventatc .sequence, .addeventatc .status, .addeventatc .method, .addeventatc .client, .addeventatc .transp {display:none!important;}.addeventatc br 						{display:none;}.addeventatc_dropdown 				{width:230px;position:absolute;padding:6px 0px 0px 0px;font-family:"Open Sans",Roboto,"Helvetica Neue",Helvetica,Optima,Segoe,"Segoe UI",Candara,Calibri,Arial,sans-serif;color:#000!important;font-weight:600;line-height:100%;background:#fff;font-size:15px;text-decoration:none;text-align:left;margin-left:-1px;display:none;-moz-border-radius:3px;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0,0,0,0.4) 0px 10px 26px;-moz-box-shadow:rgba(0,0,0,0.4) 0px 10px 26px;box-shadow:rgba(0,0,0,0.4) 0px 10px 26px;transform:scale(.98,.98) translateY(5px);opacity:0.5;z-index:-1;transition:transform .15s ease;-webkit-user-select:none;-webkit-tap-highlight-color:rgba(0,0,0,0);}.addeventatc_dropdown.topdown 			{transform:scale(.98,.98) translateY(-5px)!important;}.addeventatc_dropdown span 				{display:block;line-height:100%;background:#fff;text-decoration:none;cursor:pointer;font-size:15px;color:#333;font-weight:600;padding:14px 10px 14px 55px;margin:-2px 0px;}.addeventatc_dropdown span:hover 		{background-color:#f4f4f4;color:#000;text-decoration:none;font-size:15px;}.addeventatc_dropdown em 				{color:#999!important;font-size:12px!important;font-weight:400;}.addeventatc_dropdown .frs a 			{background:#fff;color:#cacaca!important;cursor:pointer;font-size:9px!important;font-style:normal!important;font-weight:400!important;line-height:110%!important;padding-left:10px;position:absolute;right:10px;text-align:right;text-decoration:none;top:5px;z-index:101;}.addeventatc_dropdown .frs a:hover 		{color:#999!important;}.addeventatc_dropdown .ateappleical 	{background:url(https://cdn.addevent.com/libs/imgs/icon-apple-t5.svg) 18px 40% no-repeat;background-size:22px 100%;}.addeventatc_dropdown .ategoogle 		{background:url(https://cdn.addevent.com/libs/imgs/icon-google-t5.svg) 18px 50% no-repeat;background-size:22px 100%;}.addeventatc_dropdown .ateoffice365 	{background:url(https://cdn.addevent.com/libs/imgs/icon-office365-t5.svg) 19px 50% no-repeat;background-size:18px 100%;}.addeventatc_dropdown .ateoutlook 		{background:url(https://cdn.addevent.com/libs/imgs/icon-outlook-t5.svg) 18px 50% no-repeat;background-size:22px 100%;}.addeventatc_dropdown .ateoutlookcom 	{background:url(https://cdn.addevent.com/libs/imgs/icon-outlookcom-t5.svg) 18px 50% no-repeat;background-size:22px 100%;}.addeventatc_dropdown .ateyahoo 		{background:url(https://cdn.addevent.com/libs/imgs/icon-yahoo-t5.svg) 18px 50% no-repeat;background-size:22px 100%;}.addeventatc_dropdown .atefacebook 		{background:url(https://cdn.addevent.com/libs/imgs/icon-facebook-t5.svg) 18px 50% no-repeat;background-size:22px 100%;}.addeventatc_dropdown .copyx 			{height:21px;display:block;position:relative;cursor:default;}.addeventatc_dropdown .brx 				{height:1px;overflow:hidden;background:#e8e8e8;position:absolute;z-index:100;left:10px;right:10px;top:9px;}.addeventatc_dropdown.addeventatc-selected {opacity:1;transform:scale(1,1) translateY(0px);z-index:99999999;}.addeventatc_dropdown.topdown.addeventatc-selected {transform:scale(1,1) translateY(0px)!important;}.addeventatc_dropdown .drop_markup {background-color:#f4f4f4;}</style></head>
+  <body class="path-node page-node-type-research-publications" data-aos-easing="ease-out" data-aos-duration="800" data-aos-delay="0"><div id="ccc" role="region" aria-label="Cookie preferences" aria-live="polite" style="z-index: 2147483647;"><button aria-expanded="false" id="ccc-icon" class="ccc-icon--left ccc-icon--light  " aria-label="Set cookie preferences" style=""><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 72.5 72.5" enable-background="new 0 0 72.5 72.5" aria-hidden="true"><g id="triangle"><path d="M0,0l72.5,72.5H0V0z"></path></g><g id="star"><path d="M33.2,51.9l-3.9-2.6l1.6-4.4l-4.7,0.2L25,40.6l-3.7,2.9l-3.7-2.9l-1.2,4.5l-4.7-0.2l1.6,4.4l-3.9,2.6l3.9,2.6l-1.6,4.4l4.7-0.2l1.2,4.5l3.7-2.9l3.7,2.9l1.2-4.5l4.7,0.2l-1.6-4.4L33.2,51.9z M24.6,55.3c-0.3,0.4-0.8,0.8-1.3,1s-1.1,0.3-1.9,0.3c-0.9,0-1.7-0.1-2.3-0.4s-1.1-0.7-1.5-1.4c-0.4-0.7-0.6-1.6-0.6-2.6c0-1.4,0.4-2.5,1.1-3.3c0.8-0.8,1.8-1.1,3.2-1.1c1.1,0,1.9,0.2,2.6,0.7s1.1,1.1,1.4,2L23,50.9c-0.1-0.3-0.2-0.5-0.3-0.6c-0.1-0.2-0.3-0.4-0.5-0.5s-0.5-0.2-0.7-0.2c-0.6,0-1.1,0.2-1.4,0.7c-0.2,0.4-0.4,0.9-0.4,1.7c0,1,0.1,1.6,0.4,2c0.3,0.4,0.7,0.5,1.2,0.5c0.5,0,0.9-0.1,1.2-0.4s0.4-0.7,0.6-1.2l2.3,0.7C25.2,54.3,25,54.8,24.6,55.3z"></path></g></svg></button></div>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TM7PZZQ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="loader"></div>
+    <div class="page">
+            <a href="#main-content" class="visually-hidden focusable skip-link">
+        Skip to main content
+      </a>
+      
+          
+    <div data-drupal-messages-fallback="" class="hidden"></div>
+
+
+    
+
+
+    
+    
+
+
+<header class=" header--regular header--white header--small header--research_publications" style="opacity: 1; visibility: inherit;">
+            
+
+
+    <!--
+        - if background-image > concat inline css background-image
+        - if background-color > concat inline css background-color
+    -->
+
+
+<div class="header__basic bg--white" style="background-image: url(/sites/default/files/styles/hero/public/2024-10/getty-images-b3dxa-obzyk-unsplash.jpg?itok=HHBMNnzn);">
+                <div class="header__overlay"></div>
+        <div class="search-block-form block block-search container-inline" data-drupal-selector="search-block-form" id="block-alanturing-search">
+  <button class="close-search"><i class="icon icon--close-white"></i></button>   
+  
+      <h2>Search</h2>
+    
+      <form action="/search/node" method="get" id="search-block-form" accept-charset="UTF-8">
+  <div class="js-form-item form-item js-form-type-search form-type-search js-form-item-keys form-item-keys form-no-label">
+      <label for="edit-keys" class="visually-hidden">Search</label>
+        <input title="Enter the terms you wish to search for." data-drupal-selector="edit-keys" type="search" id="edit-keys" name="keys" value="" size="15" maxlength="128" class="form-search">
+
+        </div>
+<div data-drupal-selector="edit-actions" class="form-actions js-form-wrapper form-wrapper" id="edit-actions"><input data-drupal-selector="edit-submit" type="submit" id="edit-submit" value="Search" class="button js-form-submit form-submit">
+</div>
+
+</form>
+
+  </div>
+<nav aria-labelledby="block-alanturing-main-menu-menu" id="block-alanturing-main-menu" class="block block-menu navigation menu--main main-nav">
+                        
+        <h2 class="visually-hidden" id="block-alanturing-main-menu-menu">Main navigation</h2>
+    
+
+                
+              <ul class="main-nav__list">
+                    
+                
+                <li class="+=visible" style="translate: none; rotate: none; scale: none; transform: translate(0px, 50px) rotate(2deg); opacity: 0; visibility: hidden;">
+        <a href="/" data-drupal-link-system-path="&lt;front&gt;">Home</a>
+              </li>
+        <li class="+=visible" style="translate: none; rotate: none; scale: none; transform: translate(0px, 50px) rotate(2deg); opacity: 0; visibility: hidden;">
+        <a href="/research-and-publications" data-drupal-link-system-path="node/8">Research and Publications</a>
+                                <ul class="main-nav__list">
+                    <li class="menu-item">
+        <a href="/research-and-publications/research-theme" title="Browse publications by theme" data-drupal-link-system-path="node/94">Research by Theme</a>
+              </li>
+                <li class="menu-item menu-item--collapsed">
+        <a href="/research-and-publications/reports-and-briefing-papers" data-drupal-link-system-path="node/12">Reports and Briefing Papers</a>
+              </li>
+                <li class="menu-item">
+        <a href="/research-and-publications/expert-analysis-and-explainers" data-drupal-link-system-path="node/11">Expert Analysis and Explainers</a>
+              </li>
+                <li class="menu-item">
+        <a href="/ongoing-projects" data-drupal-link-system-path="node/99">Ongoing CETaS Projects</a>
+              </li>
+                <li class="menu-item">
+        <a href="/research-and-publications/cetas-events" data-drupal-link-system-path="node/444">CETaS Events</a>
+              </li>
+        </ul>
+  
+              </li><li class="+=visible" style="translate: none; rotate: none; scale: none; transform: translate(0px, 50px) rotate(2deg); opacity: 0; visibility: hidden;">
+        <a href="/about" data-drupal-link-system-path="node/2">About</a>
+                                <ul class="main-nav__list">
+                    <li class="menu-item">
+        <a href="/about/our-team" data-drupal-link-system-path="node/7">Our Team</a>
+              </li>
+                <li class="menu-item">
+        <a href="/about/authors" data-drupal-link-system-path="node/10">Authors</a>
+              </li>
+                <li class="menu-item">
+        <a href="/cetas-news" data-drupal-link-system-path="node/179">CETaS in the News</a>
+              </li>
+                <li class="menu-item">
+        <a href="/about/cetas-network" data-drupal-link-system-path="node/9">Join the CETaS Network</a>
+              </li>
+        </ul>
+  
+              </li></ul>
+  
+
+
+    </nav>
+
+<div class="search-n-burger">
+    <a href="https://www.turing.ac.uk/" class="turing-link">
+        <span>The Alan Turing Institute</span>
+         <svg class="logo logo--turing logo--" viewBox="0 0 1025 428" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ATI_logo_black_ATI_logo_black_W1024px" fill="#000000">
+            <g>
+                <path d="M273.346,71.521 L233.737,71.521 C235.771,58.945 242.738,52.485 253.966,52.485 C265.183,52.485 272.837,60.128 273.346,71.521 M299.694,83.932 C299.694,52.816 282.185,33.27 254.131,33.27 C226.425,33.27 207.72,52.816 207.72,81.718 C207.72,111.985 226.08,131.363 254.983,131.363 C277.938,131.363 293.744,120.479 299.529,100.424 L272.495,100.424 C269.775,107.735 263.987,111.475 255.493,111.475 C242.573,111.475 234.588,103.654 233.902,90.05 L299.529,90.05 C299.694,87.327 299.694,84.948 299.694,83.932" id="Fill-13"></path>
+                <path d="M117.531,128.642 L143.027,128.642 L143.027,83.08 C143.027,63.192 148.647,53.667 160.371,53.667 C171.081,53.667 175.162,59.62 175.162,74.751 L175.162,128.642 L200.658,128.642 L200.658,72.031 C200.658,57.749 198.622,50.437 193.181,44.156 C187.738,37.861 178.392,33.78 169.209,33.78 C159.354,33.78 149.664,38.713 143.027,47.042 L143.027,0.793 L117.531,0.793 L117.531,128.642" id="Fill-12"></path>
+                <polyline id="Fill-11" points="55.645 0.796 0.819 0.796 0.819 23.242 42.3 23.242 42.3 128.632 69.158 128.632 69.158 23.242 110.474 23.242 110.474 0.796 55.645 0.796"></polyline>
+            </g>
+            <g transform="translate(169.000000, 149.000000)">
+                <path d="M831.16,79.656 C831.16,94.445 823.69,104.3 812.635,104.3 C801.586,104.3 794.45,94.279 794.45,78.804 C794.45,63.671 801.928,53.308 812.814,53.308 C824.03,53.308 831.16,63.506 831.16,79.656 M855.82,108.724 L855.82,35.289 L832.87,35.289 L832.87,46.848 C825.9,37.158 818.078,33.076 807.029,33.076 C784.253,33.076 768.268,52.112 768.268,78.97 C768.268,106.169 783.222,124.202 805.668,124.202 C817.571,124.202 825.05,120.451 831.85,111.281 L831.85,120.972 C831.85,137.794 826.24,145.106 813.486,145.106 C804.306,145.106 798.025,140.515 797.504,133.382 L772.173,133.382 C773.877,152.076 789.175,163.125 813.145,163.125 C835.42,163.125 849.19,154.121 853.95,136.268 C855.65,129.631 855.82,127.087 855.82,108.724" id="Fill-22"></path>
+                <path d="M701.193,35.283 L676.88,35.283 L676.88,127.932 L702.389,127.932 L702.389,79.994 C702.389,61.465 707.819,52.792 719.557,52.792 C724.997,52.792 729.589,55.349 732.133,59.417 C733.836,62.482 734.346,65.547 734.346,73.534 L734.346,127.932 L759.842,127.932 L759.842,75.402 C759.842,58.91 758.825,52.957 755.085,47.007 C749.476,38.168 739.951,33.249 728.227,33.249 C716.834,33.249 707.144,38.168 701.193,46.841 L701.193,35.283" id="Fill-21"></path>
+                <path d="M637.104,24.567 L662.601,24.567 L662.601,0.088 L637.104,0.088 L637.104,24.567 Z M637.104,127.938 L662.601,127.938 L662.601,35.285 L637.104,35.285 L637.104,127.938 Z" id="Fill-20"></path>
+                <path d="M569.69,127.936 L595.186,127.936 L595.186,86.965 C595.186,64.189 601.991,55.339 619.334,55.339 C622.055,55.339 623.747,55.515 626.467,56.191 L626.467,34.09 C624.089,33.238 622.564,33.073 619.676,33.073 C608.106,33.073 598.926,38.172 594.004,47.352 L594.004,35.286 L569.69,35.286 L569.69,127.936" id="Fill-19"></path>
+                <path d="M532.476,127.936 L556.789,127.936 L556.789,35.286 L531.28,35.286 L531.28,83.225 C531.28,93.259 530.442,98.358 527.884,102.44 C524.822,107.538 519.721,110.424 514.112,110.424 C508.672,110.424 504.08,108.048 501.536,103.798 C499.833,100.737 499.323,97.672 499.323,89.685 L499.323,35.286 L473.827,35.286 L473.827,87.816 C473.827,104.308 474.847,110.259 478.584,116.212 C484.193,125.05 493.883,129.97 505.442,129.97 C516.67,129.97 526.36,125.05 532.476,116.377 L532.476,127.936" id="Fill-18"></path>
+                <polyline id="Fill-17" points="425.87 127.936 452.728 127.936 452.728 22.531 494.041 22.531 494.041 0.086 384.389 0.086 384.389 22.531 425.87 22.531 425.87 127.936"></polyline>
+                <path d="M287.694,35.283 L263.38,35.283 L263.38,127.932 L288.89,127.932 L288.89,79.994 C288.89,61.465 294.319,52.792 306.057,52.792 C311.498,52.792 316.089,55.349 318.633,59.417 C320.336,62.482 320.846,65.547 320.846,73.534 L320.846,127.932 L346.342,127.932 L346.342,75.402 C346.342,58.91 345.325,52.957 341.585,47.007 C335.977,38.168 326.452,33.249 314.728,33.249 C303.334,33.249 293.644,38.168 287.694,46.841 L287.694,35.283" id="Fill-16"></path>
+                <path d="M226.718,85.77 C226.718,102.428 219.24,111.952 206.144,111.952 C197.991,111.952 192.206,107.364 192.206,101.08 C192.206,93.934 198.501,90.362 214.472,87.818 L223.322,86.456 C223.653,86.28 224.849,86.115 226.718,85.77 M250.687,87.473 C250.852,80.671 250.852,76.59 250.852,74.553 C250.852,57.388 248.818,50.077 241.851,43.272 C235.046,36.305 224.339,32.565 210.912,32.565 C186.088,32.565 170.448,44.468 169.254,64.356 L195.436,64.356 C195.944,55.175 201.221,50.584 211.419,50.584 C221.961,50.584 226.552,56.192 226.718,69.278 C215.5,69.964 200.37,72.177 192.041,74.388 C174.353,78.635 165.68,87.818 165.68,101.92 C165.68,118.413 179.451,129.971 199.353,129.971 C214.307,129.971 223.653,125.049 230.457,113.656 L230.457,117.396 C230.457,120.967 230.623,122.839 231.309,127.937 L253.244,127.937 C251.373,120.116 250.687,110.935 250.687,96.147 L250.687,87.473" id="Fill-15"></path>
+                <polygon id="Fill-14" points="130.939 127.937 156.435 127.937 156.435 0.087 130.939 0.087"></polygon>
+                <path d="M79.347,73.37 L45.508,73.37 L62.51,20.319 L79.347,73.37 Z M125.075,127.937 L80.529,0.087 L45.343,0.087 L0.976,127.937 L28.341,127.937 L38.541,96.311 L86.659,96.311 L97.024,127.937 L125.075,127.937 Z" id="Fill-1"></path>
+            </g>
+            <g transform="translate(24.000000, 297.000000)">
+                <path d="M592.476,71.073 L552.866,71.073 C554.9,58.497 561.868,52.037 573.096,52.037 C584.313,52.037 591.966,59.68 592.476,71.073 M618.824,83.484 C618.824,52.368 601.315,32.822 573.261,32.822 C545.552,32.822 526.849,52.368 526.849,81.273 C526.849,111.537 545.21,130.915 574.113,130.915 C597.068,130.915 612.874,120.031 618.659,99.976 L591.625,99.976 C588.902,107.29 583.117,111.028 574.623,111.028 C561.702,111.028 553.718,103.206 553.032,89.602 L618.659,89.602 C618.824,86.879 618.824,84.501 618.824,83.484" id="Fill-10"></path>
+                <path d="M521.303,35.543 L506.348,35.543 L506.348,13.1 L480.839,13.1 L480.839,35.543 L467.246,35.543 L467.246,54.758 L480.839,54.758 L480.839,97.256 C480.839,109.501 481.858,114.765 485.43,120.029 C490.187,127.175 497.168,130.24 508.548,130.24 C513.826,130.24 516.546,129.898 521.303,128.702 L521.303,109.666 C518.238,110.008 517.221,110.173 516.039,110.173 C509.058,110.173 506.348,106.271 506.348,96.236 L506.348,54.758 L521.303,54.758 L521.303,35.543" id="Fill-9"></path>
+                <path d="M434.281,128.196 L458.595,128.196 L458.595,35.546 L433.085,35.546 L433.085,83.485 C433.085,93.52 432.247,98.618 429.69,102.7 C426.625,107.799 421.527,110.684 415.918,110.684 C410.478,110.684 405.886,108.308 403.342,104.061 C401.639,100.997 401.129,97.932 401.129,89.945 L401.129,35.546 L375.633,35.546 L375.633,88.076 C375.633,104.568 376.65,110.519 380.39,116.472 C385.998,125.31 395.689,130.23 407.247,130.23 C418.476,130.23 428.163,125.31 434.281,116.637 L434.281,128.196" id="Fill-8"></path>
+                <path d="M364.433,35.543 L349.479,35.543 L349.479,13.1 L323.969,13.1 L323.969,35.543 L310.376,35.543 L310.376,54.758 L323.969,54.758 L323.969,97.256 C323.969,109.501 324.989,114.765 328.56,120.029 C333.317,127.175 340.298,130.24 351.678,130.24 C356.956,130.24 359.676,129.898 364.433,128.702 L364.433,109.666 C361.368,110.008 360.351,110.173 359.169,110.173 C352.188,110.173 349.479,106.271 349.479,96.236 L349.479,54.758 L364.433,54.758 L364.433,35.543" id="Fill-7"></path>
+                <path d="M288.764,0.347 L276.009,0.347 L276.009,24.823 L301.519,24.823 L301.519,0.347 L288.764,0.347 Z M288.764,35.533 L276.009,35.533 L276.009,128.197 L301.519,128.197 L301.519,35.533 L288.764,35.533 Z" id="Fill-6"></path>
+                <path d="M265.918,35.543 L250.964,35.543 L250.964,13.1 L225.454,13.1 L225.454,35.543 L211.862,35.543 L211.862,54.758 L225.454,54.758 L225.454,97.256 C225.454,109.501 226.474,114.765 230.046,120.029 C234.803,127.175 241.784,130.24 253.164,130.24 C258.441,130.24 261.162,129.898 265.918,128.702 L265.918,109.666 C262.854,110.008 261.837,110.173 260.654,110.173 C253.673,110.173 250.964,106.271 250.964,96.236 L250.964,54.758 L265.918,54.758 L265.918,35.543" id="Fill-5"></path>
+                <path d="M207.476,65.123 C207.641,44.891 193.194,32.825 168.373,32.825 C144.404,32.825 129.105,44.384 129.105,62.238 C129.105,69.029 131.991,75.83 137.092,80.422 C142.877,85.697 148.993,88.076 165.995,91.65 C178.57,94.359 183.162,97.421 183.162,103.209 C183.162,108.638 177.553,112.213 169.059,112.213 C158.341,112.213 152.732,107.111 152.909,97.256 L126.892,97.256 C127.236,118.849 142.367,130.918 168.883,130.918 C194.048,130.918 209.689,119.357 209.689,100.83 C209.689,86.714 201.36,78.209 182.997,73.452 L164.633,68.698 C157.666,66.826 154.601,64.272 154.601,60.19 C154.601,54.581 159.369,51.186 167.356,51.186 C177.719,51.186 181.98,55.091 182.487,65.123 L207.476,65.123" id="Fill-4"></path>
+                <path d="M61.442,35.543 L37.128,35.543 L37.128,128.192 L62.638,128.192 L62.638,80.254 C62.638,61.725 68.068,53.055 79.806,53.055 C85.246,53.055 89.838,55.609 92.381,59.68 C94.085,62.742 94.594,65.807 94.594,73.794 L94.594,128.192 L120.091,128.192 L120.091,75.662 C120.091,59.17 119.074,53.22 115.334,47.267 C109.725,38.428 100.2,33.509 88.476,33.509 C77.083,33.509 67.392,38.428 61.442,47.102 L61.442,35.543" id="Fill-3"></path>
+                <polyline id="Fill-2" points="13.508 0.347 0.767 0.347 0.767 128.197 26.249 128.197 26.249 0.347 13.508 0.347"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>    </a>
+    <a href="#block-footer" class="search" title="Open search"><i class="icon icon--search"></i><i class="icon icon--close-white" style="opacity: 0; visibility: hidden;"></i></a>
+    <a href="#block-footer" class="burger" title="Open Navigation">
+        <div class="burger__bars">
+            <span class="burger__bar burger__bar--top"></span>
+            <span class="burger__bar burger__bar--middle"></span>
+            <span class="burger__bar burger__bar--bottom"></span>
+        </div>
+        <span>Menu</span>
+    </a>
+</div>
+
+    <!-- Content -->
+    <!-- Content of top layer-->
+            <a href="/" class="home-link">
+            <span>The Alan Turing Institute</span>
+            
+<svg class="logo logo--white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1420.422 295.034">
+  <g id="Group_493" data-name="Group 493" transform="translate(-342.759 -399)">
+    <path id="logo-line-1" data-name="Subtraction 3" d="M2590.042-2951.966H2290L2404.522-3247l185.519,80.087Zm-105.769-61v1.166a28.153,28.153,0,0,0,2.125,11.211,22.371,22.371,0,0,0,6.417,8.468,28.533,28.533,0,0,0,10.092,5.22,46.5,46.5,0,0,0,13.148,1.716,45.126,45.126,0,0,0,12.6-1.638,29.194,29.194,0,0,0,9.9-4.973,22.038,22.038,0,0,0,6.42-7.856,23.29,23.29,0,0,0,2.142-10.1,22.517,22.517,0,0,0-1.579-8.655,20.013,20.013,0,0,0-3.88-6.208,22.447,22.447,0,0,0-6.338-4.4,50.32,50.32,0,0,0-7.155-2.94c-2.1-.652-4.9-1.4-8.338-2.226-5.555-1.4-9.345-2.66-11.266-3.733a4.377,4.377,0,0,1-2.433-4.164,4.729,4.729,0,0,1,2.137-4.033,10.687,10.687,0,0,1,6.352-1.676c3.172,0,5.619.776,7.271,2.306s2.451,3.715,2.451,6.687v1.166h20.826v-1.166a27.952,27.952,0,0,0-1.938-10.747,20.3,20.3,0,0,0-5.881-7.956,25.92,25.92,0,0,0-9.436-4.8,45.863,45.863,0,0,0-12.573-1.571,43.448,43.448,0,0,0-12.129,1.573,27.889,27.889,0,0,0-9.5,4.783,21.289,21.289,0,0,0-6.148,7.505,21.941,21.941,0,0,0-2.054,9.573,21.522,21.522,0,0,0,1.638,8.622,20.01,20.01,0,0,0,3.882,6.045,22.331,22.331,0,0,0,6.5,4.3,60.074,60.074,0,0,0,7.129,2.877c1.973.622,4.777,1.387,8.333,2.275,5.416,1.4,9.065,2.639,10.848,3.675a4.667,4.667,0,0,1,2.245,4.43,5.412,5.412,0,0,1-2.388,4.7,12.36,12.36,0,0,1-7.232,1.835c-3.716,0-6.507-.844-8.3-2.509-1.765-1.644-2.66-4.2-2.66-7.613v-1.166Zm-29.079-24.377c2.612,0,4.547.646,5.75,1.92,1.233,1.307,1.858,3.412,1.858,6.258v.1a115.872,115.872,0,0,0-11.594,1.356,48.6,48.6,0,0,0-9.106,2.265,20.489,20.489,0,0,0-6.382,3.589,14.579,14.579,0,0,0-4.958,11.487,15.4,15.4,0,0,0,5.176,11.9c3.378,3.051,7.875,4.6,13.368,4.6,6.172,0,11.226-1.746,15.021-5.188.115.914.266,1.792.452,2.612l.343,1.516h13.987l-.6-2.415a53.031,53.031,0,0,1-1.2-12.446V-3028.1a26.73,26.73,0,0,0-1.405-9.019,16.978,16.978,0,0,0-4.375-6.764,18.539,18.539,0,0,0-7.066-4.045,30.439,30.439,0,0,0-9.269-1.3,30.5,30.5,0,0,0-9.061,1.245,19.228,19.228,0,0,0-7.039,3.867,18.355,18.355,0,0,0-6.3,13.309l-.108,2.046H2447.4l.09-1.849a6.8,6.8,0,0,1,2.078-4.932A7.943,7.943,0,0,1,2455.194-3037.339ZM2400-3056.519v57.978h20.107v-57.978h22.4v-17.416h-64.9v17.416ZM2469.035-3147v75.394h54.83v-17.211h-34.724v-12.444h31.642v-17.006h-31.642v-11.521h33.9V-3147Zm-43.813-18.757a38.772,38.772,0,0,0-14.669,2.639,30.418,30.418,0,0,0-11.267,7.96,34.8,34.8,0,0,0-7.1,12.511,52.357,52.357,0,0,0-2.344,16.229,52.622,52.622,0,0,0,2.33,16.227,34.834,34.834,0,0,0,7.057,12.51,30.263,30.263,0,0,0,11.2,7.962,38.344,38.344,0,0,0,14.582,2.64,42.279,42.279,0,0,0,13.074-1.906,30.232,30.232,0,0,0,10.389-5.764,27.137,27.137,0,0,0,7.029-9.325,36.049,36.049,0,0,0,3.032-12.406l.1-1.254h-20.893l-.12,1.031c-.445,3.8-1.791,6.772-4,8.824a12.035,12.035,0,0,1-8.6,3.074,11.755,11.755,0,0,1-10.284-5.6c-2.627-3.854-3.959-9.243-3.959-16.018s1.332-12.164,3.959-16.019a11.933,11.933,0,0,1,10.489-5.595,11.909,11.909,0,0,1,8.5,2.972,12.989,12.989,0,0,1,3.793,8.5l.109,1.046h20.657l-.049-1.212a32.331,32.331,0,0,0-2.63-11.934,26.845,26.845,0,0,0-6.857-9.264,29.807,29.807,0,0,0-10.381-5.888A41.851,41.851,0,0,0,2425.222-3165.754Zm27.269,159.9a7.667,7.667,0,0,1-5.138-1.5,4.669,4.669,0,0,1-1.6-3.789,4.282,4.282,0,0,1,1.442-3.591c.808-.646,2.605-1.553,6.578-2.2l.018,0c2.7-.466,5.728-.831,9.013-1.085v.327a19.479,19.479,0,0,1-.632,5.627,9.286,9.286,0,0,1-2.192,3.523A10.068,10.068,0,0,1,2452.491-3005.849Z" transform="translate(-1947.24 3646)"></path>
+    <path id="logo-line-2" data-name="Path 781" d="M4313.562,5530.221l-.987-.266v-13.019l1.723.524a16.684,16.684,0,0,0,4.874.709c3.031,0,5.347-.636,6.885-1.891,1.52-1.242,2.894-3.582,4.088-6.958l-18.848-51.878v6.61h-10.852v26.511c0,2.8.48,4.772,1.428,5.869.9,1.04,2.515,1.566,4.8,1.566a9.756,9.756,0,0,0,3.358-.458l1.813-.7v12.7l-.962.279a26.481,26.481,0,0,1-7.388,1.04,27.417,27.417,0,0,1-8.057-1.059,12.829,12.829,0,0,1-9.1-9.162,28.4,28.4,0,0,1-1.059-8.215v-28.374h-9.317v-12.206h9.317v-13.923h15.167v13.923H4325.5l13.09,38.962,13.5-38.962h15.8l-22.154,59.9a49,49,0,0,1-4.414,9.131,22.248,22.248,0,0,1-5.3,5.942,19.951,19.951,0,0,1-6.885,3.18,35.76,35.76,0,0,1-8.984,1.03A25.421,25.421,0,0,1,4313.562,5530.221Zm-198.849-20.47a25.031,25.031,0,0,1-9.088-6.335,27.668,27.668,0,0,1-5.789-9.844,42.213,42.213,0,0,1,0-25.09,27.674,27.674,0,0,1,5.789-9.843,25.035,25.035,0,0,1,9.088-6.337,30.843,30.843,0,0,1,11.628-2.1,30.369,30.369,0,0,1,10.047,1.6,24.519,24.519,0,0,1,8.215,4.825,24.028,24.028,0,0,1,5.669,7.385,26.208,26.208,0,0,1,2.5,9.223l.132,1.456h-15.738l-.1-1.229a14.367,14.367,0,0,0-1.048-4.5,10.485,10.485,0,0,0-2.285-3.37,10.022,10.022,0,0,0-7.4-2.851,10.487,10.487,0,0,0-9.16,4.643c-2.275,3.225-3.429,7.816-3.429,13.646s1.154,10.42,3.429,13.646a10.49,10.49,0,0,0,9.16,4.642,9.249,9.249,0,0,0,7.282-3.173,12.391,12.391,0,0,0,2.288-3.738,16.559,16.559,0,0,0,1.049-4.793l.094-1.231H4152.9l-.125,1.449a28.718,28.718,0,0,1-2.476,9.669,24.634,24.634,0,0,1-5.619,7.693,24.064,24.064,0,0,1-8.21,5,29.756,29.756,0,0,1-10.128,1.654A30.814,30.814,0,0,1,4114.713,5509.75Zm-59.661-.058a24.271,24.271,0,0,1-9.03-6.521,28.774,28.774,0,0,1-5.648-10.054,41.02,41.02,0,0,1-1.861-12.748,36.374,36.374,0,0,1,1.868-11.92,28.693,28.693,0,0,1,5.647-9.684,24.349,24.349,0,0,1,8.97-6.432,32.277,32.277,0,0,1,20.73-.793,25.306,25.306,0,0,1,13.6,10.387,28.517,28.517,0,0,1,3.545,8.208,46.754,46.754,0,0,1,1.586,13.412v1.334h-40.816c.362,4.951,1.674,8.693,3.907,11.141a11.873,11.873,0,0,0,9.264,3.951,12.67,12.67,0,0,0,7.8-2.253,9.539,9.539,0,0,0,3.719-5.9l.223-1.059h15.55l-.334,1.606a22.741,22.741,0,0,1-3.116,7.685,25.522,25.522,0,0,1-13.942,10.42,33.892,33.892,0,0,1-9.9,1.374A30.558,30.558,0,0,1,4055.052,5509.692Zm6.722-46.771a11.264,11.264,0,0,0-3.835,2.5,15.15,15.15,0,0,0-3.959,8.569h25.144a19.251,19.251,0,0,0-1.172-4.437,12.249,12.249,0,0,0-2.7-4.132,11.249,11.249,0,0,0-3.835-2.5,14.229,14.229,0,0,0-9.64,0Zm-69.852,47.1a27.647,27.647,0,0,1-10.073-5.576,23.546,23.546,0,0,1-6.36-9.131,33.289,33.289,0,0,1-2.093-12.2v-1.334h16.152v1.334a21.137,21.137,0,0,0,.991,6.81,11.664,11.664,0,0,0,2.854,4.65c2.561,2.494,6.535,3.759,11.813,3.759,4.5,0,8.041-.976,10.53-2.9a9.016,9.016,0,0,0,3.593-7.605c0-3.187-1.012-5.362-3.094-6.648-2.355-1.455-6.911-3.024-13.541-4.664l-.015,0c-3.652-.948-6.563-1.747-8.652-2.37a53.43,53.43,0,0,1-7.369-2.922,18.294,18.294,0,0,1-10.417-10.777,23.007,23.007,0,0,1-1.638-8.9,21.322,21.322,0,0,1,7.994-17.2,26.887,26.887,0,0,1,9.181-4.89,39.046,39.046,0,0,1,11.564-1.609,44.3,44.3,0,0,1,12.818,1.689,24.988,24.988,0,0,1,9.5,5.173,21.728,21.728,0,0,1,5.824,8.563,32.493,32.493,0,0,1,1.91,11.562v1.334h-15.933v-1.334a17.574,17.574,0,0,0-.934-6,10.519,10.519,0,0,0-2.7-4.154,11.767,11.767,0,0,0-4.436-2.544,20.412,20.412,0,0,0-6.274-.879c-3.92,0-7.022.848-9.221,2.522a7.726,7.726,0,0,0-3.147,6.557,6.875,6.875,0,0,0,3.212,6.324c2.426,1.526,7.015,3.129,13.642,4.768,3.516.879,6.413,1.659,8.615,2.32a48.428,48.428,0,0,1,7.386,2.986,22.813,22.813,0,0,1,6.462,4.5,20.082,20.082,0,0,1,3.944,6.4,24.059,24.059,0,0,1,1.576,9c0,7.622-2.857,13.816-8.494,18.409a28.677,28.677,0,0,1-9.74,5.133,41.759,41.759,0,0,1-12.26,1.689A43.856,43.856,0,0,1,3991.922,5510.02Zm178.65-.042a18.2,18.2,0,0,1-6.9-4.7,20.065,20.065,0,0,1-4.277-7.685,34.964,34.964,0,0,1-1.39-10.318v-35.427h15.167v34.331c0,4.306.85,7.536,2.524,9.6,1.631,2.01,4.062,2.987,7.433,2.987a10.137,10.137,0,0,0,8.139-3.7c2.153-2.517,3.244-6.208,3.244-10.973v-32.249h15.165V5510.2h-14.508v-5.065c-3.988,4.238-9.2,6.381-15.547,6.381A24.98,24.98,0,0,1,4170.572,5509.978Zm-273.133-6.911a28.7,28.7,0,0,1-4.961-9.725,43.375,43.375,0,0,1-1.631-12.315,44.273,44.273,0,0,1,1.616-12.393,28.777,28.777,0,0,1,4.918-9.754c4.413-5.612,10.446-8.458,17.932-8.458a21.518,21.518,0,0,1,10.218,2.458,18.749,18.749,0,0,1,5,3.821v-27.218H3945.7V5510.2h-14.836v-5.167a18.377,18.377,0,0,1-5.111,3.97,21.788,21.788,0,0,1-10.328,2.513C3907.939,5511.521,3901.888,5508.676,3897.439,5503.067Zm12.607-35.472c-2.313,3.3-3.486,7.818-3.486,13.431s1.173,10.13,3.486,13.43a10.353,10.353,0,0,0,8.993,4.749,10.058,10.058,0,0,0,8.717-4.692c2.278-3.263,3.433-7.8,3.433-13.487,0-5.756-1.154-10.312-3.429-13.538a10.089,10.089,0,0,0-8.721-4.641A10.354,10.354,0,0,0,3910.046,5467.6Zm-124.987,42.58a18.385,18.385,0,0,1-6.467-3.769,16.67,16.67,0,0,1-5.593-12.883,15.751,15.751,0,0,1,5.333-12.405,22.453,22.453,0,0,1,6.978-3.919,54.265,54.265,0,0,1,10.182-2.532,130.875,130.875,0,0,1,13.9-1.586v-.935c0-6.943-3.025-10.176-9.518-10.176a12.956,12.956,0,0,0-4.073.588,7.943,7.943,0,0,0-2.915,1.688,8.568,8.568,0,0,0-2.643,6.21l-.061,1.269H3775.23l.074-1.4a20.038,20.038,0,0,1,6.864-14.525,20.963,20.963,0,0,1,7.677-4.218,37.317,37.317,0,0,1,20.293.058,20.165,20.165,0,0,1,7.7,4.406,18.443,18.443,0,0,1,4.744,7.349,29.56,29.56,0,0,1,1.545,9.959v20.83a61.193,61.193,0,0,0,1.385,14.365l.414,1.658h-14.067l-.235-1.04a32.388,32.388,0,0,1-.677-4.694c-4.281,4.608-10.237,6.94-17.754,6.94A25.26,25.26,0,0,1,3785.06,5510.175Zm13.072-24.984-.012,0c-3.771.618-6.421,1.52-7.878,2.685a5.691,5.691,0,0,0-1.965,4.769,6.208,6.208,0,0,0,2.118,4.969c1.46,1.273,3.617,1.918,6.413,1.918a15.115,15.115,0,0,0,5.239-.85,10.732,10.732,0,0,0,3.892-2.477,11.409,11.409,0,0,0,2.7-4.352,22.994,22.994,0,0,0,.759-6.665v-1.316C3805.269,5484.169,3801.486,5484.61,3798.131,5485.191Zm459.631,25.014v-58.357h15.165V5510.2Zm-38.04,0v-58.357h14.289v5.786a18.7,18.7,0,0,1,14.779-6.553,22.2,22.2,0,0,1,4.9.582l1.038.236v13.781l-1.609-.339a20.013,20.013,0,0,0-4.111-.41,16.152,16.152,0,0,0-6.088,1.066,11.3,11.3,0,0,0-4.354,3.127c-2.441,2.843-3.68,7.032-3.68,12.451v28.63Zm-349.7,0v-34.331c0-4.306-.849-7.536-2.525-9.6-1.63-2.01-4.062-2.987-7.432-2.987a10.135,10.135,0,0,0-8.14,3.7c-2.152,2.515-3.243,6.208-3.243,10.972V5510.2h-15.167v-58.357h14.509v5.065c3.99-4.238,9.2-6.381,15.548-6.381a24.963,24.963,0,0,1,9.048,1.543,18.181,18.181,0,0,1,6.9,4.7,20.084,20.084,0,0,1,4.278,7.685,34.977,34.977,0,0,1,1.388,10.318V5510.2Zm387.744-66.1v-14.618h15.165V5444.1Zm512.9-5.282a22.351,22.351,0,0,1-7.658-3.618,17.377,17.377,0,0,1-6.975-13.62l-.074-1.4h14.814l.069,1.262a6.23,6.23,0,0,0,2.639,5.059,12.469,12.469,0,0,0,7.32,1.882,14.061,14.061,0,0,0,5.022-.816,8.432,8.432,0,0,0,3.4-2.346c1.869-2.153,2.816-5.837,2.816-10.95v-1.777a19.019,19.019,0,0,1-14.538,6.306c-7.278,0-13.145-2.673-17.44-7.948a26.715,26.715,0,0,1-4.8-9.19,40.392,40.392,0,0,1-1.574-11.68,39.738,39.738,0,0,1,1.6-11.685,26.571,26.571,0,0,1,4.882-9.193c4.364-5.268,10.267-7.94,17.539-7.94a18.779,18.779,0,0,1,14.646,6.71v-5.219h29.138l12.694,37.784,13.094-37.784h15.437l-21.546,58.263a47.7,47.7,0,0,1-4.293,8.879,21.67,21.67,0,0,1-5.162,5.786,19.435,19.435,0,0,1-6.7,3.1,34.779,34.779,0,0,1-8.741,1,24.771,24.771,0,0,1-6.418-.791l-.987-.267v-12.73l1.723.524a16.2,16.2,0,0,0,4.725.687c2.936,0,5.179-.615,6.666-1.83,1.47-1.2,2.8-3.463,3.956-6.732l-19.408-53.424v49.579a32.36,32.36,0,0,1-1.689,10.9,20.134,20.134,0,0,1-5.179,8.021,22.218,22.218,0,0,1-8.253,4.806,34.539,34.539,0,0,1-10.82,1.571A38.363,38.363,0,0,1,4770.664,5438.82Zm1.568-60.726c-2.125,2.876-3.2,6.875-3.2,11.885s1.079,9.031,3.207,11.943a9.61,9.61,0,0,0,8.243,4.193,10.19,10.19,0,0,0,8.681-4.208c2.19-2.91,3.3-6.923,3.3-11.928s-1.109-9-3.3-11.868a10.239,10.239,0,0,0-8.687-4.162A9.649,9.649,0,0,0,4772.232,5378.094Zm-494.381,49.965a21.989,21.989,0,0,1-7.546-3.566,17.122,17.122,0,0,1-6.875-13.423l-.075-1.4h14.626l.069,1.262a6.116,6.116,0,0,0,2.589,4.965,12.27,12.27,0,0,0,7.2,1.849,13.8,13.8,0,0,0,4.936-.8,8.285,8.285,0,0,0,3.338-2.3c1.835-2.117,2.767-5.74,2.767-10.768v-1.7a18.738,18.738,0,0,1-14.292,6.177c-7.172,0-12.954-2.636-17.187-7.833a26.333,26.333,0,0,1-4.725-9.056,39.785,39.785,0,0,1-1.552-11.5,39.182,39.182,0,0,1,1.58-11.51,26.174,26.174,0,0,1,4.81-9.059c4.3-5.191,10.118-7.825,17.285-7.825a18.5,18.5,0,0,1,14.4,6.573v-5.1h14v51.257a31.869,31.869,0,0,1-1.666,10.743,19.8,19.8,0,0,1-5.1,7.905,21.861,21.861,0,0,1-8.134,4.736,34,34,0,0,1-10.658,1.549A37.756,37.756,0,0,1,4277.852,5428.059Zm1.565-59.793c-2.089,2.828-3.146,6.76-3.146,11.688s1.059,8.883,3.151,11.746a9.446,9.446,0,0,0,8.1,4.12,10.014,10.014,0,0,0,8.531-4.135c2.153-2.861,3.244-6.807,3.244-11.731s-1.09-8.848-3.24-11.672a10.059,10.059,0,0,0-8.536-4.089A9.483,9.483,0,0,0,4279.417,5368.266Zm-142.106,59.793a22,22,0,0,1-7.547-3.566,17.125,17.125,0,0,1-6.875-13.423l-.074-1.4h14.626l.068,1.262a6.116,6.116,0,0,0,2.59,4.965,12.264,12.264,0,0,0,7.195,1.849,13.8,13.8,0,0,0,4.936-.8,8.285,8.285,0,0,0,3.338-2.3c1.836-2.117,2.768-5.74,2.768-10.768v-1.7a18.742,18.742,0,0,1-14.293,6.177c-7.171,0-12.954-2.636-17.186-7.833a26.336,26.336,0,0,1-4.727-9.056,39.819,39.819,0,0,1-1.552-11.5,39.165,39.165,0,0,1,1.58-11.51q.333-1.078.738-2.1l-1.363-.288a19.06,19.06,0,0,0-3.92-.392c-4.388,0-7.642,1.307-9.948,3.994-2.327,2.708-3.506,6.7-3.506,11.873v27.45h-14.625v-55.947h13.786v5.44a17.948,17.948,0,0,1,14.083-6.174,21.278,21.278,0,0,1,4.7.558l1.038.236v12.648a25.355,25.355,0,0,1,3.827-6.352c4.3-5.191,10.117-7.825,17.283-7.825a18.5,18.5,0,0,1,14.4,6.573v-5.1h14v51.257a31.87,31.87,0,0,1-1.665,10.743,19.84,19.84,0,0,1-5.1,7.905,21.868,21.868,0,0,1-8.134,4.736,34.008,34.008,0,0,1-10.659,1.549A37.751,37.751,0,0,1,4137.311,5428.059Zm1.566-59.793c-2.089,2.828-3.148,6.76-3.148,11.688s1.061,8.883,3.152,11.746a9.444,9.444,0,0,0,8.1,4.12,10.012,10.012,0,0,0,8.53-4.135c2.153-2.861,3.245-6.807,3.245-11.731s-1.091-8.848-3.241-11.672a10.058,10.058,0,0,0-8.534-4.089A9.481,9.481,0,0,0,4138.877,5368.266Zm572.054,50.744a24.688,24.688,0,0,1-8.977-6.12,26.552,26.552,0,0,1-5.72-9.571,40.9,40.9,0,0,1,0-24.549,26.556,26.556,0,0,1,5.72-9.571,24.688,24.688,0,0,1,8.977-6.12,33.572,33.572,0,0,1,22.969,0,24.464,24.464,0,0,1,8.939,6.123,26.6,26.6,0,0,1,5.679,9.571,41.2,41.2,0,0,1,0,24.543,26.6,26.6,0,0,1-5.679,9.571,24.464,24.464,0,0,1-8.939,6.123,33.572,33.572,0,0,1-22.969,0Zm2.342-41.134c-2.3,3.16-3.472,7.59-3.472,13.168s1.168,10.009,3.472,13.169a11.45,11.45,0,0,0,18.3,0c2.3-3.16,3.472-7.59,3.472-13.169s-1.167-10.008-3.472-13.168a11.45,11.45,0,0,0-18.3,0Zm-85.115,41.134a24.688,24.688,0,0,1-8.977-6.12,26.552,26.552,0,0,1-5.72-9.571,40.9,40.9,0,0,1,0-24.549,26.556,26.556,0,0,1,5.72-9.571,24.688,24.688,0,0,1,8.977-6.12,33.573,33.573,0,0,1,22.969,0,24.467,24.467,0,0,1,8.939,6.123,26.606,26.606,0,0,1,5.679,9.571,41.207,41.207,0,0,1,0,24.543,26.606,26.606,0,0,1-5.679,9.571,24.467,24.467,0,0,1-8.939,6.123,33.573,33.573,0,0,1-22.969,0Zm2.342-41.134c-2.3,3.16-3.472,7.59-3.472,13.168s1.167,10.009,3.472,13.169a11.45,11.45,0,0,0,18.3,0c2.3-3.16,3.472-7.59,3.472-13.169s-1.167-10.008-3.472-13.168a11.45,11.45,0,0,0-18.3,0Zm-176.659,41.117a24.356,24.356,0,0,1-8.844-6.167,26.918,26.918,0,0,1-5.633-9.578,41.05,41.05,0,0,1,0-24.407,26.912,26.912,0,0,1,5.633-9.578,24.351,24.351,0,0,1,8.844-6.167,30,30,0,0,1,11.314-2.042,29.528,29.528,0,0,1,9.775,1.553,23.855,23.855,0,0,1,8,4.7,23.39,23.39,0,0,1,5.518,7.188,25.46,25.46,0,0,1,2.435,8.977l.133,1.455h-15.371l-.1-1.229a13.911,13.911,0,0,0-1.015-4.363,10.142,10.142,0,0,0-2.213-3.261,9.7,9.7,0,0,0-7.16-2.76,10.153,10.153,0,0,0-8.87,4.494c-2.207,3.128-3.325,7.583-3.325,13.24s1.118,10.112,3.325,13.24a10.152,10.152,0,0,0,8.87,4.495,8.949,8.949,0,0,0,7.047-3.069,12.037,12.037,0,0,0,2.217-3.622,15.983,15.983,0,0,0,1.016-4.647l.1-1.231H4491l-.124,1.448a27.951,27.951,0,0,1-2.41,9.41,23.958,23.958,0,0,1-5.469,7.487,23.389,23.389,0,0,1-7.991,4.87,28.907,28.907,0,0,1-9.854,1.611A30,30,0,0,1,4453.841,5418.993Zm-57.976-.058a23.625,23.625,0,0,1-8.789-6.347,27.99,27.99,0,0,1-5.5-9.783,39.89,39.89,0,0,1-1.812-12.4,35.4,35.4,0,0,1,1.818-11.6,27.956,27.956,0,0,1,5.5-9.422,23.717,23.717,0,0,1,8.731-6.261,31.421,31.421,0,0,1,20.169-.771,24.633,24.633,0,0,1,13.235,10.111,27.761,27.761,0,0,1,3.45,7.984,45.432,45.432,0,0,1,1.543,13.045v1.334h-39.661c.355,4.782,1.627,8.4,3.784,10.762a11.506,11.506,0,0,0,8.976,3.827,12.285,12.285,0,0,0,7.558-2.181,9.233,9.233,0,0,0,3.6-5.709l.224-1.058h15.188l-.334,1.6a22.707,22.707,0,0,1-8.692,13.567,24.585,24.585,0,0,1-7.911,4.056,32.971,32.971,0,0,1-9.63,1.337A29.717,29.717,0,0,1,4395.865,5418.935Zm2.847-43.026a14.662,14.662,0,0,0-3.83,8.262h24.346a14.272,14.272,0,0,0-3.746-8.262,12.475,12.475,0,0,0-16.77,0Zm274.863,43.528V5340.92h14.813v78.517Zm-82.24,0v-33.4c0-4.175-.823-7.307-2.446-9.307-1.576-1.943-3.928-2.889-7.193-2.889a9.812,9.812,0,0,0-7.88,3.582c-2.085,2.438-3.143,6.017-3.143,10.638v31.375h-14.812v-56.786h14.174v4.865a19.912,19.912,0,0,1,15.07-6.144,24.305,24.305,0,0,1,8.806,1.5,17.719,17.719,0,0,1,6.72,4.578,19.544,19.544,0,0,1,4.165,7.483,33.972,33.972,0,0,1,1.352,10.036v34.465Zm-59.443,0v-33.4c0-4.175-.823-7.307-2.446-9.307-1.576-1.943-3.928-2.889-7.193-2.889a9.812,9.812,0,0,0-7.88,3.582c-2.085,2.438-3.143,6.017-3.143,10.638v31.375h-14.812V5340.92h14.813v26.106a19.656,19.656,0,0,1,14.432-5.654,24.311,24.311,0,0,1,8.806,1.5,17.719,17.719,0,0,1,6.72,4.578,19.544,19.544,0,0,1,4.165,7.483,33.972,33.972,0,0,1,1.352,10.036v34.465Zm-180.993,0v-64.771h-24.928V5340.92h65.2v13.747h-24.928v64.771Zm-304.974-10.955a23.3,23.3,0,0,1-8.66-6.255,27.6,27.6,0,0,1-5.417-9.639,39.343,39.343,0,0,1-1.784-12.215,34.862,34.862,0,0,1,1.792-11.423,27.511,27.511,0,0,1,5.414-9.284,23.358,23.358,0,0,1,8.6-6.169,30.937,30.937,0,0,1,19.872-.76,24.252,24.252,0,0,1,13.041,9.962,27.331,27.331,0,0,1,3.4,7.866,44.8,44.8,0,0,1,1.52,12.85v1.334h-39.046c.353,4.692,1.6,8.24,3.719,10.562a11.308,11.308,0,0,0,8.822,3.759,12.074,12.074,0,0,0,7.429-2.142,9.073,9.073,0,0,0,3.536-5.608l.223-1.059h14.994l-.334,1.606a22.377,22.377,0,0,1-8.565,13.369,24.252,24.252,0,0,1-7.8,4,32.473,32.473,0,0,1-9.488,1.317A29.308,29.308,0,0,1,4045.927,5408.482Zm2.825-42.366a14.391,14.391,0,0,0-3.76,8.1h23.92a14,14,0,0,0-3.678-8.1,12.262,12.262,0,0,0-16.481,0Zm192.442,42.86v-32.9c0-4.106-.809-7.185-2.4-9.15-1.548-1.909-3.859-2.836-7.065-2.836a9.643,9.643,0,0,0-7.744,3.519c-2.049,2.4-3.087,5.915-3.087,10.459v30.91h-14.626v-55.947h14v4.758a19.627,19.627,0,0,1,14.818-6.018c6.514,0,11.662,2.017,15.3,5.993a19.243,19.243,0,0,1,4.1,7.374,33.491,33.491,0,0,1,1.333,9.889v33.952Zm-59.049,0v-55.947h14.625v55.947Zm-172.006,0v-33.008c0-4.1-.724-7.165-2.154-9.124-1.355-1.854-3.369-2.757-6.16-2.757a8.194,8.194,0,0,0-7.142,3.682c-1.821,2.589-2.746,6.336-2.746,11.135v30.072h-14.625V5374.71c0-3.452-.733-6.14-2.181-7.987a7.136,7.136,0,0,0-6.028-2.635,8.131,8.131,0,0,0-7.185,3.718c-1.793,2.629-2.7,6.434-2.7,11.31v29.861h-14.625v-55.947h14.1v4.364a18.549,18.549,0,0,1,13.663-5.623,19.617,19.617,0,0,1,10.4,2.61,16.049,16.049,0,0,1,5.521,5.778,20.313,20.313,0,0,1,16.907-8.388c6.111,0,10.968,2.025,14.434,6.019a19.583,19.583,0,0,1,3.888,7.31,34.132,34.132,0,0,1,1.263,9.717v34.161Zm-125.332,0v-77.344H3937.4v13.577H3900.06v17.573h35.03v13.472h-35.03V5395.4h38.387v13.576Zm297.338-63.242v-14.1h14.625v14.1Zm-36.733-31.238a24.336,24.336,0,0,1-8.845-6.031,26.177,26.177,0,0,1-5.637-9.431,40.315,40.315,0,0,1,0-24.183,26.177,26.177,0,0,1,5.637-9.431,24.336,24.336,0,0,1,8.845-6.031,33.076,33.076,0,0,1,22.629,0,24.1,24.1,0,0,1,8.809,6.033,26.218,26.218,0,0,1,5.6,9.431,40.581,40.581,0,0,1,0,24.177,26.218,26.218,0,0,1-5.6,9.431,24.1,24.1,0,0,1-8.809,6.033,33.076,33.076,0,0,1-22.629,0Zm2.331-40.506c-2.265,3.106-3.415,7.465-3.415,12.953s1.149,9.847,3.415,12.954a11.251,11.251,0,0,0,17.98,0c2.267-3.106,3.415-7.465,3.415-12.954s-1.148-9.846-3.415-12.953a11.251,11.251,0,0,0-17.98,0Zm-103.133,40.432a23.285,23.285,0,0,1-8.66-6.253,27.6,27.6,0,0,1-5.415-9.641,39.283,39.283,0,0,1-1.784-12.214,34.862,34.862,0,0,1,1.791-11.423,27.515,27.515,0,0,1,5.414-9.284,23.384,23.384,0,0,1,8.6-6.17,30.945,30.945,0,0,1,19.872-.759,24.252,24.252,0,0,1,13.041,9.962,27.338,27.338,0,0,1,3.4,7.866,44.753,44.753,0,0,1,1.52,12.848v1.335h-39.045c.351,4.692,1.6,8.24,3.717,10.561a11.308,11.308,0,0,0,8.821,3.76,12.069,12.069,0,0,0,7.429-2.143,9.07,9.07,0,0,0,3.537-5.607l.222-1.059h14.994l-.334,1.606a22.377,22.377,0,0,1-8.565,13.369,24.282,24.282,0,0,1-7.794,4,32.484,32.484,0,0,1-9.489,1.317A29.289,29.289,0,0,1,4044.608,5314.422Zm2.825-42.365a14.393,14.393,0,0,0-3.76,8.1h23.92a14,14,0,0,0-3.678-8.1,12.262,12.262,0,0,0-16.481,0ZM3858.4,5314.422a23.285,23.285,0,0,1-8.66-6.253,27.635,27.635,0,0,1-5.417-9.641,39.326,39.326,0,0,1-1.784-12.214,34.862,34.862,0,0,1,1.792-11.423,27.511,27.511,0,0,1,5.414-9.284,23.382,23.382,0,0,1,8.6-6.17,30.944,30.944,0,0,1,19.872-.759,24.252,24.252,0,0,1,13.041,9.962,27.324,27.324,0,0,1,3.4,7.866,44.758,44.758,0,0,1,1.52,12.848v1.335h-39.046c.353,4.692,1.6,8.24,3.719,10.561a11.308,11.308,0,0,0,8.822,3.76,12.069,12.069,0,0,0,7.429-2.143,9.063,9.063,0,0,0,3.535-5.607l.223-1.059h14.994l-.334,1.606a22.377,22.377,0,0,1-8.565,13.369,24.271,24.271,0,0,1-7.8,4,32.465,32.465,0,0,1-9.488,1.317A29.289,29.289,0,0,1,3858.4,5314.422Zm2.825-42.365a14.394,14.394,0,0,0-3.76,8.1h23.92a14,14,0,0,0-3.678-8.1,12.263,12.263,0,0,0-16.481,0Zm-68.048,41.73a29.738,29.738,0,0,1-10.991-8.148,35.971,35.971,0,0,1-6.906-12.793,56.16,56.16,0,0,1-2.276-16.6,55.51,55.51,0,0,1,2.3-16.6,35.842,35.842,0,0,1,6.988-12.8,30.112,30.112,0,0,1,11.095-8.144,36.762,36.762,0,0,1,14.4-2.7,38.046,38.046,0,0,1,12.554,1.963,28.369,28.369,0,0,1,9.957,5.942,27.626,27.626,0,0,1,6.581,9.117,31.391,31.391,0,0,1,2.552,11.418l.061,1.391h-15.276l-.135-1.184a19.794,19.794,0,0,0-1.677-6.229,14.647,14.647,0,0,0-3.4-4.628,14.215,14.215,0,0,0-4.906-2.914,19.061,19.061,0,0,0-6.31-.987c-5.969,0-10.523,2.241-13.924,6.852-3.445,4.672-5.193,11.234-5.193,19.5s1.731,14.834,5.145,19.507a15.881,15.881,0,0,0,13.659,6.846,19.1,19.1,0,0,0,6.334-1,14.711,14.711,0,0,0,4.99-2.958,15.392,15.392,0,0,0,3.536-4.732,21.233,21.233,0,0,0,1.857-6.415l.158-1.154h15.523l-.131,1.454a36.03,36.03,0,0,1-3.027,11.939,27.751,27.751,0,0,1-6.748,9.128,28.6,28.6,0,0,1-9.953,5.735,39.284,39.284,0,0,1-12.54,1.892A36.23,36.23,0,0,1,3793.173,5313.787Zm178.48.743a12.33,12.33,0,0,1-8.747-8.8,27.258,27.258,0,0,1-1.015-7.876v-27.088h-8.916V5258.97h8.916v-13.32h14.625v13.32H3986.9v11.793h-10.383v25.305c0,2.663.455,4.54,1.352,5.578.85.981,2.379,1.479,4.55,1.479a9.278,9.278,0,0,0,3.191-.435l1.814-.7v12.279l-.963.279a25.368,25.368,0,0,1-7.083,1A26.275,26.275,0,0,1,3971.653,5314.53Zm218.46.387V5258.97H4203.9v5.44a17.948,17.948,0,0,1,14.083-6.174,21.35,21.35,0,0,1,4.7.557l1.04.237v13.3l-1.609-.339a19.1,19.1,0,0,0-3.921-.391c-4.386,0-7.64,1.306-9.947,3.993-2.326,2.708-3.506,6.7-3.506,11.873v27.45Zm-83.905,0v-44.154h-9.02V5258.97h9.02v-4.33a24.659,24.659,0,0,1,1.076-7.62,14.357,14.357,0,0,1,3.344-5.665,14.006,14.006,0,0,1,5.57-3.416,23.385,23.385,0,0,1,7.5-1.1,34.217,34.217,0,0,1,6.555.761l1.073.214v11.672l-1.7-.486a9.383,9.383,0,0,0-2.571-.368c-2.187,0-3.8.544-4.788,1.616-1.019,1.1-1.535,3.039-1.535,5.755v2.967h10.279v11.793h-10.279v44.154Zm-112.991,0V5258.97H4007v5.44a17.95,17.95,0,0,1,14.084-6.174,21.356,21.356,0,0,1,4.7.557l1.038.237v13.3l-1.609-.339a19.1,19.1,0,0,0-3.92-.391c-4.386,0-7.642,1.306-9.948,3.993-2.326,2.708-3.5,6.7-3.5,11.873v27.45Zm-56.287,0v-32.9c0-4.1-.808-7.184-2.4-9.149-1.548-1.908-3.859-2.835-7.065-2.835a9.643,9.643,0,0,0-7.744,3.519c-2.049,2.4-3.089,5.915-3.089,10.459v30.91H3902V5258.97H3916v4.758a19.627,19.627,0,0,1,14.818-6.018c6.514,0,11.662,2.016,15.3,5.993a19.26,19.26,0,0,1,4.1,7.374,33.5,33.5,0,0,1,1.333,9.889v33.952Z" transform="translate(-3099.538 -4837)"></path>
+  </g>
+</svg>        </a>
+                    <div class="container">
+                
+                <div class="hero-content hero-content--white">
+                                        <div>
+                        <div class="row">
+                            <div class="col-md-7 col-lg-9 hero__main">
+                                
+
+
+      <nav class="breadcrumb">
+    <h2 class="visually-hidden">Breadcrumb</h2>
+    <ol>
+          <li>
+                  <a href="/">Home</a>
+              </li>
+        </ol>
+  </nav>
+
+
+
+                                                                                                            <h1>
+                                            <span class="title-top-border"></span>
+                                            <span class="title-text"><span class="field field--title field--string field--label-hidden">Indirect Prompt Injection: Generative AI’s Greatest Security Flaw</span>
+</span>
+                                        </h1>
+                                                                                                    
+                                                                    <h2 class="title-text">  <p>Expert Analysis</p>
+
+
+</h2>
+                                                                                                                                    <p class="title-text">
+                                                                                                                  <a href="/about/authors/matt-sutton">Matt Sutton</a>, 
+                                                                                                                                                        <a href="/about/authors/damian-ruck">Damian Ruck</a>
+                                                                                                              </p>
+                                                                                                    <div class="hero__call-to-actions">
+                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                </div>
+                                                                                                                                            <div class="hero__date">
+                                            1 November 2024
+                                        </div>
+                                                                                                </div>
+                                                    </div>
+                    </div>
+                                    </div>
+            </div>
+     </div>
+
+<div class="sticky--header" style="opacity: 0; top: -50px; visibility: hidden;">
+    <div class="container">
+        
+
+
+      <nav class="breadcrumb">
+    <h2 class="visually-hidden">Breadcrumb</h2>
+    <ol>
+          <li>
+                  <a href="/">Home</a>
+              </li>
+        </ol>
+  </nav>
+
+
+
+        <div class="search-n-burger">
+            <a href="#block-footer" class="search" title="Open search"><i class="icon icon--search"></i></a>
+            <a href="#block-footer" class="burger" title="Open Navigation">
+                <div class="burger__bars">
+                    <span class="burger__bar burger__bar--top"></span>
+                    <span class="burger__bar burger__bar--middle"></span>
+                    <span class="burger__bar burger__bar--bottom"></span>
+                </div>
+                <span>Menu</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+        <div class="header__menu_overlay" style="opacity: 0; visibility: hidden;"></div>
+</header>
+
+<div data-history-node-id="275" about="/publications/indirect-prompt-injection-generative-ais-greatest-security-flaw" class="node node--type-research-publications node--view-mode-full">
+    <div class="container">
+        <div class="row" data-sticky-container="">
+            <main class="col-md-9">
+                <a id="main-content" tabindex="-1"></a>                
+                                                
+
+
+
+            <div class="clearfix text-formatted field field-full-publication field--text-long field--label-hidden"><p><em>This publication is licensed under the terms of the </em><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode"><em>Creative Commons Attribution License 4.0 </em></a><em>which permits unrestricted use, provided the original authors and source are credited.</em></p><h3><strong>Introduction</strong></h3><p><a href="https://genai.owasp.org/llmrisk/llm01-prompt-injection/">Prompt injection</a> is one of the most urgent issues facing state-of-the-art generative AI (GenAI) models. The UK’s National Cyber Security Centre (NCSC) has <a href="https://www.ncsc.gov.uk/blog-post/exercise-caution-building-off-llms">flagged</a> it as a critical risk, while the US National Institute for Standards and Technology has <a href="https://securityintelligence.com/articles/ai-prompt-injection-nist-report/">described</a> it as “generative AI’s greatest security flaw”. Simply defined, prompt injection <a href="https://genai.owasp.org/llmrisk/llm01-prompt-injection/">occurs</a> “when an attacker manipulates a large language model (LLM) through crafted inputs, causing the LLM to unknowingly execute the attacker’s intentions”, as the Open Worldwide Application Security Project puts it. This can lead to the manipulation of the system’s decision-making, the distribution of disinformation to the user, the disclosure of sensitive information, the orchestration of intricate phishing attacks and the execution of malicious code.</p><p><em>Indirect</em> prompt injection is the insertion of malicious information into the data sources of a GenAI system by hiding instructions in the data it accesses, such as incoming emails or saved documents. Unlike direct prompt injection, it does not require direct access to the GenAI system, instead presenting a risk across the range of data sources that a GenAI system uses to provide context.</p><p>When a GenAI system gains access to emails, personal documents, organisational knowledge and other business applications, there is a marked increase in the scope to introduce malicious disinformation through indirect prompt injection using hidden instructions. Many organisations are aware of the risk of GenAI-based misinformation but are struggling to manage it. McKinsey <a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai">reported</a> inaccuracy as the most relevant GenAI risk to the organisations covered by its Global Survey – and yet just 38% of those organisations were working on mitigation.</p><p>A key component of hidden instructions comes from the fact that a GenAI assistant does not read data in the way that a human does. This makes it possible to devise exceedingly simple methods of insertion that are invisible to the human eye but are central to a GenAI system’s retrieval process. When combined with the range of input methods available to a GenAI assistant – such as emails, documents and external web pages – the attack surface is broad and varied.</p><p>Responsible implementation of a GenAI system requires appropriate mitigation of the risk of indirect prompt injection through data quality controls, conscious management of access to data, clear user education on the safe use of tools and continuous monitoring to detect suspicious behaviour.</p><h3><strong>Context</strong></h3><p>Recent years have seen explosive growth in organisations’ use of GenAI. In July 2024, Statista <a href="https://www.statista.com/statistics/1482102/rate-of-generative-ai-utilization-globally/">found</a> that 75% of business employees have used GenAI in their work; 46% of them had adopted GenAI in the previous six months. All the top use cases – from marketing to human resources, to data management – rely on access to a business’s knowledge base to be effective. Indeed, large providers such as Microsoft, Google and Amazon have all released products promising to connect LLMs to an organisation’s data. Microsoft’s Q2 earnings call <a href="https://www.microsoft.com/en-us/investor/events/FY-2024/earnings-fy-2024-q2#:~:text=You%20can%20replay%20the%20call%20and%20view%20the%20transcript%20on?msockid=2c515e319a8d6c36028a4ae39b956de8">reported</a> that more than 10,000 businesses had already integrated CoPilot into their Microsoft 365 applications.</p><p>Training an LLM comes with a long list of overheads. The International Energy Agency’s forecast to 2026 <a href="https://iea.blob.core.windows.net/assets/6b2fd954-2017-408e-bf08-952fdd62118a/Electricity2024-Analysisandforecastto2026.pdf">estimates</a> that the annual energy consumption of data centres will match or exceed that of Japan. Meta’s LLaMA 3.1-405B model <a href="https://ai.meta.com/blog/meta-llama-3-1/">required</a> a cluster of more than 16,000 H100 GPUs for compute, earning Nvidia $30 billion. Total expenditure for <a href="https://professional.content.cirrus.bloomberg.com/professional2023/insights/artificial-intelligence/scaling-gen-ais-llms-a-trillion-dollar-job/">scaling</a> LLMs is expected to exceed $1 trillion by the end of 2032.</p><p>LLMs need clear use cases to justify such investment. Embedding LLMs into systems that incorporate an organisation’s contextual information is one avenue for this. Typically <a href="https://aws.amazon.com/what-is/retrieval-augmented-generation/">relying</a> on a system called Retrieval-Augmented Generation (RAG), RAG+LLM systems function by taking a user’s initial query to a system, reaching into connected data sources (e.g., document stores, databases, internet services and emails) and retrieving the most relevant contextual information. This is then provided to an LLM as part of its prompt, combined with the user’s initial query, and allows the LLM to respond as if it understands the organisation’s data.</p><h4><strong>High-level RAG+LLM Process Map</strong></h4><img src="/sites/default/files/inline-images/Figure%201_6.png" data-entity-uuid="8dcf19c7-e93e-4490-8604-f67c4c9677f3" data-entity-type="file" width="2456" height="956" loading="lazy"><p>In pursuit of better performance, off-the-shelf systems integrate into several enterprise applications by default. For example, the enterprise versions of Microsoft CoPilot and Google’s Gemini have access to emails, document repositories and internet ingress.</p><p>While this can provide impressive functionality, it also creates an obvious risk. If a malicious actor can insert information into any of the data sources provided without alerting the querying user, they can influence the behaviour of a RAG+LLM system via the context it uses. At a basic level, it is possible to completely stop a system from responding. More nuanced attacks can prevent a system from responding to queries associated with certain key terms. At a higher level, an actor can use indirect prompt injection to execute malicious code, introduce disinformation or return incorrect banking details.</p><p>Furthermore, GenAI systems are liable to hallucinations, which occur when an LLM fabricates information. For instance, Google’s Bard chatbot <a href="https://www.nytimes.com/2023/03/29/technology/ai-chatbots-hallucinations.html">claimed</a> that the James Webb Space Telescope had captured the world’s first images of a planet outside our solar system. One way to mitigate the risk of hallucinations is to utilise organisational context as a grounding point. But this heightens the risk of indirect prompt injection, as it could introduce data from compromised emails, documents and databases into a GenAI system’s responses.</p><p>Finally, there are related challenges in GenAI user training. GenAI systems provide a disclaimer that some of the information they produce may not be factual and that, accordingly, references must be checked. However, it is possible to insert phishing links into these references. Here, the user’s training on how to interact with a GenAI system may conflict with their training on identifying and avoiding malicious links.</p><h3><strong>Case studies</strong></h3><p>The case studies below contribute to the literature on the possible outcomes of indirect prompt injection. We combine this with a simple mechanism we have discovered for obfuscating large amounts of text for the reader of an email or document, while ensuring the text is still accessible to the context window of an LLM application. (This mechanism has been reported to the NCSC.) The case studies highlight risks linked to a user’s inability to validate the information ingested by an embedded LLM.</p><p>The method of obfuscating data for a user is the same across each of these examples and requires no direct manipulation of metadata. It is not limited by the volume of text, default security policy or user colour theme in the way that an approach relying on small font size or white text is.</p><h4><strong>Changed contact details: Disinformation via email</strong></h4><p>Given that Microsoft and Google maintain two of the world’s largest email providers, it is unsurprising that both CoPilot and Gemini are designed to access and summarise emails by default. Building on an example given at BlackHat USA 2024, we show how emails can be exploited as a route into a user’s knowledge base. Through this, we can edit an assistant’s response to a request for email addresses or bank details.</p><h4><strong>Phishing through disinformation spread by email</strong></h4><img src="/sites/default/files/inline-images/Indirect%20Prompt%20Injection%202.png" data-entity-uuid="714acb2e-ff7e-401e-a7cd-f286a0ea77df" data-entity-type="file" alt="Figure 2" width="2076" height="2456" loading="lazy"><h4><strong>Legal responsibility: Disinformation via documents</strong></h4><p>Documents are essential for providing effective context to RAG+LLM systems, particularly in large organisations. Moreover, documents allow for a broad range of injection attacks, as they not only contain far more data than a typical email but are also often accessible to groups of people through cloud document stores such as SharePoint and Google Drive. Here, we show how the injection of disinformation via obfuscated data into a saved document can lead CoPilot to misrepresent an organisation’s stance on legal responsibility, and to repeat disinformation when asked to draft a letter of engagement.</p><h4><strong>Introducing disinformation via a malicious document</strong></h4><img src="/sites/default/files/inline-images/Indirect%20Prompt%20Injection%203.png" data-entity-uuid="dfbd1cad-5ea2-45c4-b9f3-cd98263c9ff7" data-entity-type="file" alt="Figure 3" width="2085" height="3098" loading="lazy"><h4><strong>“I can’t help with that”: Targeted denial of service</strong></h4><p>Denial of service (DoS) is a threat to organisations that intend to rely on GenAI systems for critical tasks such as customer support and content moderation, or as a source of decision-making. Indirect prompt injection allows for a targeted form of DoS. Rather than degrading the performance of a system entirely, it instead introduces malicious information that triggers a system’s guardrails, forcing it to respond with a ‘I can’t help with that’ response when presented with a generic request. These attacks can be targeted at specific keywords and requests – which makes them harder to trace, as the system appears to function normally outside these requests.&nbsp;</p><h4><strong>Receipt of a malicious email causes Gmail to be unable to perform basic tasks</strong></h4><img src="/sites/default/files/inline-images/Indirect%20Prompt%20Injection%204.png" data-entity-uuid="495bdf14-3e62-4529-b8ea-10af09b934dd" data-entity-type="file" alt="Figure 4" width="578" height="366" loading="lazy"><h3><strong>Mitigation and responses</strong></h3><p>To address the risk of indirect prompt injection, organisations need to maintain good data hygiene, evaluate systems before deployment, provide user training and implement technical guardrails. Each of these strategies plays an important role in ensuring the security and resilience of GenAI tools.</p><h4><strong>Data hygiene</strong></h4><p>Effective internal data management is essential when implementing AI-powered tools such as Microsoft CoPilot, Gemini and Amazon Q. Good data hygiene goes beyond organising and storing data; it also ensures that the data an AI system can access is well-regulated and protected.</p><p>Many traditional data management practices apply to safeguards against indirect prompt injection. A crucial first step is to separate any data that enters an organisation’s system from external sources, such as email. For instance, unread emails should not enter the data storage for retrieval until they have been reviewed or read by an authorised user. Incorporating an approval process for new data entering a data store or RAG system helps create a gate that limits malicious content’s potential effects on an entire system.</p><p>Employee profiles for the data store also help, by ensuring that specific users can only access data relevant to their work. This reduces the scope of damage caused by a prompt injection attack via a compromised document, as it will only affect users who need to access that document; others in the organisation cannot retrieve the malicious context.</p><p>In addition, organisations should avoid entering email data into the data store from blacklisted or otherwise untrusted email addresses. This helps limit the exposure of sensitive systems to unknown risks. Organisations should also apply controls to document types that allow for hidden text (such as MS Word documents) and file types that can contain arbitrary code such as pickle files (a file format commonly used to compress data when coding in Python).</p><h4><strong>Pre-deployment evaluation</strong></h4><p>A pre-deployment evaluation of any AI-powered application should be an automated or semi-automated process, to ensure the consistency of applied standards and create a clear pathway to managed deployment. This evaluation should use a continually updated database of indirect prompt injection attack strategies that employ various document types (e.g., .doc, .pdf and .png); disguise methods (e.g., hidden text in Word documents and white text on a white background); and entry points (e.g., email from external sources and direct document store entry as an insider threat).</p><p>The pre-deployment evaluation process should also include the creation of an interface for testing the application – either by interacting with the underlying application programming interfaces or by directly testing the user interface using automated tools. By calculating an attack’s success rate, organisations can gain confidence in the security of their AI application before rolling it out more widely.</p><h4><strong>User training</strong></h4><p>User training is crucial to mitigate the security risks of AI-embedded applications such as Microsoft CoPilot. Most organisations provide training on identifying phishing attacks via email, but AI-specific training can help employees understand the additional security risks posed by these tools. This would improve their understanding of how AI models work, the vulnerabilities they create and how malicious prompts can be disguised.&nbsp;</p><p>Training programmes should also stress the importance of verifying AI-generated information and promote healthy scepticism of embedded links, unexpected data and other possible artefacts that could pose malicious risks.</p><h4><strong>Technical guardrails</strong></h4><p>Natural language inputs into AI models are what make indirect prompt injection so effective. This means that there is no clear distinction between the task instruction given to the underlying AI and the data retrieved from the data store needed to answer the question. Attackers exploit the lack of distinction, inserting an instruction into the data store that could mislead the AI.</p><p>A technical solution to mitigate this could involve the implementation of an evaluation process — a mechanism that scans any data retrieved from the database for text that may be construed as instructions rather than data. If such text is found, it can either be flagged for review or filtered out before the AI incorporates it into the generated response. This added layer of scrutiny can help reduce the chances that harmful instructions will enter the prompt context and cause a security issue.&nbsp;</p><h3><strong>Conclusion</strong></h3><p>Indirect prompt injection is a prominent risk in the widescale adoption of RAG systems such as Microsoft CoPilot, Google Gemini and Amazon Q. While the ability to apply sophisticated LLMs to relevant internal organisational data could increase productivity, it also risks inadvertently introducing a new class of vulnerabilities. Given the rapid development of these systems, organisations looking to adopt them need to incorporate security best practice and appropriate user training into their deployment processes. Otherwise, they risk exposing themselves to external manipulation – be it to exfiltrate data, perform phishing scams, inject executable code or spread disinformation.</p><p>The emerging evidence suggests that effective controls have a significant effect on a malicious actor’s ability to conduct indirect prompt injection. These controls include the implementation of technical guardrails – such as the sanitisation of inputs and stricter access control – and rely on the development of a safety- and security-conscious culture through effective user training. By building such activities into pre-deployment processes, organisations can adopt these tools safely and securely. They can combine them with post-deployment monitoring of the efficacy of guardrails to ensure the safety of user behaviour and mitigate against emerging threats.</p><h4><strong>Advice for the UK Government</strong></h4><p>While UK Government departments are cautious about introducing tools that could create major risks, it is clear that effective use of GenAI would have a transformative impact on the public sector. Departmental data is often obscure, highly specific and voluminous – all factors that pose a challenge to efficient manual work but that LLMs are suited to handle.&nbsp;</p><p>The risks associated with disinformation, data security and ethical bias are especially relevant to UK Government organisations, which have additional responsibilities to both uphold democratic values and protect classified information. The Home Office has already been affected by allegations of bias in AI tooling – most prominently in <a href="https://incidentdatabase.ai/cite/335/">discrimination</a> within the visa system. If GenAI tools gain similar influence within a decision-making process, indirect prompt injection will open another avenue for targeted bias through the introduction of malicious instructions or disinformation – such as instructions to de-prioritise requests from individuals of specific nationalities.</p><p>Governments need to manage the threat from malicious external actors looking to both disrupt and influence data processes that include GenAI. Failure to do so would allow such actors to expose sensitive data, insert malicious data to produce poor decision-making and harmful bias, and disrupt entire critical processes.</p><p>Security standards for data sources accessed by RAG systems would significantly limit the ability of a malicious actor to perform indirect prompt injection. These standards should emphasise continued best practice in data management and the education of user bases on the risks of trusting both incoming data and AI outputs.</p><p><em>The views expressed in this article are those of the authors, and do not necessarily represent the views of The Alan Turing Institute or any other organisation.</em></p><h2 data-aos-delay="0" data-aos="fade-up" class="aos-init">Watch the Panel Discussion</h2><p><div class="responsive-iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/kkUHpj2oTos?si=peLacTlztRTHD8sG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe></div></p></div>
+      
+                                    
+
+
+
+  <div class="field field-people field--entity-reference field--label-above">
+    <h2 class="t-border t-border--4 block-title field__label aos-init" id="authors" data-aos-delay="0" data-aos="fade-up">Authors</h2>
+          <div class="field field-people field--entity-reference field--label-above items row">
+                <div class="col-6 col-sm-4 col-md-3">
+            
+
+<article data-history-node-id="280" about="/about/authors/matt-sutton" class="node people-teaser node--type-researcher-profiles teaser-people--researcher-profiles">
+            
+
+
+
+            <div class="field field-image field--image field--label-hidden">  <a href="/about/authors/matt-sutton" class="contains-image"><img loading="lazy" src="/themes/custom/alanturing/assets/img/icons/icon-angular.png" width="400" height="400" alt="Matt Sutton" typeof="foaf:Image" data-src="/sites/default/files/styles/thumbnail/public/2024-11/matt_sutton_0.jpg?itok=JlrJsLa7" class="b-lazy image-style-thumbnail">
+
+</a>
+</div>
+      
+        <div>
+    
+            <h3>
+            <a href="/about/authors/matt-sutton" rel="bookmark"> 
+            <span class="field field-first-name field--string field--label-hidden">Matt</span>
+       
+            <span class="field field-last-name field--string field--label-hidden">Sutton</span>
+       </a>
+        </h3>
+        
+        
+    </div>
+</article>
+
+        </div>
+            <div class="col-6 col-sm-4 col-md-3">
+            
+
+<article data-history-node-id="281" about="/about/authors/damian-ruck" class="node people-teaser node--type-researcher-profiles teaser-people--researcher-profiles">
+            
+
+
+
+            <div class="field field-image field--image field--label-hidden">  <a href="/about/authors/damian-ruck" class="contains-image"><img loading="lazy" src="/themes/custom/alanturing/assets/img/icons/icon-angular.png" width="400" height="400" alt="Damian Ruck" typeof="foaf:Image" data-src="/sites/default/files/styles/thumbnail/public/2024-11/damian_ruck.png?itok=KZZLm2JM" class="b-lazy image-style-thumbnail">
+
+</a>
+</div>
+      
+        <div>
+    
+            <h3>
+            <a href="/about/authors/damian-ruck" rel="bookmark">
+            <span class="field field-prefix field--string field--label-hidden">Dr</span>
+       
+            <span class="field field-first-name field--string field--label-hidden">Damian</span>
+       
+            <span class="field field-last-name field--string field--label-hidden">Ruck</span>
+       </a>
+        </h3>
+        
+        
+    </div>
+</article>
+
+        </div>
+              </div>
+      </div>
+
+                                                    
+
+
+
+  <div class="field field-criteria field--text-long field--label-above">
+    <h2 class="t-border t-border--4 block-title field__label aos-init" id="citation-information" data-aos-delay="0" data-aos="fade-up">Citation information</h2>
+              <p>Damian Ruck and Matthew Sutton<o:p></o:p>, "Indirect Prompt Injection: Generative AI’s Greatest Security Flaw," <em>CETaS Expert Analysis </em>(November 2024).</p>
+          </div>
+
+                                                                            </main>
+            <aside class="col-md-3 sticky">
+                
+                <nav class="share-links share-links--black">
+    <h2>Share</h2>
+    <div class="share-links__items">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://cetas.turing.ac.uk/publications/indirect-prompt-injection-generative-ais-greatest-security-flaw" target="_blank" rel="noopener noreferrer">
+            <i class="icon icon--facebook-black"></i>
+            <span>Facebook</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?url=https://cetas.turing.ac.uk/publications/indirect-prompt-injection-generative-ais-greatest-security-flaw" target="_blank" rel="noopener noreferrer">
+            <i class="icon icon--twitter-x-black"></i>
+            <span>Twitter</span>
+        </a>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://cetas.turing.ac.uk/publications/indirect-prompt-injection-generative-ais-greatest-security-flaw" target="_blank" rel="noopener noreferrer">
+            <i class="icon icon--linkedin-black"></i>
+            <span>LinkedIn</span>
+        </a>
+        <a href="mailto:?subject=Check%20out%20this%20page&amp;body=https://cetas.turing.ac.uk/publications/indirect-prompt-injection-generative-ais-greatest-security-flaw" target="_blank" rel="noopener noreferrer">
+            <i class="icon icon--email-black"></i>
+            <span>Email</span>
+        </a>
+    </div>
+</nav>                                    <a class="sidebar-related-content-link" href="#related-content">
+                        Related content
+                        <i class="icon icon--arrow-down"></i>
+                    </a>
+                            </aside>
+        </div>
+    </div>
+                        
+        
+                        <section class="section--yellow">
+            <div class="container">
+                
+
+
+
+  <div class="field field-related field--entity-reference field--label-above">
+    <h2 class="t-border t-border--4 field__label block-title aos-init" id="related-content" data-aos-delay="0" data-aos="fade-up">Related content</h2>
+          <div class="field field-related field--entity-reference field--label-above items row">
+                <div class="col-md-6 col-lg-4">
+            
+<article data-history-node-id="107" about="/publications/rapid-rise-generative-ai" class="node node--type-research-publications teaser list-teaser">
+    
+            <h3 class="t-border t-border--3">
+            <a href="/publications/rapid-rise-generative-ai" rel="bookmark"><span class="field field--title field--string field--label-hidden">The Rapid Rise of Generative AI</span>
+ <i class="icon icon--arrow-right"></i></a>
+        </h3>
+        
+                        <h4><a href="/publications/rapid-rise-generative-ai" rel="bookmark">Assessing risks to safety and security<br>
+<br>
+Research Report</a></h4>
+                        
+
+
+
+            <div class="field field-criteria field--text-long field--label-hidden">  Ardi Janjeva, Alexander Harris, Sarah Mercer, Alexander Kasprzyk and Anna Gausen, "The Rapid Rise of Generative AI: Assessing risks to safety and security," CETaS Research Reports (December 2023).
+
+</div>
+      
+            </article>
+
+        </div>
+            <div class="col-md-6 col-lg-4">
+            
+<article data-history-node-id="152" about="/publications/generative-ai-cybersecurity" class="node node--type-research-publications teaser list-teaser">
+    
+            <h3 class="t-border t-border--3">
+            <a href="/publications/generative-ai-cybersecurity" rel="bookmark"><span class="field field--title field--string field--label-hidden">Generative AI in Cybersecurity</span>
+ <i class="icon icon--arrow-right"></i></a>
+        </h3>
+        
+                        <h4><a href="/publications/generative-ai-cybersecurity" rel="bookmark">Assessing impact on current and future malicious software<br>
+<br>
+Briefing Paper</a></h4>
+                        
+
+
+
+            <div class="field field-criteria field--text-long field--label-hidden">  Sarah Mercer and Tim Watson, “Generative AI in Cybersecurity: Assessing impact on current and future malicious software,” CETaS Briefing Papers (June 2024).
+
+</div>
+      
+            </article>
+
+        </div>
+            <div class="col-md-6 col-lg-4">
+            
+<article data-history-node-id="164" about="/publications/evaluating-malicious-generative-ai-capabilities" class="node node--type-research-publications teaser list-teaser">
+    
+            <h3 class="t-border t-border--3">
+            <a href="/publications/evaluating-malicious-generative-ai-capabilities" rel="bookmark"><span class="field field--title field--string field--label-hidden">Evaluating Malicious Generative AI Capabilities</span>
+ <i class="icon icon--arrow-right"></i></a>
+        </h3>
+        
+                        <h4><a href="/publications/evaluating-malicious-generative-ai-capabilities" rel="bookmark">Understanding inflection points in risk<br>
+<br>
+Briefing Paper</a></h4>
+                        
+
+
+
+            <div class="field field-criteria field--text-long field--label-hidden">  Ardi Janjeva, Anna Gausen, Sarah Mercer and Tvesha Sippy, “Evaluating Malicious Generative AI Capabilities: Understanding inflection points in risk,” CETaS Briefing Papers (July 2024).
+
+</div>
+      
+            </article>
+
+        </div>
+              </div>
+      </div>
+
+            </div>
+        </section>
+    
+
+        
+</div>
+
+
+
+<section class="views-element-container section block block-views block-views-blockrelated-content-related-news" id="block-alanturing-views-block-related-content-related-news">
+    
+        <div class="container">
+        <div class="t-border t-border--4 block-title aos-init" data-aos-delay="0" data-aos="fade-up">
+            <h2 id="related-news">
+                                Related news
+            </h2>
+                    </div>
+    </div>
+        
+            <div>
+<div class="views--grid view view-related-content view-id-related_content view-display-id-related_news js-view-dom-id-74ff0b8155d0da286deab5e8335bc42ae1588c0eda67489d424cdeab831fb7f0" data-once="ajax-pager">
+    
+        
+    
+        
+      <div class="view-content">
+          <div class="views-row">
+<article data-history-node-id="479" about="/news/gemini-security-flaw-raises-phishing-fears" typeof="schema:Article" class="node node--type-article teaser">
+            <div class="item__img">
+            
+
+
+
+            <div class="field field-outlet-icon field--image field--label-hidden">  <img loading="lazy" src="/themes/custom/alanturing/assets/img/icons/icon-angular.png" width="640" height="360" alt="MENAFN logo" typeof="foaf:Image" data-src="/sites/default/files/styles/teaser/public/2026-01/menafn.png?itok=XCOdHhTp" class="b-lazy image-style-teaser">
+
+
+</div>
+      
+        </div>
+        
+            <h3 class="t-border t-border--3">
+            <a href="/news/gemini-security-flaw-raises-phishing-fears" rel="bookmark"><span property="schema:name" class="field field--title field--string field--label-hidden">Gemini Security Flaw Raises Phishing Fears</span>
+ <i class="icon icon--arrow-right"></i></a>
+        </h3>
+          <span property="schema:name" content="Gemini Security Flaw Raises Phishing Fears" class="rdf-meta hidden"></span>
+
+                        <h4><a href="/news/gemini-security-flaw-raises-phishing-fears" rel="bookmark">MENAFN news story</a></h4>
+                                <div class="field field-published-date field--datetime field--label-hidden quickedit-field">Saturday 10 Jan 2026</div>
+    </article>
+</div>
+    <div class="views-row">
+<article data-history-node-id="476" about="/blog/best-2025-google-gemini-ai-flaw-could-lead-gmail-compromise-phishing" typeof="schema:Article" class="node node--type-article teaser">
+            <div class="item__img">
+            
+
+
+
+            <div class="field field-outlet-icon field--image field--label-hidden">  <img loading="lazy" src="/themes/custom/alanturing/assets/img/icons/icon-angular.png" width="640" height="360" alt="Security Boulevard logo" typeof="foaf:Image" data-src="/sites/default/files/styles/teaser/public/2026-01/security_boulevard.png?itok=-nMGgr-b" class="b-lazy image-style-teaser">
+
+
+</div>
+      
+        </div>
+        
+            <h3 class="t-border t-border--3">
+            <a href="/blog/best-2025-google-gemini-ai-flaw-could-lead-gmail-compromise-phishing" rel="bookmark"><span property="schema:name" class="field field--title field--string field--label-hidden">Best of 2025: Google Gemini AI Flaw Could Lead to Gmail Compromise, Phishing</span>
+ <i class="icon icon--arrow-right"></i></a>
+        </h3>
+          <span property="schema:name" content="Best of 2025: Google Gemini AI Flaw Could Lead to Gmail Compromise, Phishing" class="rdf-meta hidden"></span>
+
+                        <h4><a href="/blog/best-2025-google-gemini-ai-flaw-could-lead-gmail-compromise-phishing" rel="bookmark">Security Boulevard blog</a></h4>
+                                <div class="field field-published-date field--datetime field--label-hidden quickedit-field">Thursday 1 Jan 2026</div>
+    </article>
+</div>
+
+    </div>
+  
+      
+        </div>
+
+</div>
+
+    </section>
+
+
+
+    <footer class=" section section--black">
+            <div class="container">
+        <nav id="block-footer" class="block block-menu navigation menu--footer">
+            
+        <div class="t-border t-border--4">
+            <h2 class="remove-h1" id="block-footer-menu">Explore</h2>
+        </div>
+    
+
+                
+              <ul class="main-nav__footer">
+                    <li class="menu-item menu-item--expanded">
+        <a href="/about" data-drupal-link-system-path="node/2">About</a>
+                                <ul class="main-nav__footer">
+                    <li class="menu-item">
+        <a href="/about/our-team" data-drupal-link-system-path="node/7">Our Team</a>
+              </li>
+                <li class="menu-item">
+        <a href="/about/authors" data-drupal-link-system-path="node/10">Authors</a>
+              </li>
+                <li class="menu-item">
+        <a href="/cetas-news" data-drupal-link-system-path="node/179">In the News</a>
+              </li>
+                <li class="menu-item">
+        <a href="/about/cetas-network" data-drupal-link-system-path="node/9">Join the CETaS Network</a>
+              </li>
+        </ul>
+  
+              </li>
+                <li class="menu-item menu-item--expanded">
+        <a href="/research-and-publications" data-drupal-link-system-path="node/8">Research and Publications</a>
+                                <ul class="main-nav__footer">
+                    <li class="menu-item">
+        <a href="/research-and-publications/research-theme" title="Browse publications by theme" data-drupal-link-system-path="node/94">Research by Theme</a>
+              </li>
+                <li class="menu-item">
+        <a href="/research-and-publications/reports-and-briefing-papers" data-drupal-link-system-path="node/12">Reports and Briefing Papers</a>
+              </li>
+                <li class="menu-item">
+        <a href="/research-and-publications/expert-analysis-and-explainers" data-drupal-link-system-path="node/11">Expert Analysis and Explainers</a>
+              </li>
+                <li class="menu-item">
+        <a href="/ongoing-projects" data-drupal-link-system-path="node/99">Ongoing CETaS Projects</a>
+              </li>
+                <li class="menu-item">
+        <a href="/research-and-publications/cetas-events" data-drupal-link-system-path="node/444">CETaS Events</a>
+              </li>
+        </ul>
+  
+              </li>
+        </ul>
+  
+
+
+    </nav>
+<div class="footer__bottom">
+    <div class="t-border t-border--1"></div>
+    <div class="row">
+        <div class="col-md-7">
+            <p class="copy-right">© The Alan Turing Institute 2026. All rights reserved.</p>
+            <p>The Alan Turing Institute, a charity incorporated and registered in England and Wales with company number 09512457 and charity number 1162533 whose registered office is at British Library, 96 Euston Road, London, England, NW1 2DB, United Kingdom.</p>
+            <p>For website-related enquiries email <a href="mailto:website@turing.ac.uk">website@turing.ac.uk</a></p>
+        </div>
+        <div class="col-md-5">
+            <nav aria-labelledby="block-legalmenu-menu" id="block-legalmenu" class="block block-menu navigation menu--legal-menu">
+                                                                                    
+
+                    <h2 class="visually-hidden" id="block-legalmenu-menu">Legal menu</h2>
+
+                
+
+                                                    
+              <ul class="main-nav__legal-menu">
+                    <li class="menu-item">
+        <a href="/cookie-notice" data-drupal-link-system-path="node/25">Cookie notice</a>
+              </li>
+                <li class="menu-item">
+        <a href="/privacy-notice" data-drupal-link-system-path="node/24">Privacy notice</a>
+              </li>
+                <li class="menu-item">
+        <a href="/terms-and-conditions" data-drupal-link-system-path="node/26">Terms and conditions</a>
+              </li>
+                <li class="menu-item">
+        <a href="/terms-acceptable-use" data-drupal-link-system-path="node/27">Terms of acceptable use</a>
+              </li>
+        </ul>
+  
+
+
+                            </nav>
+            <div class="footer__social">
+              <p>Follow us on social media</p>
+              <a href="https://uk.linkedin.com/showcase/turing-cetas/" target="_blank" rel="noopener noreferrer">
+                <i class="icon icon--linkedin"></i>
+                <span>LinkedIn</span>
+              </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="search-block-form block block-search container-inline" data-drupal-selector="search-block-form-2" id="block-searchform">
+  <button class="close-search"><i class="icon icon--close-white"></i></button>   
+  
+    
+      <form action="/search/node" method="get" id="search-block-form--2" accept-charset="UTF-8">
+  <div class="js-form-item form-item js-form-type-search form-type-search js-form-item-keys form-item-keys form-no-label">
+      <label for="edit-keys--2" class="visually-hidden">Search</label>
+        <input title="Enter the terms you wish to search for." data-drupal-selector="edit-keys" type="search" id="edit-keys--2" name="keys" value="" size="15" maxlength="128" class="form-search">
+
+        </div>
+<div data-drupal-selector="edit-actions" class="form-actions js-form-wrapper form-wrapper" id="edit-actions--2"><input data-drupal-selector="edit-submit" type="submit" id="edit-submit--2" value="Search" class="button js-form-submit form-submit">
+</div>
+
+</form>
+
+  </div>
+
+    </div>
+
+    </footer>
+
+
+      
+    </div>
+    <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/275","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"ajaxPageState":{"libraries":"eJxli0sOwjAMRC8UyIrzRG5iIlPHruwUKKenBVUqYjOaNx9gkD4bSY2VdQA-eTaaugf4b_rCK4Y8YqGudkkTz5UkTZDHRFJQehpY8xiPcNgbQmlqGK-m0lFKyAzuSxzAcfcN3aGi7yxa1m57iVoDphcGX7xj-97uhA-PHz3DDZ4_QdMyM74BywtZ-Q","theme":"alanturing","theme_token":null},"ajaxTrustedUrl":{"\/search\/node":true},"views":{"ajax_path":"\/views\/ajax","ajaxViews":{"views_dom_id:74ff0b8155d0da286deab5e8335bc42ae1588c0eda67489d424cdeab831fb7f0":{"view_name":"related_content","view_display_id":"related_news","view_args":"275","view_path":"\/node\/275","view_base_path":null,"view_dom_id":"74ff0b8155d0da286deab5e8335bc42ae1588c0eda67489d424cdeab831fb7f0","pager_element":0}}},"ckeditor5Premium":{"isMediaInstalled":true},"user":{"uid":0,"permissionsHash":"6fa54540657a506e7dd68848ad626e7e2d9ebf0ac7ed0bd8636fae7e55b09584"}}</script>
+<script src="/sites/default/files/js/js_7B4ut1bmfFBXjh8EcBtTEPi3MFcohqharfWQahoWtXg.js?scope=footer&amp;delta=0&amp;language=en&amp;theme=alanturing&amp;include=eJwdxEkOgDAIAMAPVTn5HoMFGxTBUFyeb-IcBhUtrxBr0NQX1KHXkDN7qTuTpMc0ByMdHgxruCUblVv46fA_4obvB9VNG4c"></script>
+
+  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e39067d6a16497b',t:'MTc3NDcyNTk3NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe>
+
+<div id="drupal-live-announce" class="visually-hidden" aria-live="polite" aria-busy="false"></div>
+<script id="" text="" charset="" type="text/javascript" src="https://cc.cdn.civiccomputing.com/9/cookieControl-9.x.min.js"></script>
+<script type="text/javascript" id="" charset="">var config={apiKey:"0871b720d08f6c4e22c9c2f9f59a47b0e3c0f3bd",product:"PRO_MULTISITE",setInnerHTML:"true",layout:"popup",initialState:"open",necessaryCookies:["gtm*","SESS*","__cfduid","JSESSIONID"],text:{intro:"We use cookies to improve your experience when you browse our website. Using cookies, the website can 'remember' you during a single visit to the site (a session cookie) or for repeat visits (persistent cookies).\x3cbr/\x3e\x3cbr/\x3eFor more information see our \x3ca href\x3d\"/cookie-notice\"\x3ecookie notice here\x3c/a\x3e.\x3cbr/\x3e\x3cbr/\x3e\x3cstrong\x3eYou can enable all cookies and save (recommended) by clicking the button. Or you can enable or disable specific cookies by adjusting the sliders below. Clicking the X at the top will always keep the slider settings as they appear.\x3c/strong\x3e"},
+optionalCookies:[{name:"analytics",label:"Analytical Cookies",description:"Analytics allow us to recognise and count the number of visitors and to see how visitors move around the site when they are using it. This helps us to improve the way our website works, for example, by ensuring that users are finding what they are looking for easily.",cookies:"_ga _gid _gat __utma __utmt __utmb __utmc __utmz __utmv".split(" "),vendors:[{name:"Google",url:"https://policies.google.com/technologies/types?hl\x3den-US",
+description:"Google Analytics"}],onAccept:function(){gtag("consent","update",{analytics_storage:"granted"})},onRevoke:function(){gtag("consent","update",{analytics_storage:"denied"})}}],position:"LEFT",theme:"LIGHT",branding:{fontColor:"#333",backgroundColor:"#E9E9E9",fontSizeTitle:"1.2em",fontSizeIntro:"1.1em",fontSizeHeaders:"1.1em",fontSize:"0.9em",toggleText:"#333",toggleColor:"#333",toggleBackground:"#FFF",buttonIcon:null,buttonIconWidth:"64px",buttonIconHeight:"64px",removeIcon:!1,removeAbout:!0}};
+CookieControl.load(config);</script></body></html>

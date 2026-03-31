@@ -1,0 +1,15 @@
+[ab.chatgpt.com]
+otlp/metrics
+v1/initialize
+v1/rgstr
+
+[chat.openai.com]
+ces/intake
+
+[chatgpt.com]
+backend-api/check
+backend-api/environments
+backend-api/list
+backend-api/models
+backend-api/responses
+backend-api/usage

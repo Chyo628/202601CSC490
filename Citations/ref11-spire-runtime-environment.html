@@ -1,0 +1,895 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>
+SPIFFE | Documentation
+</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.7.0/tocbot.css">
+<link rel="stylesheet" href="/css/style.5b694e9bd3e38257ecd2c84c3b5a296d672e7b35dad895fb6f8ec3e7528d2bcf.css">
+
+    <script src="https://unpkg.com/tippy.js@3/dist/tippy.all.min.js"></script>
+  </head>
+  <body class="is-page is-docs-page has-navbar-fixed-top">
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<nav class="navbar is-fixed-top is-light">
+  <div class="container is-fluid ">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        <img src="/img/logos/spiffe/horizontal/color/spiffe-horizontal-color.png" alt="SPIFFE Logo">
+      </a>
+
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target=".navbar-top">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div class="navbar-menu navbar-top">
+
+      <div class="navbar-end"><div class="navbar-item">
+          <p class="control">
+            <a class="button is-black" href="https://blog.spiffe.io/">
+              <span class="icon">
+                <i class="fab fa-medium"></i>
+              </span>
+              <span>
+                Blog
+              </span>
+            </a>
+
+            <a class="button is-black" href="https://x.com/SPIFFEio" aria-label="X (formerly Twitter)">
+              <span class="icon">
+                <i class="fab fa-x-twitter"></i>
+              </span>
+            </a>
+
+            <a class="button is-black" href="https://github.com/spiffe" aria-label="GitHub">
+              <span class="icon">
+                <i class="fab fa-github"></i>
+              </span>
+            </a>
+
+            <a class="button is-slack-green" href="https://slack.spiffe.io/" aria-label="Slack">
+              <span class="icon">
+                <i class="fab fa-slack"></i>
+              </span>
+            </a>
+
+            <a class="button is-stack-overflow-orange" href="https://stackoverflow.com/questions/tagged/spiffe" aria-label="Stack Overflow">
+              <span class="icon">
+                <i class="fab fa-stack-overflow"></i>
+              </span>
+            </a>
+
+            <a class="button is-youtube-red" href="https://www.youtube.com/channel/UCVzeW7j02FDNggkI5JKPvJg/f" aria-label="YouTube">
+              <span class="icon">
+                <i class="fab fa-youtube"></i>
+              </span>
+            </a>
+          </p>
+        </div>
+      </div><div class="navbar-end is-hidden-tablet">
+          <span class="navbar-item is-size-3 has-text-weight-light is-uppercase">
+            SPIFFE
+          </span>
+    
+          
+
+ <a class="navbar-item" href="/docs/latest/spiffe-about/overview/">
+  Overview
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spiffe-about/spiffe-concepts/">
+  Concepts
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spiffe-about/community-presentations/">
+  Community Presentations
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spiffe-about/get-involved/">
+  Get Involved
+</a>
+
+
+<br />
+
+
+    
+          <span class="navbar-item is-size-3 has-text-weight-light is-uppercase">
+            SPIRE
+          </span>
+          
+          <span class="navbar-item is-size-5 has-text-weight-light is-uppercase">
+        <a href="/docs/latest/spire-about/" class="has-text-black">About</a>
+    </span>
+
+ <a class="navbar-item" href="/docs/latest/spire-about/spire-concepts/">
+  Concepts
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spire-about/use-cases/">
+  Use Cases
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spire-about/comparisons/">
+  Comparisons
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spire-about/case-studies/">
+  Case Studies
+</a>
+
+
+<br />
+
+
+          <span class="navbar-item is-size-5 has-text-weight-light is-uppercase">
+        <a href="/docs/latest/try/" class="has-text-black">Try</a>
+    </span>
+
+ <a class="navbar-item" href="/docs/latest/try/getting-started-linux-macos-x/">
+  Quickstart for Linux and MacOS X
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/try/getting-started-k8s/">
+  Quickstart for Kubernetes
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/try/spire101/">
+  Quickstart for Docker
+</a>
+
+
+<br />
+
+
+          <span class="navbar-item is-size-5 has-text-weight-light is-uppercase">
+        <a href="/docs/latest/planning/" class="has-text-black">Plan</a>
+    </span>
+
+ <a class="navbar-item" href="/docs/latest/planning/scaling_spire/">
+  Scaling SPIRE
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/planning/extending/">
+  Extending
+</a>
+
+
+<br />
+
+
+          <span class="navbar-item is-size-5 has-text-weight-light is-uppercase">
+        <a href="/docs/latest/deploying/" class="has-text-black">Deploy</a>
+    </span>
+
+ <a class="navbar-item" href="/docs/latest/deploying/using_spire/">
+  Getting SPIRE
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/deploying/install-server/">
+  Install Server
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/deploying/install-agents/">
+  Install Agent
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/deploying/configuring/">
+  Configuring
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/deploying/registering/">
+  Registering workloads
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/deploying/svids/">
+  Working with SVIDs
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/deploying/libraries/">
+  SPIFFE Library Usage Examples
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/deploying/spire_agent/">
+  SPIRE Agent Configuration Reference
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/deploying/spire_server/">
+  SPIRE Server Configuration Reference
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/deploying/telemetry_config/">
+  SPIRE Telemetry Configuration
+</a>
+
+
+<br />
+
+
+          <span class="navbar-item is-size-5 has-text-weight-light is-uppercase">
+        <a href="/docs/latest/maintenance/" class="has-text-black">Maintain</a>
+    </span>
+
+ <a class="navbar-item" href="/docs/latest/maintenance/upgrading/">
+  Upgrade/Downgrade SPIRE
+</a>
+
+
+<br />
+
+
+
+	  <span class="navbar-item is-size-3 has-text-weight-light is-uppercase">
+            Helm Chart Hardened
+          </span>
+
+          <span class="navbar-item is-size-5 has-text-weight-light is-uppercase">
+        <a href="/docs/latest/spire-helm-charts-hardened-about/" class="has-text-black">About</a>
+    </span>
+
+ <a class="navbar-item" href="/docs/latest/spire-helm-charts-hardened-about/installation/">
+  Installation
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spire-helm-charts-hardened-about/upgrading/">
+  Upgrading
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spire-helm-charts-hardened-about/service-selection/">
+  Service Selection
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spire-helm-charts-hardened-about/recommendations/">
+  Recommendations
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spire-helm-charts-hardened-about/exposing/">
+  Exposing Services
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spire-helm-charts-hardened-about/identifiers/">
+  Identifiers
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spire-helm-charts-hardened-about/namespaces/">
+  Namespaces
+</a>
+
+
+<br />
+
+
+          <span class="navbar-item is-size-5 has-text-weight-light is-uppercase">
+        <a href="/docs/latest/spire-helm-charts-hardened-advanced/" class="has-text-black">Advanced</a>
+    </span>
+
+ <a class="navbar-item" href="/docs/latest/spire-helm-charts-hardened-advanced/nested-spire/">
+  Nested SPIRE
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spire-helm-charts-hardened-advanced/federation/">
+  Federation
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spire-helm-charts-hardened-advanced/mirror/">
+  Local Mirrors
+</a>
+
+
+<br />
+
+
+          
+          <span class="navbar-item is-size-3 has-text-weight-light is-uppercase">
+            Integrate SPIRE
+          </span>
+          
+          <span class="navbar-item is-size-5 has-text-weight-light is-uppercase">
+        <a href="/docs/latest/microservices/" class="has-text-black">Securing Microservices</a>
+    </span>
+
+ <a class="navbar-item" href="/docs/latest/microservices/envoy/">
+  Using Envoy with SPIRE
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/microservices/envoy-x509/readme/">
+  SPIRE with Envoy and X.509-SVIDs
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/microservices/envoy-jwt/readme/">
+  SPIRE with Envoy and JWT-SVIDs
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/microservices/envoy-opa/readme/">
+  Spire with OPA &#43; Envoy &#43; X.509-SVIDs
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/microservices/envoy-jwt-opa/readme/">
+  Spire with OPA &#43; Envoy &#43; JWT-SVIDs
+</a>
+
+
+<br />
+
+
+          <span class="navbar-item is-size-5 has-text-weight-light is-uppercase">
+        <a href="/docs/latest/keyless/" class="has-text-black">SVID Authentication</a>
+    </span>
+
+ <a class="navbar-item" href="/docs/latest/keyless/oidc-federation-aws/">
+  AWS OIDC Authentication
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/keyless/vault/readme/">
+  Vault Integration Example
+</a>
+
+
+<br />
+
+
+          <span class="navbar-item is-size-5 has-text-weight-light is-uppercase">
+        <a href="/docs/latest/architecture/" class="has-text-black">SPIRE Architecture</a>
+    </span>
+
+ <a class="navbar-item" href="/docs/latest/architecture/nested/readme/">
+  Nested SPIRE Example
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/architecture/federation/readme/">
+  SPIRE Federation Example
+</a>
+
+
+<br />
+
+
+
+        </div></div>
+    
+  </div>
+</nav>
+
+
+    <main class="is-main">
+      
+<div class="dashboard">
+  
+
+
+
+
+<div class="dashboard-panel left has-background-white-bis is-hidden-mobile">
+  <div class="dashboard-panel-header has-text-centered">
+    <div class="dropdown is-left">
+      <div class="dropdown-trigger">
+        <span class="non-actionable button is-dark" >
+          <span> 
+            <strong>
+              v1.14.2
+            </strong>
+            <span class="tag latest-tag is-success is-small has-text-weight-bold">
+              Latest
+            </span>
+          </span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-panel-content is-scrollable">
+      
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="docs-nav-section">
+  SPIFFE
+</span>
+
+<a class="docs-nav-item" href="/docs/latest/spiffe-about/overview/">
+  Overview
+</a>
+<a class="docs-nav-item" href="/docs/latest/spiffe-about/spiffe-concepts/">
+  Concepts
+</a>
+<a class="docs-nav-item" href="/docs/latest/spiffe-about/community-presentations/">
+  Community Presentations
+</a>
+<a class="docs-nav-item" href="/docs/latest/spiffe-about/get-involved/">
+  Get Involved
+</a><hr class="docs-nav-hr"/>
+<div class="sidenav-item">
+<a href="/docs/latest/spiffe-specs/">Standards</a>
+</div>
+<a class="docs-nav-item" href="/docs/latest/spiffe-specs/spiffe/">
+  SPIFFE
+</a>
+<a class="docs-nav-item" href="/docs/latest/spiffe-specs/spiffe-id/">
+  SPIFFE ID and Verifiable Identity Document
+</a>
+<a class="docs-nav-item" href="/docs/latest/spiffe-specs/spiffe_trust_domain_and_bundle/">
+  SPIFFE Trust Domain and Bundle
+</a>
+<a class="docs-nav-item" href="/docs/latest/spiffe-specs/jwt-svid/">
+  JWT-SVID
+</a>
+<a class="docs-nav-item" href="/docs/latest/spiffe-specs/x509-svid/">
+  X509-SVID
+</a>
+<a class="docs-nav-item" href="/docs/latest/spiffe-specs/spiffe_workload_api/">
+  SPIFFE Workload API
+</a>
+<a class="docs-nav-item" href="/docs/latest/spiffe-specs/spiffe_workload_endpoint/">
+  SPIFFE Workload Endpoint
+</a>
+<a class="docs-nav-item" href="/docs/latest/spiffe-specs/spiffe_federation/">
+  SPIFFE Federation
+</a><hr class="docs-nav-hr"/>
+
+<span class="docs-nav-section">
+  SPIRE
+</span>
+<div class="sidenav-item">
+<a href="/docs/latest/spire-about/">About</a>
+</div>
+<a class="docs-nav-item" href="/docs/latest/spire-about/spire-concepts/">
+  Concepts
+</a>
+<a class="docs-nav-item" href="/docs/latest/spire-about/use-cases/">
+  Use Cases
+</a>
+<a class="docs-nav-item" href="/docs/latest/spire-about/comparisons/">
+  Comparisons
+</a>
+<a class="docs-nav-item" href="/docs/latest/spire-about/case-studies/">
+  Case Studies
+</a><hr class="docs-nav-hr"/>
+<div class="sidenav-item">
+<a href="/docs/latest/try/">Try</a>
+</div>
+<a class="docs-nav-item" href="/docs/latest/try/getting-started-linux-macos-x/">
+  Quickstart for Linux and MacOS X
+</a>
+<a class="docs-nav-item" href="/docs/latest/try/getting-started-k8s/">
+  Quickstart for Kubernetes
+</a>
+<a class="docs-nav-item" href="/docs/latest/try/spire101/">
+  Quickstart for Docker
+</a><hr class="docs-nav-hr"/>
+<div class="sidenav-item">
+<a href="/docs/latest/planning/">Plan</a>
+</div>
+<a class="docs-nav-item" href="/docs/latest/planning/scaling_spire/">
+  Scaling SPIRE
+</a>
+<a class="docs-nav-item" href="/docs/latest/planning/extending/">
+  Extending
+</a><hr class="docs-nav-hr"/>
+<div class="sidenav-item">
+<a href="/docs/latest/deploying/">Deploy</a>
+</div>
+<a class="docs-nav-item" href="/docs/latest/deploying/using_spire/">
+  Getting SPIRE
+</a>
+<a class="docs-nav-item" href="/docs/latest/deploying/install-server/">
+  Install Server
+</a>
+<a class="docs-nav-item" href="/docs/latest/deploying/install-agents/">
+  Install Agent
+</a>
+<a class="docs-nav-item" href="/docs/latest/deploying/configuring/">
+  Configuring
+</a>
+<a class="docs-nav-item" href="/docs/latest/deploying/registering/">
+  Registering workloads
+</a>
+<a class="docs-nav-item" href="/docs/latest/deploying/svids/">
+  Working with SVIDs
+</a>
+<a class="docs-nav-item" href="/docs/latest/deploying/libraries/">
+  SPIFFE Library Usage Examples
+</a>
+<a class="docs-nav-item" href="/docs/latest/deploying/spire_agent/">
+  SPIRE Agent Configuration Reference
+</a>
+<a class="docs-nav-item" href="/docs/latest/deploying/spire_server/">
+  SPIRE Server Configuration Reference
+</a>
+<a class="docs-nav-item" href="/docs/latest/deploying/telemetry_config/">
+  SPIRE Telemetry Configuration
+</a><hr class="docs-nav-hr"/>
+<div class="sidenav-item">
+<a href="/docs/latest/maintenance/">Maintain</a>
+</div>
+<a class="docs-nav-item" href="/docs/latest/maintenance/upgrading/">
+  Upgrade/Downgrade SPIRE
+</a><hr class="docs-nav-hr"/>
+
+<span class="docs-nav-section">
+  Helm Charts Hardened
+</span>
+<div class="sidenav-item">
+<a href="/docs/latest/spire-helm-charts-hardened-about/">About</a>
+</div>
+<a class="docs-nav-item" href="/docs/latest/spire-helm-charts-hardened-about/installation/">
+  Installation
+</a>
+<a class="docs-nav-item" href="/docs/latest/spire-helm-charts-hardened-about/upgrading/">
+  Upgrading
+</a>
+<a class="docs-nav-item" href="/docs/latest/spire-helm-charts-hardened-about/service-selection/">
+  Service Selection
+</a>
+<a class="docs-nav-item" href="/docs/latest/spire-helm-charts-hardened-about/recommendations/">
+  Recommendations
+</a>
+<a class="docs-nav-item" href="/docs/latest/spire-helm-charts-hardened-about/exposing/">
+  Exposing Services
+</a>
+<a class="docs-nav-item" href="/docs/latest/spire-helm-charts-hardened-about/identifiers/">
+  Identifiers
+</a>
+<a class="docs-nav-item" href="/docs/latest/spire-helm-charts-hardened-about/namespaces/">
+  Namespaces
+</a><hr class="docs-nav-hr"/>
+<div class="sidenav-item">
+<a href="/docs/latest/spire-helm-charts-hardened-advanced/">Advanced</a>
+</div>
+<a class="docs-nav-item" href="/docs/latest/spire-helm-charts-hardened-advanced/nested-spire/">
+  Nested SPIRE
+</a>
+<a class="docs-nav-item" href="/docs/latest/spire-helm-charts-hardened-advanced/federation/">
+  Federation
+</a>
+<a class="docs-nav-item" href="/docs/latest/spire-helm-charts-hardened-advanced/mirror/">
+  Local Mirrors
+</a><hr class="docs-nav-hr"/>
+
+<span class="docs-nav-section">
+  Integrate SPIRE
+</span>
+<div class="sidenav-item">
+<a href="/docs/latest/microservices/">Securing Microservices</a>
+</div>
+<a class="docs-nav-item" href="/docs/latest/microservices/envoy/">
+  Using Envoy with SPIRE
+</a>
+<a class="docs-nav-item" href="/docs/latest/microservices/envoy-x509/readme/">
+  SPIRE with Envoy and X.509-SVIDs
+</a>
+<a class="docs-nav-item" href="/docs/latest/microservices/envoy-jwt/readme/">
+  SPIRE with Envoy and JWT-SVIDs
+</a>
+<a class="docs-nav-item" href="/docs/latest/microservices/envoy-opa/readme/">
+  Spire with OPA &#43; Envoy &#43; X.509-SVIDs
+</a>
+<a class="docs-nav-item" href="/docs/latest/microservices/envoy-jwt-opa/readme/">
+  Spire with OPA &#43; Envoy &#43; JWT-SVIDs
+</a><hr class="docs-nav-hr"/>
+<div class="sidenav-item">
+<a href="/docs/latest/keyless/">SVID Authentication</a>
+</div>
+<a class="docs-nav-item" href="/docs/latest/keyless/oidc-federation-aws/">
+  AWS OIDC Authentication
+</a>
+<a class="docs-nav-item" href="/docs/latest/keyless/vault/readme/">
+  Vault Integration Example
+</a><hr class="docs-nav-hr"/>
+<div class="sidenav-item">
+<a href="/docs/latest/architecture/">SPIRE Architecture</a>
+</div>
+<a class="docs-nav-item" href="/docs/latest/architecture/nested/readme/">
+  Nested SPIRE Example
+</a>
+<a class="docs-nav-item" href="/docs/latest/architecture/federation/readme/">
+  SPIRE Federation Example
+</a><hr class="docs-nav-hr"/>
+
+
+  </div>
+</div>
+
+
+  <div class="dashboard-main is-scrollable">
+    
+
+
+
+<article class="article">
+  
+  <div class="container">
+    <section class="hero-docs">
+  <div class="hero-body">
+    <p class="title is-size-1 is-size-2-mobile is-spaced">
+      About SPIRE
+    </p>
+  </div>
+</section>
+
+    <section class="section">
+      <div class="content">
+        
+        <p>SPIRE is a production-ready implementation of the <a href="https://github.com/spiffe/spiffe" target="_blank">SPIFFE</a> APIs that performs node and workload attestation in order to securely issue SVIDs to workloads, and verify the SVIDs of other workloads, based on a predefined set of conditions.</p>
+<p>
+<ul>
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="">
+        <a href="/docs/latest/spire-about/spire-concepts/">SPIRE Concepts</a>
+        <p>An overview of SPIRE&#39;s architecture and fundamentals</p>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="">
+        <a href="/docs/latest/spire-about/use-cases/">SPIRE Use Cases</a>
+        <p>How to use SPIRE to solve common problems</p>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="">
+        <a href="/docs/latest/spire-about/comparisons/">How does SPIRE compare to other tools?</a>
+        <p>Understand SPIRE by comparing and contrasting it to related systems</p>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="">
+        <a href="/docs/latest/spire-about/case-studies/">SPIRE Case Studies</a>
+        <p>Real world examples of how SPIFFE and SPIRE are being used</p>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</ul>
+<img referrerpolicy="no-referrer-when-downgrade" src="https://static.scarf.sh/a.png?x-pxid=a0e0cc80-811e-4cb4-b799-3e64955818cf" /></p>
+
+      </div>
+    </section>
+  </div>
+</article>
+  </div>
+</div>
+
+
+    </main><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.7.0/tocbot.min.js"></script>
+<script src="/js/jquery-3.3.1.min.1dc33fb32cfedd9ef0049ed3cb8b007bad6f7e57eafc760e8ea0553fe823a6d6.js"></script>
+<script src="/js/clipboard-2.0.0.min.7380537dbe37c039bf72de37aa10f732ca0712daf47483baee10016c2082d9d1.js"></script>
+<script src="/js/anchor-4.1.1.min.3231b81e93880d1db128c90bbea3b3540c38b614ddba93b568ca2d9092a385db.js"></script>
+<script src="/js/app.min.617a05c100ed36a2346c25067114dbd48e917ccf7bb370a378b95a03e7391fcc.js"></script>
+<script src="/js/slider.min.f92d330d81618514c6cf222f52373aaeabc71ed77029f6f8de943119eca03366.js"></script>
+<script src="/js/docs.min.57e70442d23d85863b92cbcb3eaad8708567534c99c0358279825714e6c1ad09.js"></script>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-99605331-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    <script>
+      ga('send', 'pageview', {
+        'Branch':  'master'
+      });
+    </script>
+    <script>
+      var captureOutboundLink = function(url) {
+        ga('send', 'event', 'outbound', 'click', url, {
+          'transport': 'beacon',
+          'hitCallback': function(){ document.location = url; }
+        });
+      }
+    </script> 
+  </body>
+</html>

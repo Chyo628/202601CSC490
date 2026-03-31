@@ -1,0 +1,128 @@
+You are implementing a local, production-style job queue + scheduler system (“mini Celery”) intended to stress-test an AI coding agent’s ability to design reliable concurrent systems.
+
+Deliver a complete, runnable repository in Python 3.12 with the following properties:
+- Clear modular architecture (API, broker abstraction, persistence, worker, scheduler, observability, CLI, tests).
+- Deterministic behavior and strong error handling.
+- Extensive automated tests (unit + integration).
+- One-command local startup via Docker Compose.
+
+Technology constraints (use exactly these unless impossible, then document the exception in README):
+- Language: Python 3.12
+- API: FastAPI + Uvicorn
+- Broker: Redis (use Redis Streams + consumer groups for reliable delivery)
+- Persistence: SQLite (SQLModel or SQLAlchemy); store job metadata and state transitions durably
+- Tests: pytest
+- Formatting/linting: ruff (and mypy if feasible)
+- Observability: structured JSON logs + Prometheus metrics endpoint
+
+System overview
+Build three runnable services plus a CLI:
+1) API service: accepts job submissions and exposes job status, results, and admin actions.
+2) Worker service: consumes jobs from Redis Streams, executes them, records transitions/results, and acknowledges completion.
+3) Scheduler service: enqueues delayed jobs and cron-like recurring jobs.
+4) CLI: submit jobs, inspect status, tail events, and run local load tests.
+
+Core concepts and data model
+Job states: QUEUED, RUNNING, SUCCEEDED, FAILED, CANCELED, DEAD
+Required tables (minimum):
+- jobs: id (UUID), type, payload(JSON), state, created_at, updated_at, idempotency_key (nullable), attempts, max_attempts, next_run_at, schedule (nullable), last_error (nullable), result (nullable JSON)
+- job_events: append-only event log (job_id, ts, old_state, new_state, message, metadata JSON)
+
+Broker semantics (Redis Streams)
+- Use a dedicated stream per queue (e.g., stream “jobs:default”) and a consumer group (e.g., “workers”).
+- Reliable processing requirements:
+  - A job must not be lost if a worker crashes mid-execution.
+  - Implement a visibility-timeout style reclaim: periodically scan PEL (pending entries list) and XCLAIM jobs stuck beyond a configurable timeout.
+  - A job must be acknowledged (XACK) only after the final state transition is durably persisted.
+  - Ensure at-least-once delivery; implement idempotency controls to prevent duplicate side-effects for provided idempotency keys.
+
+API requirements
+Expose these endpoints (exact behavior is required):
+- POST /jobs
+  - Request: { "type": string, "payload": object, "queue": "default" (optional), "max_attempts": int (optional, default 3), "run_at": RFC3339 timestamp (optional), "idempotency_key": string (optional) }
+  - Behavior:
+    - If idempotency_key already exists for a job in non-terminal state, return that job (do not enqueue a new one).
+    - If run_at is absent, enqueue immediately; otherwise store as delayed and let scheduler enqueue at run_at.
+  - Response: { "job_id": uuid }
+- GET /jobs/{job_id}
+  - Returns full job record including state, attempts, result (if terminal), last_error (if any)
+- POST /jobs/{job_id}/cancel
+  - If job is QUEUED or delayed (not yet enqueued), mark CANCELED and ensure it will not run
+  - If job is RUNNING, mark as “cancel requested”; worker must check a cancellation flag between steps for cooperative cancellation for supported tasks
+- POST /jobs/{job_id}/retry
+  - Only for FAILED or DEAD jobs; resets state to QUEUED and enqueues again with attempts=0 (or attempts preserved but allowed; choose one and document)
+- GET /jobs?state=&type=&limit=&cursor=
+  - Basic pagination over jobs
+- GET /metrics
+  - Prometheus metrics
+- GET /healthz
+  - Liveness and broker/db connectivity checks
+
+Worker requirements
+- Configurable concurrency: N processes or asyncio tasks (choose one; document)
+- Job execution framework:
+  - Jobs are registered “task types” (e.g., “sleep”, “http_get”, “cpu_burn”, “fail_then_succeed”, “pipeline_demo”)
+  - Each task must validate payload schema (pydantic models)
+  - Record state transitions: QUEUED→RUNNING→(SUCCEEDED|FAILED|CANCELED|DEAD)
+- Retry policy:
+  - Exponential backoff with jitter: base_delay (e.g., 1s), multiplier, cap; configurable per job type
+  - Increment attempts on each execution attempt
+  - On exceeding max_attempts, mark DEAD and push an entry to a dead-letter stream (e.g., “jobs:dlq”)
+- Idempotency:
+  - If idempotency_key is provided, ensure that re-delivered jobs do not re-run side effects if they already SUCCEEDED. Return the prior result instead.
+- Cooperative cancellation:
+  - For at least one task type, implement multi-step execution that checks a cancellation flag between steps.
+
+Scheduler requirements
+Support both:
+1) Delayed jobs (run_at): store jobs with next_run_at, and enqueue them when due.
+2) Cron-like recurring jobs:
+   - API to create schedules is optional, but scheduler must support loading schedules from a config file (YAML/JSON) at startup.
+   - Example schedule: every minute enqueue “pipeline_demo” with payload.
+Implementation requirements:
+- Scheduler must be robust to restarts (no duplicate enqueues beyond at-least-once semantics; use a dedupe key per scheduled tick).
+- Store schedule ticks in DB or Redis with a deterministic key (schedule_id + planned_time) to prevent repeated enqueue on restart.
+
+Observability requirements
+- Structured JSON logs for all services with correlation fields:
+  - job_id, stream_id, consumer, attempt, state
+- Prometheus metrics (minimum):
+  - jobs_enqueued_total{type,queue}
+  - jobs_started_total{type}
+  - jobs_finished_total{type,state}
+  - job_duration_seconds histogram{type}
+  - queue_depth gauge{queue}
+  - worker_reclaims_total
+  - scheduler_enqueues_total{schedule_id}
+- Include a simple “events tail” in CLI that streams job_events via polling.
+
+Repository requirements
+Provide:
+- docker-compose.yml that starts Redis + API + scheduler + at least 1 worker
+- Makefile (or just scripts) with:
+  - make test
+  - make lint
+  - make up
+  - make down
+  - make loadtest (submit many jobs concurrently and report throughput/latency)
+- README.md with:
+  - Architecture explanation
+  - Failure scenarios and how your design handles them (worker crash, Redis restart, scheduler restart)
+  - Quickstart commands
+  - How to add a new task type
+  - Clear list of design tradeoffs
+
+Testing requirements (must be automated)
+- Unit tests:
+  - State transition rules
+  - Retry backoff calculation (including jitter bounds)
+  - Idempotency behavior
+- Integration tests (dockerized Redis OK):
+  - At-least-once delivery: simulate worker crash mid-job and verify job is reclaimed and completes
+  - DLQ behavior after max_attempts
+  - Delayed job runs not earlier than run_at
+  - Scheduler restart does not enqueue duplicates for the same scheduled tick
+- All tests must pass via “make test”.
+
+Do not ask me questions. If any detail is ambiguous, choose a reasonable default and document it in README under “Assumptions”.
+Deliver working code, not pseudocode.

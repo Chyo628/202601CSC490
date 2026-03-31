@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>How tokens are counted in Amazon Bedrock - Amazon Bedrock</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="quotas-token-burndown" /><meta name="default_state" content="quotas-token-burndown" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/bedrock/latest/userguide/quotas-token-burndown.html" /><meta name="description" content="Learn how to calculate the token burndown rate for Amazon Bedrock." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Bedrock" /><meta name="guide" content="User Guide" /><meta name="abstract" content="User Guide for the Amazon Bedrock service." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/bedrock/latest/userguide/quotas-token-burndown.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/bedrock/latest/userguide/quotas-token-burndown.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/bedrock/latest/userguide/quotas-token-burndown.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/bedrock/latest/userguide/quotas-token-burndown.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/bedrock/latest/userguide/quotas-token-burndown.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/bedrock/latest/userguide/quotas-token-burndown.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/bedrock/latest/userguide/quotas-token-burndown.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/bedrock/latest/userguide/quotas-token-burndown.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/bedrock/latest/userguide/quotas-token-burndown.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/quotas-token-burndown.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/quotas-token-burndown.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/bedrock/latest/userguide/quotas-token-burndown.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/bedrock/latest/userguide/quotas-token-burndown.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/quotas-token-burndown.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/quotas-token-burndown.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/bedrock/latest/userguide/quotas-token-burndown.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/bedrock/latest/userguide/quotas-token-burndown.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/bedrock/latest/userguide/quotas-token-burndown.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/bedrock/latest/userguide/quotas-token-burndown.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/bedrock/latest/userguide/quotas-token-burndown.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/bedrock/latest/userguide/quotas-token-burndown.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/bedrock/latest/userguide/quotas-token-burndown.html" hreflang="x-default" /><meta name="feedback-folder" content="2d8c2a09-1dac-41bf-9893-c0333d272b2c" /><meta name="feedback-item" content="Bedrock" /><meta name="this_doc_product" content="Amazon Bedrock" /><meta name="this_doc_guide" content="User Guide" /><head xmlns="http://www.w3.org/1999/xhtml"> <script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"/></head>
+<script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'bedrock'}"></script><meta id="panorama-serviceSubSection" value="User Guide" /><meta id="panorama-serviceConsolePage" value="How tokens are counted in Amazon Bedrock" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>How tokens are counted in Amazon Bedrock - Amazon Bedrock</title><meta name="pdf" content="/pdfs/bedrock/latest/userguide/bedrock-ug.pdf#quotas-token-burndown" /><meta name="rss" content="bedrock-ug.rss" /><meta name="forums" content="https://repost.aws/tags/TAQeKlaPaNRQ2tWB6P7KrMag" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/quotas-token-burndown.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/quotas-token-burndown.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/quotas-token-burndown.html" /><meta name="keywords" content="Amazon Bedrock,bedrock,quotas for Amazon Bedrock,token burndown rate,Amazon Bedrock service quotas,throughput limits" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon Bedrock",
+        "item" : "https://docs.aws.amazon.com/bedrock/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "User Guide",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Capacity, Limits, and Cost Optimization",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide/capacity-limits-cost-optimization.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Quotas for Amazon Bedrock",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide/quotas.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "How tokens are counted in Amazon Bedrock",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide/quotas.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/bedrock/latest/userguide/bedrock-ug.pdf#quotas-token-burndown" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/bedrock/index.html">Amazon Bedrock</a><a href="what-is-bedrock.html">User Guide</a></div><div id="page-toc-src"><a href="#quotas-token-burndown-management">Understanding token quota management</a><a href="#quotas-token-burndown-max-tokens">Understanding the impact of the max_tokens parameter</a><a href="#quotas-token-burndown-max-tokens-optimize">Optimizing the max_tokens parameter</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="quotas-token-burndown">How tokens are counted in Amazon Bedrock</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>When you run model inference, there are quotas on the number of tokens that can be processed depending on which Amazon Bedrock model you use. Review the following terminology related to token quotas:</p><div class="table-container"><div class="table-contents"><table id="w519aac20c21c13b5"><thead>
+                    <tr>
+                        <th>Term</th>
+                        <th>Definition</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><code class="code">InputTokenCount</code></td>
+                        <td tabindex="-1">The CloudWatch Amazon Bedrock runtime metric that represents the number of tokens in a request provided as input to the model.</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">OutputTokenCount</code></td>
+                        <td tabindex="-1">The CloudWatch Amazon Bedrock runtime metric that represents the number of tokens generated by the model in response to a request.</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">CacheReadInputTokens</code></td>
+                        <td tabindex="-1">The CloudWatch Amazon Bedrock runtime metric that represents the number of input
+                            tokens that were successfully retrieved from a cache instead of being
+                            reprocessed by the model. This value is 0 if you don't use <a href="./prompt-caching.html">prompt caching</a>.</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">CacheWriteInputTokens</code></td>
+                        <td tabindex="-1">The CloudWatch Amazon Bedrock runtime metric that represents the number of input
+                            tokens that were successfully written into the cache. This value is 0 if
+                            you don't use <a href="./prompt-caching.html">prompt caching</a>.</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">Tokens per minute (TPM)</td>
+                        <td tabindex="-1">A quota set by AWS at the model level on the number of tokens (including both input and output) that you can use in one minute.</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">Tokens per day (TPD)</td>
+                        <td tabindex="-1">A quota set by AWS at the model level on the number of tokens (including both input and output) that you can use in one day. By default, this value is TPM x 24 x 60. However, new AWS accounts have reduced quotas.</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">Requests per minute (RPM)</td>
+                        <td tabindex="-1">A quota set by AWS at the model level on the number of requests that you can send in one minute.</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><code class="code">max_tokens</code></td>
+                        <td tabindex="-1">A parameter you provide in your request to set a maximum amount of output tokens the model can generate.</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">Burndown rate</td>
+                        <td tabindex="-1">The rate at which input and output tokens are converted into token quota usage for the throttling system.</td>
+                    </tr>
+                </table></div></div><p>The burndown rate for Anthropic Claude models version 3.7 and later is <b>5x for output tokens</b> (1 output token consumes 5 tokens from your quotas):</p><p>For all other models, the burndown rate is <b>1:1</b> (1 output token consumes 1 token from your quota).</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><p><a href="#quotas-token-burndown-management">Understanding token quota management</a></p></li><li><p><a href="#quotas-token-burndown-max-tokens">Understanding the impact of the max_tokens parameter</a></p></li><li><p><a href="#quotas-token-burndown-max-tokens-optimize">Optimizing the max_tokens parameter</a></p></li></ul></div>
+            <h2 id="quotas-token-burndown-management">Understanding token quota management</h2>
+                
+            <p>When you make a request, tokens are deducted from your TPM and TPD quotas.
+                Calculations occur at the following stages:</p>
+            
+            <div class="itemizedlist">
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p><b>At the start of the request</b> –
+                        Assuming that you haven't exceeded your RPM quota, the following sum is
+                        deducted from your quotas. The request is throttled if you exceed a
+                        quota.</p>
+                    
+                    <pre class="programlisting"><div class="code-btn-container"></div><!--DEBUG: cli (none)--><code class="nohighlight">Total input tokens + max_tokens</code></pre>
+                    
+                </li><li class="listitem">
+                    <p><b>During processing</b> – The quota
+                        consumed by the request is periodically adjusted to account for the actual
+                        number of output tokens generated.</p>
+                </li><li class="listitem">
+                    <p><b>At the end of the request</b> – The
+                        total number of tokens consumed by the request will be calculated as follows and any unused tokens are replenished to your quota:</p>
+                            
+                            <pre class="programlisting"><div class="code-btn-container"></div><!--DEBUG: cli (none)--><code class="nohighlight">InputTokenCount + CacheWriteInputTokens + (OutputTokenCount x burndown rate)</code></pre>
+                    
+                    <p>If you don't use <a href="./prompt-caching.html">prompt caching</a>, <code class="code">CacheWriteInputTokens</code> will be 0. <code class="code">CacheReadInputTokens</code> don't contribute to this calculation.</p>
+                    
+                </li></ul></div>
+            
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You're only billed for your actual token usage.</p><p>For example, if you use Anthropic Claude Sonnet 4 and send a request containing 1,000 input tokens and it generates a response equivalent to 100 tokens:</p><div class="itemizedlist">
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p><b>1,500 tokens</b> (1,000 + 100 x 5) will be depleted from your TPM and TPD quotas.</p>
+                    </li><li class="listitem">
+                        <p>You'll only be billed for <b>1,100 tokens</b>.</p>
+                    </li></ul></div></div></div>
+            
+         
+            <h2 id="quotas-token-burndown-max-tokens">Understanding the impact of the max_tokens parameter</h2>
+        
+            <p>The <code class="code">max_tokens</code> value is deducted from your quota at the beginning of each request. If you’re hitting TPM quotas earlier than expected, try reducing <code class="code">max_tokens</code> to better approximate the size of your completions.</p>
+            
+            <p>The following scenarios provide examples of how quota deductions would have worked on completed requests using a model that has a 5x burndown rate for output tokens::</p>
+            
+            <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="Scenario 1: High max_tokens value" id="quotas-token-burndown-max-tokens-too-high" expanded="false"><p>Assume the following parameters:</p><div class="itemizedlist">
+                         
+                         
+                         
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p><b>InputTokenCount:</b> 3,000</p>
+                        </li><li class="listitem">
+                            <p><b>CacheReadInputTokens:</b> 4,000</p>
+                        </li><li class="listitem">
+                            <p><b>CacheWriteInputTokens:</b> 1,000</p>
+                        </li><li class="listitem">
+                            <p><b>OutputTokenCount:</b> 1,000</p>
+                        </li><li class="listitem">
+                            <p><b>max_tokens:</b> 32,000</p>
+                        </li></ul></div><p>The following quota deductions take place:</p><div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p><b>Initial deduction when request is made:</b> 40,000 (= 3,000 + 4,000 + 1,000 + 32,000)</p>
+                        </li><li class="listitem">
+                            <p><b>Final adjusted deduction after response is generated:</b> 9,000 (= 3,000 + 1,000 + 1,000 x 5)</p>
+                        </li></ul></div><p>In this scenario, fewer concurrent requests could be made because the <code class="code">max_tokens</code> parameter was set too high. This reduces the request concurrency, throughput, and quota utilization, because the TPM quota capacity would be reached quickly.</p></awsui-expandable-section><awsui-expandable-section variant="container" header="Scenario 2: Optimized max_tokens value" id="quotas-token-burndown-max-tokens-optimized" expanded="false"><p>Assume the following parameters:</p><div class="itemizedlist">
+                         
+                         
+                         
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p><b>InputTokenCount:</b> 3,000</p>
+                        </li><li class="listitem">
+                            <p><b>CacheReadInputTokens:</b> 4,000</p>
+                        </li><li class="listitem">
+                            <p><b>CacheWriteInputTokens:</b> 1,000</p>
+                        </li><li class="listitem">
+                            <p><b>OutputTokenCount:</b> 1,000</p>
+                        </li><li class="listitem">
+                            <p><b>max_tokens:</b> 1,250</p>
+                        </li></ul></div><p>The following quota deductions take place:</p><div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p><b>Initial deduction when request is made:</b> 9,250 (= 3,000 + 4,000 + 1,000 + 1,250)</p>
+                        </li><li class="listitem">
+                            <p><b>Final adjusted deduction after response is generated:</b> 9,000 (= 3,000 + 1,000 + 1,000 x 5)</p>
+                        </li></ul></div><p>In this scenario, the <code class="code">max_tokens</code> parameter was optimized, because the initial deduction is only slightly higher than the final adjusted deduction. This helped increase the request concurrency, throughput, and quota utilization.</p></awsui-expandable-section></div>
+            
+         
+            <h2 id="quotas-token-burndown-max-tokens-optimize">Optimizing the max_tokens parameter</h2>
+            
+            <p>By optimizing the <code class="code">max_tokens</code> parameter, you can efficiently utilize your allocated quota capacity. To help inform your decision about this parameter, you can use Amazon CloudWatch, which automatically collects metrics from AWS services, including token usage data in Amazon Bedrock.</p>
+            
+            <p>Tokens are recorded in the <code class="code">InputTokenCount</code> and <code class="code">OutputTokenCount</code> runtime metrics (for more metrics, see <a href="./monitoring.html#runtime-cloudwatch-metrics">Amazon Bedrock runtime metrics</a>.</p>
+            
+            <p>To use CloudWatch monitoring to inform your decision of the <code class="code">max_tokens</code> parameter, do the following in the AWS Management Console:</p>
+            
+            <div class="procedure"><ol><li>
+                    <p>Sign in to the Amazon CloudWatch console at <a href="https://console.aws.amazon.com/cloudwatch" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/cloudwatch</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                </li><li>
+                    <p>From the left navigation pane, select <b>Dashboards</b>.</p>
+                </li><li>
+                    <p>Select the <b>Automatic dashboards</b> tab.</p>
+                </li><li>
+                    <p>Select <b>Bedrock</b>.</p>
+                </li><li>
+                    <p>In the <b>Token Counts by Model</b> dashboard, select the expand icon.</p>
+                </li><li>
+                    <p>Select a time duration and range parameters for the metrics to account for
+                        peak usage.</p>
+                </li><li>
+                    <p>From the dropdown menu labeled <b>Sum</b>, you can choose
+                        different metrics to observe your token usage. Examine these metrics to
+                        guide your decision on setting your <code class="code">max_tokens</code> value.</p>
+                </li></ol></div>
+            
+            
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./quotas.html">Quotas</div><div id="next" class="next-link" accesskey="n" href="./count-tokens.html">Count tokens to monitor usage and cost</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/quotas-token-burndown.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/quotas-token-burndown.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

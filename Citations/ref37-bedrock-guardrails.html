@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Detect and filter harmful content by using Amazon Bedrock Guardrails - Amazon Bedrock</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="guardrails" /><meta name="default_state" content="guardrails" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html" /><meta name="description" content="Learn how to reduce and protect from harmful information being sent to end-users." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Bedrock" /><meta name="guide" content="User Guide" /><meta name="abstract" content="User Guide for the Amazon Bedrock service." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/bedrock/latest/userguide/guardrails.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/bedrock/latest/userguide/guardrails.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/bedrock/latest/userguide/guardrails.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/bedrock/latest/userguide/guardrails.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/bedrock/latest/userguide/guardrails.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/bedrock/latest/userguide/guardrails.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/guardrails.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/guardrails.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/bedrock/latest/userguide/guardrails.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/bedrock/latest/userguide/guardrails.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/guardrails.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/guardrails.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/bedrock/latest/userguide/guardrails.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/bedrock/latest/userguide/guardrails.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/bedrock/latest/userguide/guardrails.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/bedrock/latest/userguide/guardrails.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/bedrock/latest/userguide/guardrails.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/bedrock/latest/userguide/guardrails.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html" hreflang="x-default" /><meta name="feedback-folder" content="2d8c2a09-1dac-41bf-9893-c0333d272b2c" /><meta name="feedback-item" content="Bedrock" /><meta name="this_doc_product" content="Amazon Bedrock" /><meta name="this_doc_guide" content="User Guide" /><head xmlns="http://www.w3.org/1999/xhtml"> <script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"/></head>
+<script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'bedrock'}"></script><meta id="panorama-serviceSubSection" value="User Guide" /><meta id="panorama-serviceConsolePage" value="Detect and filter harmful content by using Amazon Bedrock Guardrails" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Detect and filter harmful content by using Amazon Bedrock Guardrails - Amazon Bedrock</title><meta name="pdf" content="/pdfs/bedrock/latest/userguide/bedrock-ug.pdf#guardrails" /><meta name="rss" content="bedrock-ug.rss" /><meta name="forums" content="https://repost.aws/tags/TAQeKlaPaNRQ2tWB6P7KrMag" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/guardrails.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/guardrails.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/guardrails.html" /><meta name="keywords" content="Amazon Bedrock,bedrock,content blocking,privacy controls,harmful content,guardrails,denied topics,word filters" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon Bedrock",
+        "item" : "https://docs.aws.amazon.com/bedrock/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "User Guide",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Security, Guardrails, and Observability in Amazon Bedrock",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide/security.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Detect and filter harmful content by using Amazon Bedrock Guardrails",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide/security.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/bedrock/latest/userguide/bedrock-ug.pdf#guardrails" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/bedrock/index.html">Amazon Bedrock</a><a href="what-is-bedrock.html">User Guide</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="guardrails">Detect and filter harmful content by using Amazon Bedrock Guardrails</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon Bedrock Guardrails provides configurable safeguards to help you build safe generative AI applications. With comprehensive safety and privacy controls across
+        foundation models (FMs), Amazon Bedrock Guardrails offers a consistent user experience to help detect and filter undesirable content and protect sensitive information that might be present in
+        user inputs or model responses (excluding reasoning content blocks).</p><p>You can use Amazon Bedrock Guardrails across multiple use cases and applications. Below are a few examples: </p><div class="itemizedlist">
+         
+         
+         
+    <ul class="itemizedlist"><li class="listitem">
+            <p>A chatbot application to help filter harmful user inputs and
+                toxic model responses.</p>
+        </li><li class="listitem">
+            <p>A banking application to help block user queries or model
+                responses associated with seeking or providing illegal investment advice.</p>
+        </li><li class="listitem">
+            <p>A call center application to summarize conversation transcripts between users and
+                agents can use guardrails to redact users’ personally identifiable information (PII)
+                to protect user privacy.</p>
+        </li></ul></div><p>Amazon Bedrock Guardrails provides the following safeguards (also known as filters) to detect and filter
+        undesirable content:</p><div class="itemizedlist">
+         
+         
+         
+         
+         
+         
+    <ul class="itemizedlist"><li class="listitem">
+            <p><b>Content filters</b> – This filter helps you detect and filter harmful
+                text or image content in input prompts or model responses. Filtering is done based
+                on detection of certain predefined harmful content categories: Hate, Insults,
+                Sexual, Violence, Misconduct and Prompt Attack. You can configure the filter
+                strength for each of these categories based on your use cases. These categories are supported for both Classic
+                and Standard <a href="./guardrails-tiers.html">tiers</a>. With Standard tier,
+                detection of undesirable content is extended to protection against harmful content
+                introduced within code elements including comments, variable and function names, and
+                string literals.</p>
+        </li><li class="listitem">
+            <p><b>Denied topics</b> – You can define a set of topics that
+                are undesirable in the context of your application. The filter will help block them
+                if detected in user queries or model responses. With <a href="./guardrails-tiers.html">Standard tier</a>, detection of undesirable content
+                is extended to protection against harmful content introduced within code elements
+                including comments, variables and function names, and string literals.</p>
+        </li><li class="listitem">
+            <p><b>Word filters</b> – You can define a set of custom words or phrases (exact match)
+            that you want to block in the interaction between end users and generative AI applications. For example, you can block 
+            profanity (use a ready-to-use option) as well as custom words such as competitor names.</p>
+        </li><li class="listitem">
+            <p><b>Sensitive information filters</b> – You can configure
+                this filter to help block or mask sensitive information, such as personally identifiable
+                information (PII), in user inputs and model responses. Blocking or
+                masking is done based on probabilistic detection of sensitive information in
+                in entities such as SSN number, Date of Birth, address, etc. This filter
+                also allows configuring regular expression based detection of patterns (custom regex). </p>
+        </li><li class="listitem">
+            <p><b>Contextual grounding checks</b> – This filter helps you detect
+                hallucinations in model responses if they are not grounded (factually inaccurate or add new information) in the source or are irrelevant to 
+                to the user's query. For example, you can block or flag responses in retrieval-augmented generation (RAG) applications. If the model responses deviate
+                from the information in the retrieved source or doesn't answer the question from the user. </p>
+        </li><li class="listitem">
+            <p><b>Automated Reasoning checks</b> – This filter helps you 
+                validate the accuracy of foundation model responses against a set of logical rules.
+                You can use Automated Reasoning checks to detect hallucinations, suggest
+                corrections, and highlight unstated assumptions in model responses.</p>
+        </li></ul></div><p>In addition to the above filters, you can also configure the messages to be returned to
+        the user if a user input or model response is in violation of the filters defined in the
+        guardrail.</p><p>Experiment and benchmark with different configurations and use the built-in test window to
+        ensure that the results meet your use-case requirements. When you create a guardrail, a
+        working draft is automatically available for you to iteratively modify. Experiment with
+        different configurations and use the built-in test window to see whether they are
+        appropriate for your use-case. If you are satisfied with a set of configurations, you can
+        create a version of the guardrail and use it with supported foundation models. </p><p>Guardrails can be used directly with FMs during the inference API invocation by specifying
+        the guardrail ID and the version. Guardrails can also be used directly through the
+            <code class="code">ApplyGuardrail</code> API without invoking the foundation models. If a guardrail
+        is used, it will evaluate the input prompts and the FM completions against the defined
+        filters.
+        </p><p>For retrieval augmented generation (RAG) or conversational applications, you might need to
+        evaluate only user input prompts while discarding system instructions,
+        search results, conversation history, or a few short examples. To selectively evaluate a
+        section of the input prompt, see <a href="./guardrails-tagging.html">Apply tags to user input to filter content</a> The ability to evaluate only a section of the input prompt is available
+        through the AWS SDK and not available on the management console including the Bedrock Playground and the Bedrock Guardrails management console.</p><div class="highlights"><h6>Topics</h6><ul><li><p><a href="./guardrails-how.html">How Amazon Bedrock Guardrails works</a></p></li><li><p><a href="./guardrails-supported.html">Supported Regions and models for Amazon Bedrock Guardrails</a></p></li><li><p><a href="./guardrails-tiers.html">Safeguard tiers for guardrails policies</a></p></li><li><p><a href="./guardrails-supported-languages.html">Languages supported by Amazon Bedrock Guardrails</a></p></li><li><p><a href="./guardrails-prereq.html">Prerequisites for using Amazon Bedrock Guardrails</a></p></li><li><p><a href="./guardrails-permissions.html">Set up permissions to use Amazon Bedrock Guardrails</a></p></li><li><p><a href="./guardrails-components.html">Create your guardrail</a></p></li><li><p><a href="./guardrails-cross-region.html">Distribute guardrail inference across AWS Regions</a></p></li><li><p><a href="./guardrails-enforcements.html">Apply cross-account safeguards with Amazon Bedrock Guardrails enforcements</a></p></li><li><p><a href="./guardrails-test.html">Test your guardrail</a></p></li><li><p><a href="./guardrails-view.html">View information about your guardrails</a></p></li><li><p><a href="./guardrails-edit.html">Modify your guardrail</a></p></li><li><p><a href="./guardrails-delete.html">Delete your guardrail</a></p></li><li><p><a href="./guardrails-deploy.html">Deploy your guardrail</a></p></li><li><p><a href="./guardrails-use.html">Use cases for Amazon Bedrock Guardrails</a></p></li></ul></div><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./prompt-injection.html">Prompt injection security</div><div id="next" class="next-link" accesskey="n" href="./guardrails-how.html">Overview</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/guardrails.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/guardrails.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

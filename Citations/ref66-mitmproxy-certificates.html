@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/png" href="../../favicon.ico">
+    <title>Certificates</title>
+    
+
+    
+    <link rel="stylesheet" href="../../css/style.min.css">
+
+    
+
+    <meta name="generator" content="Hugo 0.139.3">
+</head>
+<body>
+<a href="#main-content" class="visually-hidden-focusable">Skip to main content</a>
+<header role="banner">
+    <nav role="navigation" aria-label="Main navigation">
+        <a href="https://mitmproxy.org/">
+            <img src='../../logo-navbar.png' alt="mitmproxy logo" width="123" height="28">
+        </a>
+        <a class="hide-mobile" href="https://mitmproxy.org/posts/">Blog</a>
+        <a class="hide-mobile" href="https://docs.mitmproxy.org/">Docs</a>
+        <a class="hide-mobile" href="https://mitmproxy.org/publications/">Publications</a>
+        <span style="flex-grow: 1"></span>
+        <input type="search" id="search" placeholder="Search">
+        <span style="flex-grow: 1"></span>
+        <version-selector version="" aria-label="Documentation version selector"/>
+    </nav>
+</header>
+<nav role="navigation" aria-label="Documentation navigation">
+    <label for="navtoggle">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke="currentColor" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg>
+    Documentation
+</label>
+<input id="navtoggle" type="checkbox" aria-hidden="true" tabindex="-1">
+<div>
+    
+    
+    
+    
+    <details open>
+    <summary>Overview</summary>
+
+    
+        <a href="../../overview/installation/">
+            Installation
+        </a>
+    
+        <a href="../../overview/getting-started/">
+            Getting Started
+        </a>
+    
+        <a href="../../overview/features/">
+            Features
+        </a>
+    
+    </details>
+
+    
+    
+    
+    
+    <details false>
+    <summary>Video Tutorials (Web UI)</summary>
+
+    
+        <a href="../../web-tutorials/web-01-user-interface/">
+            User Interface
+        </a>
+    
+        <a href="../../web-tutorials/web-02-intercepting-traffic/">
+            Intercept Traffic
+        </a>
+    
+        <a href="../../web-tutorials/web-03-analysing-flows/">
+            Analyze Flows
+        </a>
+    
+        <a href="../../web-tutorials/web-04-modifying-requests/">
+            Modify Requests
+        </a>
+    
+        <a href="../../web-tutorials/web-05-replaying-flows/">
+            Replay Flows
+        </a>
+    
+    </details>
+
+    
+    
+    
+    
+    <details false>
+    <summary>Video Tutorials (CLI)</summary>
+
+    
+        <a href="../../mitmproxytutorial-userinterface/">
+            User Interface
+        </a>
+    
+        <a href="../../mitmproxytutorial-interceptrequests/">
+            Intercept Requests
+        </a>
+    
+        <a href="../../mitmproxytutorial-modifyrequests/">
+            Modify Requests
+        </a>
+    
+        <a href="../../mitmproxytutorial-replayrequests/">
+            Replay Requests
+        </a>
+    
+        <a href="../../mitmproxytutorial-whatsnext/">
+            What&#39;s Next
+        </a>
+    
+    </details>
+
+    
+    
+    
+    
+    <details open>
+    <summary>Core Concepts</summary>
+
+    
+        <a href="../../concepts/how-mitmproxy-works/">
+            How mitmproxy works
+        </a>
+    
+        <a href="../../concepts/modes/">
+            Proxy Modes
+        </a>
+    
+        <a href="../../concepts/certificates/">
+            Certificates
+        </a>
+    
+        <a href="../../concepts/filters/">
+            Filter expressions
+        </a>
+    
+        <a href="../../concepts/options/">
+            Options
+        </a>
+    
+        <a href="../../concepts/commands/">
+            Commands
+        </a>
+    
+        <a href="../../concepts/protocols/">
+            Protocols
+        </a>
+    
+    </details>
+
+    
+    
+    
+    
+    <details open>
+    <summary>Addon Development</summary>
+
+    
+        <a href="../../addons/overview/">
+            Overview
+        </a>
+    
+        <a href="../../api/events.html">
+            Event Hooks
+        </a>
+    
+        <a href="../../addons/options/">
+            Custom Options
+        </a>
+    
+        <a href="../../addons/commands/">
+            Custom Commands
+        </a>
+    
+        <a href="../../addons/contentviews/">
+            Custom Contentviews
+        </a>
+    
+        <a href="../../addons/examples/">
+            Examples
+        </a>
+    
+        <a href="../../addons/api-changelog/">
+            API Changelog
+        </a>
+    
+    </details>
+
+    
+    
+    
+    
+    <details false>
+    <summary>API Reference</summary>
+
+    
+        <a href="../../api/mitmproxy/addonmanager.html">
+            mitmproxy.addonmanager
+        </a>
+    
+        <a href="../../api/mitmproxy/certs.html">
+            mitmproxy.certs
+        </a>
+    
+        <a href="../../api/mitmproxy/connection.html">
+            mitmproxy.connection
+        </a>
+    
+        <a href="../../api/mitmproxy/contentviews.html">
+            mitmproxy.contentviews
+        </a>
+    
+        <a href="../../api/mitmproxy/coretypes/multidict.html">
+            mitmproxy.coretypes.multidict
+        </a>
+    
+        <a href="../../api/mitmproxy/dns.html">
+            mitmproxy.dns
+        </a>
+    
+        <a href="../../api/mitmproxy/flow.html">
+            mitmproxy.flow
+        </a>
+    
+        <a href="../../api/mitmproxy/http.html">
+            mitmproxy.http
+        </a>
+    
+        <a href="../../api/mitmproxy/net/server_spec.html">
+            mitmproxy.net.server_spec
+        </a>
+    
+        <a href="../../api/mitmproxy/proxy/context.html">
+            mitmproxy.proxy.context
+        </a>
+    
+        <a href="../../api/mitmproxy/proxy/mode_specs.html">
+            mitmproxy.proxy.mode_specs
+        </a>
+    
+        <a href="../../api/mitmproxy/proxy/server_hooks.html">
+            mitmproxy.proxy.server_hooks
+        </a>
+    
+        <a href="../../api/mitmproxy/tcp.html">
+            mitmproxy.tcp
+        </a>
+    
+        <a href="../../api/mitmproxy/tls.html">
+            mitmproxy.tls
+        </a>
+    
+        <a href="../../api/mitmproxy/udp.html">
+            mitmproxy.udp
+        </a>
+    
+        <a href="../../api/mitmproxy/websocket.html">
+            mitmproxy.websocket
+        </a>
+    
+    </details>
+
+    
+    
+    
+    
+    <details open>
+    <summary>HOWTOs</summary>
+
+    
+        <a href="../../howto/kubernetes/">
+            Kubernetes Services
+        </a>
+    
+        <a href="../../howto/transparent/">
+            Transparent Proxying
+        </a>
+    
+        <a href="../../howto/wireshark-tls/">
+            Wireshark and SSL/TLS
+        </a>
+    
+        <a href="../../howto/ignore-domains/">
+            Ignoring Domains
+        </a>
+    
+        <a href="../../howto/transparent-vms/">
+            Transparently Proxying VMs
+        </a>
+    
+        <a href="../../howto/install-system-trusted-ca-android/">
+            System CA on Android Emulator
+        </a>
+    
+    </details>
+
+    
+    
+    
+    
+    <details open>
+    <summary>Tutorials</summary>
+
+    
+        <a href="../../tutorials/client-replay/">
+            Client replay
+        </a>
+    
+        <a href="../../tutorials/highscores/">
+            Setting highscores on Apple GameCenter
+        </a>
+    
+    </details>
+
+</div>
+
+
+
+</nav>
+<main id="main-content" role="main" tabindex="-1">
+
+
+<a
+   class="github-button"
+   target="_blank"
+   href="https://github.com/mitmproxy/mitmproxy/blob/main/docs/src/content/concepts/certificates.md"
+>
+    Edit on GitHub
+</a>
+
+
+<h1 id="about-certificates">About Certificates<a class="anchor" aria-hidden="true" tabindex="-1" href="#about-certificates"></a></h1>
+<p>Mitmproxy can decrypt encrypted traffic on the fly, as long as the client trusts
+mitmproxy&rsquo;s built-in certificate authority. Usually this means that the mitmproxy CA
+certificate has to be installed on the client device.</p>
+<h2 id="quick-setup">Quick Setup<a class="anchor" aria-hidden="true" tabindex="-1" href="#quick-setup"></a></h2>
+<p>By far the easiest way to install the mitmproxy CA certificate is to use the
+built-in certificate installation app. To do this, start mitmproxy and
+configure your target device with the correct proxy settings. Now start a
+browser on the device, and visit the magic domain <a href="http://mitm.it/">mitm.it</a>. You should see
+something like this:</p>
+<figure class="has-border"><img src="../../certinstall-webapp.png">
+</figure>
+
+<p>Click on the relevant icon, follow the setup instructions for the platform
+you&rsquo;re on and you are good to go.</p>
+<h2 id="the-mitmproxy-certificate-authority">The mitmproxy certificate authority<a class="anchor" aria-hidden="true" tabindex="-1" href="#the-mitmproxy-certificate-authority"></a></h2>
+<p>The first time mitmproxy is run, it creates the keys for a certificate
+authority (CA) in the config directory (<code>~/.mitmproxy</code> by default).
+This CA is used for on-the-fly generation of dummy certificates for each visited website.
+Since your browser won&rsquo;t trust the mitmproxy CA out of the box, you will either need to click through a TLS certificate
+warning on every domain, or install the CA certificate once so that it is trusted.</p>
+<p>The following files are created:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Filename</th>
+          <th>Contents</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>mitmproxy-ca.pem</td>
+          <td>The certificate <strong>and the private key</strong> in PEM format.</td>
+      </tr>
+      <tr>
+          <td>mitmproxy-ca-cert.pem</td>
+          <td>The certificate in PEM format. Use this to distribute on most non-Windows platforms.</td>
+      </tr>
+      <tr>
+          <td>mitmproxy-ca-cert.p12</td>
+          <td>The certificate in PKCS12 format. For use on Windows.</td>
+      </tr>
+      <tr>
+          <td>mitmproxy-ca-cert.cer</td>
+          <td>Same file as .pem, but with an extension expected by some Android devices.</td>
+      </tr>
+  </tbody>
+</table>
+<p>For security reasons, the mitmproxy CA is generated uniquely on the first start and
+is not shared between mitmproxy installations on different devices. This makes sure
+that other mitmproxy users cannot intercept your traffic.</p>
+<h3 id="installing-the-mitmproxy-ca-certificate-manually">Installing the mitmproxy CA certificate manually<a class="anchor" aria-hidden="true" tabindex="-1" href="#installing-the-mitmproxy-ca-certificate-manually"></a></h3>
+<p>Sometimes using the <a href="#quick-setup">quick install app</a> is not an option and you need to install the CA manually.
+Below is a list of pointers to manual certificate installation
+documentation for some common platforms. The mitmproxy CA cert is located in
+<code>~/.mitmproxy</code> after it has been generated at the first start of mitmproxy.</p>
+<ul>
+<li>curl on the command line:<br>
+<code>curl --proxy 127.0.0.1:8080 --cacert ~/.mitmproxy/mitmproxy-ca-cert.pem https://example.com/</code></li>
+<li>wget on the command line:<br>
+<code>wget -e https_proxy=127.0.0.1:8080 --ca-certificate ~/.mitmproxy/mitmproxy-ca-cert.pem https://example.com/</code></li>
+<li><a href="https://support.apple.com/guide/keychain-access/add-certificates-to-a-keychain-kyca2431/mac">macOS</a></li>
+<li><a href="https://www.dssw.co.uk/reference/security.html">macOS (automated)</a>:
+<code>sudo security add-trusted-cert -d -p ssl -p basic -k /Library/Keychains/System.keychain ~/.mitmproxy/mitmproxy-ca-cert.pem</code></li>
+<li><a href="https://askubuntu.com/questions/73287/how-do-i-install-a-root-certificate/94861#94861">Ubuntu/Debian</a></li>
+<li><a href="https://docs.fedoraproject.org/en-US/quick-docs/using-shared-system-certificates/#proc_adding-new-certificates">Fedora</a></li>
+<li><a href="https://wiki.archlinux.org/title/Transport_Layer_Security#Add_a_certificate_to_a_trust_store">Arch Linux</a></li>
+<li><a href="https://wiki.mozilla.org/MozillaRootCertificate#Mozilla_Firefox">Mozilla Firefox</a></li>
+<li><a href="https://stackoverflow.com/a/15076602/198996">Chrome on Linux</a></li>
+<li><a href="http://jasdev.me/intercepting-ios-traffic">iOS</a><br>
+On recent iOS versions you also need to enable full trust for the mitmproxy
+root certificate:
+<ol>
+<li>Go to Settings &gt; General &gt; About &gt; Certificate Trust Settings.</li>
+<li>Under &ldquo;Enable full trust for root certificates&rdquo;, turn on trust for
+the mitmproxy certificate.</li>
+</ol>
+</li>
+<li>iOS Simulator
+<ol>
+<li>Ensure the macOS machine running the emulator is configured to use mitmproxy in its network settings.</li>
+<li>Open Safari on the emulator and visit <code>mitm.it</code> to download the iOS certificate.</li>
+<li>Navigate to Settings &gt; General &gt; VPN &amp; Device Management to install the certificate.</li>
+<li>Go to Settings &gt; About &gt; Certificate Trust Settings and enable trust for the installed root certificate.</li>
+</ol>
+</li>
+<li><a href="https://docs.oracle.com/cd/E19906-01/820-4916/geygn/index.html">Java</a>:<br>
+<code>sudo keytool -importcert -alias mitmproxy -storepass changeit -keystore $JAVA_HOME/lib/security/cacerts -trustcacerts -file ~/.mitmproxy/mitmproxy-ca-cert.pem</code></li>
+<li><a href="http://wiki.cacert.org/FAQ/ImportRootCert#Android_Phones_.26_Tablets">Android/Android Simulator</a></li>
+<li><a href="https://web.archive.org/web/20160612045445/http://windows.microsoft.com/en-ca/windows/import-export-certificates-private-keys#1TC=windows-7">Windows</a></li>
+<li><a href="https://technet.microsoft.com/en-us/library/cc732443.aspx">Windows (automated)</a>:<br>
+<code>certutil -addstore root mitmproxy-ca-cert.cer</code></li>
+</ul>
+<h3 id="upstream-certificate-sniffing">Upstream Certificate Sniffing<a class="anchor" aria-hidden="true" tabindex="-1" href="#upstream-certificate-sniffing"></a></h3>
+<p>When mitmproxy receives a request to establish TLS (in the form of a ClientHello message), it puts the client on hold
+and first makes a connection to the upstream server to &ldquo;sniff&rdquo; the contents of its TLS certificate.
+The information gained &ndash; Common Name, Organization, Subject Alternative Names &ndash; is then used to generate a new
+interception certificate on-the-fly, signed by the mitmproxy CA. Mitmproxy then returns to the client and continues
+the handshake with the newly-forged certificate.</p>
+<p>Upstream cert sniffing is on by default, and can optionally be disabled by turning the <code>upstream_cert</code> option off.</p>
+<h3 id="certificate-pinning">Certificate Pinning<a class="anchor" aria-hidden="true" tabindex="-1" href="#certificate-pinning"></a></h3>
+<p>Some applications employ <a href="https://en.wikipedia.org/wiki/HTTP_Public_Key_Pinning">Certificate
+Pinning</a> to prevent
+man-in-the-middle attacks. This means that <strong>mitmproxy&rsquo;s</strong>
+certificates will not be accepted by these applications without modifying them.
+If the contents of these connections are not important, it is recommended to use
+the <a href="../../howto/ignore-domains/">ignore_hosts</a> feature to prevent
+<strong>mitmproxy</strong> from intercepting traffic to these specific
+domains. If you want to intercept the pinned connections, you need to patch the
+application manually. For Android and (jailbroken) iOS devices, various tools
+exist to accomplish this:</p>
+<ul>
+<li><a href="https://github.com/shroudedcode/apk-mitm">apk-mitm</a> is a CLI application that automatically removes certificate
+pinning from Android APK files.</li>
+<li><a href="https://github.com/sensepost/objection">objection</a> is a runtime mobile exploration toolkit powered by Frida,
+which supports certificate pinning bypasses on iOS and Android.</li>
+<li><a href="https://github.com/nabla-c0d3/ssl-kill-switch2">ssl-kill-switch2</a> is a blackbox tool to disable certificate pinning
+within iOS and macOS applications.</li>
+<li><a href="https://github.com/mitmproxy/android-unpinner">android-unpinner</a> modifies Android APKs to inject Frida and HTTP Toolkit&rsquo;s unpinning scripts.</li>
+</ul>
+<p><em>Please propose other useful tools using the &ldquo;Edit on GitHub&rdquo; button on the top right of this page.</em></p>
+<h2 id="using-a-custom-server-certificate">Using a custom server certificate<a class="anchor" aria-hidden="true" tabindex="-1" href="#using-a-custom-server-certificate"></a></h2>
+<p>You can use your own (leaf) certificate by passing the <code>--certs [domain=]path_to_certificate</code> option to mitmproxy. Mitmproxy then uses the
+provided certificate for interception of the specified domain instead of
+generating a certificate signed by its own CA.</p>
+<p>The certificate file is expected to be in the PEM format. You can include
+intermediary certificates right below your leaf certificate, so that your PEM
+file roughly looks like this:</p>
+<pre><code>-----BEGIN PRIVATE KEY-----
+&lt;private key&gt;
+-----END PRIVATE KEY-----
+-----BEGIN CERTIFICATE-----
+&lt;cert&gt;
+-----END CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+&lt;intermediary cert (optional)&gt;
+-----END CERTIFICATE-----
+</code></pre>
+<p>For example, you can generate a certificate in this format using these
+instructions:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">openssl genrsa -out cert.key <span class="m">2048</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># (Specify the mitm domain as Common Name, e.g. \*.google.com)</span>
+</span></span><span class="line"><span class="cl">openssl req -new -x509 -key cert.key -out cert.crt
+</span></span><span class="line"><span class="cl">cat cert.key cert.crt &gt; cert.pem
+</span></span></code></pre></div><p>Now, you can run mitmproxy with the generated certificate:</p>
+<p><strong>For all domain names</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mitmproxy --certs *<span class="o">=</span>cert.pem
+</span></span></code></pre></div><p><strong>For specific domain names</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mitmproxy --certs *.example.com<span class="o">=</span>cert.pem
+</span></span></code></pre></div><p><strong>Note:</strong> <code>*.example.com</code> is for all the subdomains. You can also use
+<code>www.example.com</code> for a particular subdomain.</p>
+<h2 id="using-a-custom-certificate-authority">Using a custom certificate authority<a class="anchor" aria-hidden="true" tabindex="-1" href="#using-a-custom-certificate-authority"></a></h2>
+<p>By default, mitmproxy will use <code>~/.mitmproxy/mitmproxy-ca.pem</code> as the
+certificate authority to generate certificates for all domains for which
+no custom certificate is provided (see above). You can use your own
+certificate authority by passing the <code>--set confdir=DIRECTORY</code> option to
+mitmproxy. Mitmproxy will then look for <code>mitmproxy-ca.pem</code> in the
+specified directory. If no such file exists, it will be generated
+automatically.</p>
+<p>The <code>mitmproxy-ca.pem</code> certificate file has to look roughly like this:</p>
+<pre><code>-----BEGIN PRIVATE KEY-----
+&lt;private key&gt;
+-----END PRIVATE KEY-----
+-----BEGIN CERTIFICATE-----
+&lt;cert&gt;
+-----END CERTIFICATE-----
+</code></pre>
+<p>When looking at the certificate with
+<code>openssl x509 -noout -text -in ~/.mitmproxy/mitmproxy-ca.pem</code>
+it should have at least the following X509v3 extensions so mitmproxy can
+use it to generate certificates:</p>
+<pre><code>X509v3 extensions:
+    X509v3 Key Usage: critical
+        Certificate Sign
+    X509v3 Basic Constraints: critical
+        CA:TRUE
+</code></pre>
+<p>For example, when using OpenSSL, you can create a CA authority as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">openssl req -x509 -new -nodes -key ca.key -sha256 -out ca.crt -addext <span class="nv">keyUsage</span><span class="o">=</span>critical,keyCertSign
+</span></span><span class="line"><span class="cl">cat ca.key ca.crt &gt; mitmproxy-ca.pem
+</span></span></code></pre></div><h2 id="mutual-tls-mtls-and-client-certificates">Mutual TLS (mTLS) and client certificates<a class="anchor" aria-hidden="true" tabindex="-1" href="#mutual-tls-mtls-and-client-certificates"></a></h2>
+<p>TLS is typically used in a way where the client verifies the server&rsquo;s identity
+using the server&rsquo;s certificate during the handshake, but the server does not
+verify the client&rsquo;s identity using the TLS protocol. Instead, the client
+transmits cookies or other access tokens over the established secure channel to
+authenticate itself.</p>
+<p>Mutual TLS (mTLS) is a mode where the server verifies the client&rsquo;s identity
+not using cookies or access tokens, but using a certificate presented by the
+client during the TLS handshake. With mTLS, both client and server use a
+certificate to authenticate each other.</p>
+<p>If a server wants to verify the clients identity using mTLS, it sends an
+additional <code>CertificateRequest</code> message to the client during the handshake. The
+client then provides its certificate and proves ownership of the private key
+with a matching signature. This part works just like server authentication, only
+the other way around.</p>
+<h3 id="mtls-between-mitmproxy-and-upstream-server">mTLS between mitmproxy and upstream server<a class="anchor" aria-hidden="true" tabindex="-1" href="#mtls-between-mitmproxy-and-upstream-server"></a></h3>
+<p>You can use a client certificate by passing the <code>--set client_certs=DIRECTORY|FILE</code>
+option to mitmproxy. Using a directory allows certs to be selected based on
+hostname, while using a filename allows a single specific certificate to be used
+for all TLS connections. Certificate files must be in the PEM format and should
+contain both the unencrypted private key and the certificate.</p>
+<p>You can specify a directory to <code>--set client_certs=DIRECTORY</code>, in which case the matching
+certificate is looked up by filename. So, if you visit example.org, mitmproxy
+looks for a file named <code>example.org.pem</code> in the specified directory and uses
+this as the client cert.</p>
+<h3 id="mtls-between-client-and-mitmproxy">mTLS between client and mitmproxy<a class="anchor" aria-hidden="true" tabindex="-1" href="#mtls-between-client-and-mitmproxy"></a></h3>
+<p>By default, mitmproxy does not send the <code>CertificateRequest</code> TLS handshake
+message to connecting clients. This is because it trips up some clients that do
+not expect a certificate request (most famously old Android versions). However,
+there are other clients &ndash; in particular in the MQTT / IoT environment &ndash; that
+do expect a certificate request and will otherwise fail the TLS handshake.</p>
+<p>To instruct mitmproxy to request a client certificate from the connecting
+client, you can pass the <code>--set request_client_cert=True</code> option. This will
+generate a <code>CertificateRequest</code> TLS handshake message and (if successful)
+establish an mTLS connection. This option only requests a certificate from the
+client, it does not validate the presented identity in any way. For the purposes
+of testing and developing client and server software, this is typically not an
+issue. If you operate mitmproxy in an environment where untrusted clients might
+connect, you need to safeguard against them.</p>
+<p>The <code>request_client_cert</code> option is typically paired with <code>client_certs</code> like so:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mitmproxy --set <span class="nv">request_client_cert</span><span class="o">=</span>True --set <span class="nv">client_certs</span><span class="o">=</span>client-cert.pem
+</span></span></code></pre></div>
+
+
+</main>
+<script src="../../bundle.min.6999eaf47a85c59db08e7660ede16eed1c9288d8826a2c857035e1f346c18f26.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+# LaTeX intermediate files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+
+# Local/editor
+.vscode/
+%OUTDIR%/
+.climpire/
+.climpire-worktrees/
+tmp/
+main.bbl-SAVE-ERROR
+main.bcf-SAVE-ERROR
+Korean/
+KOREAN/
+notes/
+Research/
+AGENTS.md

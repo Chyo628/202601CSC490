@@ -1,0 +1,1095 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>
+SPIFFE | SPIFFE Overview
+</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.7.0/tocbot.css">
+<link rel="stylesheet" href="/css/style.5b694e9bd3e38257ecd2c84c3b5a296d672e7b35dad895fb6f8ec3e7528d2bcf.css">
+
+    <script src="https://unpkg.com/tippy.js@3/dist/tippy.all.min.js"></script>
+  </head>
+  <body class="is-page is-docs-page has-navbar-fixed-top">
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<nav class="navbar is-fixed-top is-light">
+  <div class="container is-fluid ">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        <img src="/img/logos/spiffe/horizontal/color/spiffe-horizontal-color.png" alt="SPIFFE Logo">
+      </a>
+
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target=".navbar-top">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div class="navbar-menu navbar-top">
+
+      <div class="navbar-end"><div class="navbar-item">
+          <p class="control">
+            <a class="button is-black" href="https://blog.spiffe.io/">
+              <span class="icon">
+                <i class="fab fa-medium"></i>
+              </span>
+              <span>
+                Blog
+              </span>
+            </a>
+
+            <a class="button is-black" href="https://x.com/SPIFFEio" aria-label="X (formerly Twitter)">
+              <span class="icon">
+                <i class="fab fa-x-twitter"></i>
+              </span>
+            </a>
+
+            <a class="button is-black" href="https://github.com/spiffe" aria-label="GitHub">
+              <span class="icon">
+                <i class="fab fa-github"></i>
+              </span>
+            </a>
+
+            <a class="button is-slack-green" href="https://slack.spiffe.io/" aria-label="Slack">
+              <span class="icon">
+                <i class="fab fa-slack"></i>
+              </span>
+            </a>
+
+            <a class="button is-stack-overflow-orange" href="https://stackoverflow.com/questions/tagged/spiffe" aria-label="Stack Overflow">
+              <span class="icon">
+                <i class="fab fa-stack-overflow"></i>
+              </span>
+            </a>
+
+            <a class="button is-youtube-red" href="https://www.youtube.com/channel/UCVzeW7j02FDNggkI5JKPvJg/f" aria-label="YouTube">
+              <span class="icon">
+                <i class="fab fa-youtube"></i>
+              </span>
+            </a>
+          </p>
+        </div>
+      </div><div class="navbar-end is-hidden-tablet">
+          <span class="navbar-item is-size-3 has-text-weight-light is-uppercase">
+            SPIFFE
+          </span>
+    
+          
+
+ <a class="navbar-item" href="/docs/latest/spiffe-about/overview/">
+  Overview
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spiffe-about/spiffe-concepts/">
+  Concepts
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spiffe-about/community-presentations/">
+  Community Presentations
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spiffe-about/get-involved/">
+  Get Involved
+</a>
+
+
+<br />
+
+
+    
+          <span class="navbar-item is-size-3 has-text-weight-light is-uppercase">
+            SPIRE
+          </span>
+          
+          <span class="navbar-item is-size-5 has-text-weight-light is-uppercase">
+        <a href="/docs/latest/spire-about/" class="has-text-black">About</a>
+    </span>
+
+ <a class="navbar-item" href="/docs/latest/spire-about/spire-concepts/">
+  Concepts
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spire-about/use-cases/">
+  Use Cases
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spire-about/comparisons/">
+  Comparisons
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spire-about/case-studies/">
+  Case Studies
+</a>
+
+
+<br />
+
+
+          <span class="navbar-item is-size-5 has-text-weight-light is-uppercase">
+        <a href="/docs/latest/try/" class="has-text-black">Try</a>
+    </span>
+
+ <a class="navbar-item" href="/docs/latest/try/getting-started-linux-macos-x/">
+  Quickstart for Linux and MacOS X
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/try/getting-started-k8s/">
+  Quickstart for Kubernetes
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/try/spire101/">
+  Quickstart for Docker
+</a>
+
+
+<br />
+
+
+          <span class="navbar-item is-size-5 has-text-weight-light is-uppercase">
+        <a href="/docs/latest/planning/" class="has-text-black">Plan</a>
+    </span>
+
+ <a class="navbar-item" href="/docs/latest/planning/scaling_spire/">
+  Scaling SPIRE
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/planning/extending/">
+  Extending
+</a>
+
+
+<br />
+
+
+          <span class="navbar-item is-size-5 has-text-weight-light is-uppercase">
+        <a href="/docs/latest/deploying/" class="has-text-black">Deploy</a>
+    </span>
+
+ <a class="navbar-item" href="/docs/latest/deploying/using_spire/">
+  Getting SPIRE
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/deploying/install-server/">
+  Install Server
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/deploying/install-agents/">
+  Install Agent
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/deploying/configuring/">
+  Configuring
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/deploying/registering/">
+  Registering workloads
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/deploying/svids/">
+  Working with SVIDs
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/deploying/libraries/">
+  SPIFFE Library Usage Examples
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/deploying/spire_agent/">
+  SPIRE Agent Configuration Reference
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/deploying/spire_server/">
+  SPIRE Server Configuration Reference
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/deploying/telemetry_config/">
+  SPIRE Telemetry Configuration
+</a>
+
+
+<br />
+
+
+          <span class="navbar-item is-size-5 has-text-weight-light is-uppercase">
+        <a href="/docs/latest/maintenance/" class="has-text-black">Maintain</a>
+    </span>
+
+ <a class="navbar-item" href="/docs/latest/maintenance/upgrading/">
+  Upgrade/Downgrade SPIRE
+</a>
+
+
+<br />
+
+
+
+	  <span class="navbar-item is-size-3 has-text-weight-light is-uppercase">
+            Helm Chart Hardened
+          </span>
+
+          <span class="navbar-item is-size-5 has-text-weight-light is-uppercase">
+        <a href="/docs/latest/spire-helm-charts-hardened-about/" class="has-text-black">About</a>
+    </span>
+
+ <a class="navbar-item" href="/docs/latest/spire-helm-charts-hardened-about/installation/">
+  Installation
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spire-helm-charts-hardened-about/upgrading/">
+  Upgrading
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spire-helm-charts-hardened-about/service-selection/">
+  Service Selection
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spire-helm-charts-hardened-about/recommendations/">
+  Recommendations
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spire-helm-charts-hardened-about/exposing/">
+  Exposing Services
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spire-helm-charts-hardened-about/identifiers/">
+  Identifiers
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spire-helm-charts-hardened-about/namespaces/">
+  Namespaces
+</a>
+
+
+<br />
+
+
+          <span class="navbar-item is-size-5 has-text-weight-light is-uppercase">
+        <a href="/docs/latest/spire-helm-charts-hardened-advanced/" class="has-text-black">Advanced</a>
+    </span>
+
+ <a class="navbar-item" href="/docs/latest/spire-helm-charts-hardened-advanced/nested-spire/">
+  Nested SPIRE
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spire-helm-charts-hardened-advanced/federation/">
+  Federation
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/spire-helm-charts-hardened-advanced/mirror/">
+  Local Mirrors
+</a>
+
+
+<br />
+
+
+          
+          <span class="navbar-item is-size-3 has-text-weight-light is-uppercase">
+            Integrate SPIRE
+          </span>
+          
+          <span class="navbar-item is-size-5 has-text-weight-light is-uppercase">
+        <a href="/docs/latest/microservices/" class="has-text-black">Securing Microservices</a>
+    </span>
+
+ <a class="navbar-item" href="/docs/latest/microservices/envoy/">
+  Using Envoy with SPIRE
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/microservices/envoy-x509/readme/">
+  SPIRE with Envoy and X.509-SVIDs
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/microservices/envoy-jwt/readme/">
+  SPIRE with Envoy and JWT-SVIDs
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/microservices/envoy-opa/readme/">
+  Spire with OPA &#43; Envoy &#43; X.509-SVIDs
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/microservices/envoy-jwt-opa/readme/">
+  Spire with OPA &#43; Envoy &#43; JWT-SVIDs
+</a>
+
+
+<br />
+
+
+          <span class="navbar-item is-size-5 has-text-weight-light is-uppercase">
+        <a href="/docs/latest/keyless/" class="has-text-black">SVID Authentication</a>
+    </span>
+
+ <a class="navbar-item" href="/docs/latest/keyless/oidc-federation-aws/">
+  AWS OIDC Authentication
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/keyless/vault/readme/">
+  Vault Integration Example
+</a>
+
+
+<br />
+
+
+          <span class="navbar-item is-size-5 has-text-weight-light is-uppercase">
+        <a href="/docs/latest/architecture/" class="has-text-black">SPIRE Architecture</a>
+    </span>
+
+ <a class="navbar-item" href="/docs/latest/architecture/nested/readme/">
+  Nested SPIRE Example
+</a>
+
+
+ <a class="navbar-item" href="/docs/latest/architecture/federation/readme/">
+  SPIRE Federation Example
+</a>
+
+
+<br />
+
+
+
+        </div></div>
+    
+  </div>
+</nav>
+
+
+    <main class="is-main">
+      
+<div class="dashboard">
+  
+
+
+
+
+<div class="dashboard-panel left has-background-white-bis is-hidden-mobile">
+  <div class="dashboard-panel-header has-text-centered">
+    <div class="dropdown is-left">
+      <div class="dropdown-trigger">
+        <span class="non-actionable button is-dark" >
+          <span> 
+            <strong>
+              v1.14.2
+            </strong>
+            <span class="tag latest-tag is-success is-small has-text-weight-bold">
+              Latest
+            </span>
+          </span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-panel-content is-scrollable">
+      
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="docs-nav-section">
+  SPIFFE
+</span>
+
+<a class="docs-nav-item is-active" href="/docs/latest/spiffe-about/overview/">
+  Overview
+</a><div class="toc">
+  
+</div>
+<a class="docs-nav-item" href="/docs/latest/spiffe-about/spiffe-concepts/">
+  Concepts
+</a>
+<a class="docs-nav-item" href="/docs/latest/spiffe-about/community-presentations/">
+  Community Presentations
+</a>
+<a class="docs-nav-item" href="/docs/latest/spiffe-about/get-involved/">
+  Get Involved
+</a><hr class="docs-nav-hr"/>
+<div class="sidenav-item">
+<a href="/docs/latest/spiffe-specs/">Standards</a>
+</div>
+<a class="docs-nav-item" href="/docs/latest/spiffe-specs/spiffe/">
+  SPIFFE
+</a>
+<a class="docs-nav-item" href="/docs/latest/spiffe-specs/spiffe-id/">
+  SPIFFE ID and Verifiable Identity Document
+</a>
+<a class="docs-nav-item" href="/docs/latest/spiffe-specs/spiffe_trust_domain_and_bundle/">
+  SPIFFE Trust Domain and Bundle
+</a>
+<a class="docs-nav-item" href="/docs/latest/spiffe-specs/jwt-svid/">
+  JWT-SVID
+</a>
+<a class="docs-nav-item" href="/docs/latest/spiffe-specs/x509-svid/">
+  X509-SVID
+</a>
+<a class="docs-nav-item" href="/docs/latest/spiffe-specs/spiffe_workload_api/">
+  SPIFFE Workload API
+</a>
+<a class="docs-nav-item" href="/docs/latest/spiffe-specs/spiffe_workload_endpoint/">
+  SPIFFE Workload Endpoint
+</a>
+<a class="docs-nav-item" href="/docs/latest/spiffe-specs/spiffe_federation/">
+  SPIFFE Federation
+</a><hr class="docs-nav-hr"/>
+
+<span class="docs-nav-section">
+  SPIRE
+</span>
+<div class="sidenav-item">
+<a href="/docs/latest/spire-about/">About</a>
+</div>
+<a class="docs-nav-item" href="/docs/latest/spire-about/spire-concepts/">
+  Concepts
+</a>
+<a class="docs-nav-item" href="/docs/latest/spire-about/use-cases/">
+  Use Cases
+</a>
+<a class="docs-nav-item" href="/docs/latest/spire-about/comparisons/">
+  Comparisons
+</a>
+<a class="docs-nav-item" href="/docs/latest/spire-about/case-studies/">
+  Case Studies
+</a><hr class="docs-nav-hr"/>
+<div class="sidenav-item">
+<a href="/docs/latest/try/">Try</a>
+</div>
+<a class="docs-nav-item" href="/docs/latest/try/getting-started-linux-macos-x/">
+  Quickstart for Linux and MacOS X
+</a>
+<a class="docs-nav-item" href="/docs/latest/try/getting-started-k8s/">
+  Quickstart for Kubernetes
+</a>
+<a class="docs-nav-item" href="/docs/latest/try/spire101/">
+  Quickstart for Docker
+</a><hr class="docs-nav-hr"/>
+<div class="sidenav-item">
+<a href="/docs/latest/planning/">Plan</a>
+</div>
+<a class="docs-nav-item" href="/docs/latest/planning/scaling_spire/">
+  Scaling SPIRE
+</a>
+<a class="docs-nav-item" href="/docs/latest/planning/extending/">
+  Extending
+</a><hr class="docs-nav-hr"/>
+<div class="sidenav-item">
+<a href="/docs/latest/deploying/">Deploy</a>
+</div>
+<a class="docs-nav-item" href="/docs/latest/deploying/using_spire/">
+  Getting SPIRE
+</a>
+<a class="docs-nav-item" href="/docs/latest/deploying/install-server/">
+  Install Server
+</a>
+<a class="docs-nav-item" href="/docs/latest/deploying/install-agents/">
+  Install Agent
+</a>
+<a class="docs-nav-item" href="/docs/latest/deploying/configuring/">
+  Configuring
+</a>
+<a class="docs-nav-item" href="/docs/latest/deploying/registering/">
+  Registering workloads
+</a>
+<a class="docs-nav-item" href="/docs/latest/deploying/svids/">
+  Working with SVIDs
+</a>
+<a class="docs-nav-item" href="/docs/latest/deploying/libraries/">
+  SPIFFE Library Usage Examples
+</a>
+<a class="docs-nav-item" href="/docs/latest/deploying/spire_agent/">
+  SPIRE Agent Configuration Reference
+</a>
+<a class="docs-nav-item" href="/docs/latest/deploying/spire_server/">
+  SPIRE Server Configuration Reference
+</a>
+<a class="docs-nav-item" href="/docs/latest/deploying/telemetry_config/">
+  SPIRE Telemetry Configuration
+</a><hr class="docs-nav-hr"/>
+<div class="sidenav-item">
+<a href="/docs/latest/maintenance/">Maintain</a>
+</div>
+<a class="docs-nav-item" href="/docs/latest/maintenance/upgrading/">
+  Upgrade/Downgrade SPIRE
+</a><hr class="docs-nav-hr"/>
+
+<span class="docs-nav-section">
+  Helm Charts Hardened
+</span>
+<div class="sidenav-item">
+<a href="/docs/latest/spire-helm-charts-hardened-about/">About</a>
+</div>
+<a class="docs-nav-item" href="/docs/latest/spire-helm-charts-hardened-about/installation/">
+  Installation
+</a>
+<a class="docs-nav-item" href="/docs/latest/spire-helm-charts-hardened-about/upgrading/">
+  Upgrading
+</a>
+<a class="docs-nav-item" href="/docs/latest/spire-helm-charts-hardened-about/service-selection/">
+  Service Selection
+</a>
+<a class="docs-nav-item" href="/docs/latest/spire-helm-charts-hardened-about/recommendations/">
+  Recommendations
+</a>
+<a class="docs-nav-item" href="/docs/latest/spire-helm-charts-hardened-about/exposing/">
+  Exposing Services
+</a>
+<a class="docs-nav-item" href="/docs/latest/spire-helm-charts-hardened-about/identifiers/">
+  Identifiers
+</a>
+<a class="docs-nav-item" href="/docs/latest/spire-helm-charts-hardened-about/namespaces/">
+  Namespaces
+</a><hr class="docs-nav-hr"/>
+<div class="sidenav-item">
+<a href="/docs/latest/spire-helm-charts-hardened-advanced/">Advanced</a>
+</div>
+<a class="docs-nav-item" href="/docs/latest/spire-helm-charts-hardened-advanced/nested-spire/">
+  Nested SPIRE
+</a>
+<a class="docs-nav-item" href="/docs/latest/spire-helm-charts-hardened-advanced/federation/">
+  Federation
+</a>
+<a class="docs-nav-item" href="/docs/latest/spire-helm-charts-hardened-advanced/mirror/">
+  Local Mirrors
+</a><hr class="docs-nav-hr"/>
+
+<span class="docs-nav-section">
+  Integrate SPIRE
+</span>
+<div class="sidenav-item">
+<a href="/docs/latest/microservices/">Securing Microservices</a>
+</div>
+<a class="docs-nav-item" href="/docs/latest/microservices/envoy/">
+  Using Envoy with SPIRE
+</a>
+<a class="docs-nav-item" href="/docs/latest/microservices/envoy-x509/readme/">
+  SPIRE with Envoy and X.509-SVIDs
+</a>
+<a class="docs-nav-item" href="/docs/latest/microservices/envoy-jwt/readme/">
+  SPIRE with Envoy and JWT-SVIDs
+</a>
+<a class="docs-nav-item" href="/docs/latest/microservices/envoy-opa/readme/">
+  Spire with OPA &#43; Envoy &#43; X.509-SVIDs
+</a>
+<a class="docs-nav-item" href="/docs/latest/microservices/envoy-jwt-opa/readme/">
+  Spire with OPA &#43; Envoy &#43; JWT-SVIDs
+</a><hr class="docs-nav-hr"/>
+<div class="sidenav-item">
+<a href="/docs/latest/keyless/">SVID Authentication</a>
+</div>
+<a class="docs-nav-item" href="/docs/latest/keyless/oidc-federation-aws/">
+  AWS OIDC Authentication
+</a>
+<a class="docs-nav-item" href="/docs/latest/keyless/vault/readme/">
+  Vault Integration Example
+</a><hr class="docs-nav-hr"/>
+<div class="sidenav-item">
+<a href="/docs/latest/architecture/">SPIRE Architecture</a>
+</div>
+<a class="docs-nav-item" href="/docs/latest/architecture/nested/readme/">
+  Nested SPIRE Example
+</a>
+<a class="docs-nav-item" href="/docs/latest/architecture/federation/readme/">
+  SPIRE Federation Example
+</a><hr class="docs-nav-hr"/>
+
+
+  </div>
+</div>
+
+
+  <div class="dashboard-main is-scrollable">
+    
+
+
+
+<article class="article">
+  
+  <div class="container">
+    <section class="hero-docs">
+  <div class="hero-body">
+    <p class="title is-size-1 is-size-2-mobile is-spaced">
+      SPIFFE Overview
+    </p>
+    <p class="subtitle is-size-5 is-size-5-mobile">
+      An overview of the SPIFFE specification
+    </p>
+  </div>
+</section>
+
+    <section class="section">
+      <div class="content">
+        
+        <p><strong>SPIFFE</strong>, the Secure Production Identity Framework for Everyone, is a set of open-source standards for securely identifying software systems in dynamic and heterogeneous environments. Systems that adopt SPIFFE can easily and reliably mutually authenticate wherever they are running.</p>
+<p>Distributed design patterns and practices such as micro-services, container orchestrators, and cloud computing have led to production environments that are increasingly dynamic and heterogeneous. Conventional security practices (such as network policies that only allow traffic between particular IP addresses) struggle to scale under this complexity. A first-class identity framework for workloads in an organization becomes necessary.</p>
+<p>Further, modern developers are expected to understand and play a role in how applications are deployed and managed in production environments. Operations teams require deeper visibility into the applications they are managing. As we move to a more evolved security stance, we must offer better tools to both teams so they can play an active role in building secure, distributed applications.</p>
+<p>SPIFFE is a set of open-source specifications for a framework capable of bootstrapping and issuing identity to services across heterogeneous environments and organizational boundaries. The heart of these specifications is the one that defines short lived cryptographic identity documents &ndash; called <a href="/docs/latest/spiffe/concepts/#spiffe-verifiable-identity-document-svid">SVIDs</a> via a <a href="/docs/latest/spiffe/concepts/#spiffe-workload-api">simple API</a>. Workloads can then use these identity documents when authenticating to other workloads, for example by establishing a TLS connection or by signing and verifying a JWT token.</p>
+<p>You can read more about how the SPIFFE APIs are defined and used in the <a href="/docs/latest/spiffe/concepts/">Concepts</a> guide.</p>
+<!-- raw HTML omitted -->
+<h1 id="which-tools-implement-spiffe">Which Tools Implement SPIFFE?</h1>
+<p>SPIFFE comprises many specifications, each providing different parts of the SPIFFE functionality. Software that implements SPIFFE may support some or all of these functionalities. The following tables captures software that’s capable of providing your infrastructure with SPIFFE identities, along with the functionalities they support.</p>
+<h2 id="open-source-software-that-implements-spiffe">Open Source Software That Implements SPIFFE</h2>
+<table>
+<thead>
+<tr>
+<th align="left">Software</th>
+<th align="center">X.509 SVID</th>
+<th align="center">JWT SVID</th>
+<th align="center">Attestation-based Issuance</th>
+<th align="center">Workload API</th>
+<th align="center">SDS API</th>
+<th align="center">SPIFFE Federation</th>
+<th align="center">OIDC Federation</th>
+<th align="center">PKI Integration</th>
+<th align="center">Kubernetes Support</th>
+<th align="center">VM and Bare Metal Support</th>
+<th align="center">Serverless Support</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">SPIRE</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td align="left">Cert-manager</td>
+<td align="center">✔</td>
+<td align="center"></td>
+<td align="center">✔</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Consul</td>
+<td align="center">✔</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">Beta</td>
+</tr>
+<tr>
+<td align="left">Dapr</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Istio</td>
+<td align="center">✔</td>
+<td align="center"></td>
+<td align="center">✔</td>
+<td align="center"></td>
+<td align="center">✔</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="commercial-software-that-implements-spiffe">Commercial Software That Implements SPIFFE</h2>
+<table>
+<thead>
+<tr>
+<th align="left">Software</th>
+<th align="center">X.509 SVID</th>
+<th align="center">JWT SVID</th>
+<th align="center">Attestation-based Issuance</th>
+<th align="center">Workload API</th>
+<th align="center">SDS API</th>
+<th align="center">SPIFFE Federation</th>
+<th align="center">OIDC Federation</th>
+<th align="center">PKI Integration</th>
+<th align="center">Kubernetes Support</th>
+<th align="center">VM and Bare Metal Support</th>
+<th align="center">Serverless Support</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><a href="https://cloud.google.com/" target="_blank">GCP</a></td>
+<td align="center">✔</td>
+<td align="center"></td>
+<td align="center">✔</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left"><a href="https://greymatter.io" target="_blank">Greymatter.io</a></td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.defakto.security" target="_blank">Defakto</a></td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td align="left"><a href="https://goteleport.com/platform/machine-and-workload-identity/" target="_blank">Teleport</a></td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.cyberark.com/products/workload-identity-manager/" target="_blank">Venafi</a></td>
+<td align="center">✔</td>
+<td align="center"></td>
+<td align="center">✔</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.redhat.com/en/technologies/cloud-computing/openshift/what-is-openshift-service-mesh" target="_blank">Red Hat</a></td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔**</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.cofide.io" target="_blank">Cofide</a></td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+</tr>
+</tbody>
+</table>
+<p>** Supported via Red Hat&rsquo;s OpenShift Service Mesh 3.0</p>
+<h3 id="explanation-of-columns---software-that-implements-spiffe">Explanation of Columns - Software that Implements SPIFFE</h3>
+<dl>
+<dt>X.509 SVID</dt>
+<dd>Can generate X.509 SVIDs for workloads</dd>
+<dt>JWT SVID</dt>
+<dd>Can generate JWT SVIDs for workloads</dd>
+<dt>Attestation-based Issuance</dt>
+<dd>Leverages node and/or workload attestation for issuing SVIDs</dd>
+<dt>Workload API</dt>
+<dd>Can serve the Workload API for automatic rotation</dd>
+<dt>SDS API</dt>
+<dd>Can serve Envoy SDS API</dd>
+<dt>SPIFFE Federation</dt>
+<dd>Can serve and consume the SPIFFE Federation API</dd>
+<dt>OIDC Federation</dt>
+<dd>Can serve OIDC Federation API</dd>
+<dt>PKI Integration</dt>
+<dd>Can leverage existing or external PKI for X.509 SVID issuance</dd>
+<dt>Kubernetes Support</dt>
+<dd>Supports workloads running in Kubernetes</dd>
+<dt>VM and Bare Metal Support</dt>
+<dd>Supports workloads running in VMs or on bare metal</dd>
+<dt>Serverless Support</dt>
+<dd>Supports workloads running in serverless environments</dd>
+</dl>
+<h2 id="which-tools-work-with-spiffe">Which Tools Work with SPIFFE?</h2>
+<p>SPIFFE enjoys a broad ecosystem, with many software projects, products, and platforms providing SPIFFE support in one way or another. While SPIFFE works with any software that knows how to use a JWT or an X.509 certificate, the following list captures software that supports SPIFFE as a first class citizen, along with the level of support they provide.</p>
+<h3 id="open-source-software-that-works-with-spiffe">Open Source Software that Works with SPIFFE</h3>
+<table>
+<thead>
+<tr>
+<th align="left">Software</th>
+<th align="center">X.509 SVID</th>
+<th align="center">JWT SVID</th>
+<th align="center">SPIFFE Authentication</th>
+<th align="center">Workload API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Envoy</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Ghostunnel</td>
+<td align="center">✔</td>
+<td align="center"></td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td align="left">Istio</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Knox</td>
+<td align="center">✔</td>
+<td align="center"></td>
+<td align="center">✔</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">VMware Secrets Manager</td>
+<td align="center">✔</td>
+<td align="center"></td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td align="left">SPIKE</td>
+<td align="center">✔</td>
+<td align="center"></td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+</tr>
+</tbody>
+</table>
+<h3 id="commercial-software-that-works-with-spiffe">Commercial Software that Works with SPIFFE</h3>
+<table>
+<thead>
+<tr>
+<th align="left">Software</th>
+<th align="center">X.509 SVID</th>
+<th align="center">JWT SVID</th>
+<th align="center">SPIFFE Authentication</th>
+<th align="center">Workload API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><a href="https://docs.aws.amazon.com/rolesanywhere/latest/userguide/introduction.html" target="_blank">AWS IAM Roles Anywhere</a></td>
+<td align="center">✔</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left"><a href="https://cloud.google.com/iam/docs/workload-identity-federation" target="_blank">GCP Workload Identity Federation</a></td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left"><a href="https://greymatter.gitbook.io/grey-matter-documentation/usage/fabric/security/spire" target="_blank">Greymatter.io</a></td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td align="left"><a href="https://docs.warpstream.com/warpstream/kafka/manage-security/mutual-tls-mtls" target="_blank">WarpStream</a></td>
+<td align="center">✔</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="explanation-of-columns---software-that-works-with-spiffe">Explanation of Columns - Software that Works with SPIFFE</h3>
+<dl>
+<dt>X.509 SVID</dt>
+<dd>Supports X.509 SVID-based authentication</dd>
+<dt>JWT SVID</dt>
+<dd>Supports JWT SVID-based authentication</dd>
+<dt>SPIFFE Authentication</dt>
+<dd>Supports federated SPIFFE authentication based on trust domain name</dd>
+<dt>Workload API</dt>
+<dd>Supports attaching to the SPIFFE Workload API</dd>
+</dl>
+
+      </div>
+    </section>
+  </div>
+</article>
+  </div>
+</div>
+
+
+    </main><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.7.0/tocbot.min.js"></script>
+<script src="/js/jquery-3.3.1.min.1dc33fb32cfedd9ef0049ed3cb8b007bad6f7e57eafc760e8ea0553fe823a6d6.js"></script>
+<script src="/js/clipboard-2.0.0.min.7380537dbe37c039bf72de37aa10f732ca0712daf47483baee10016c2082d9d1.js"></script>
+<script src="/js/anchor-4.1.1.min.3231b81e93880d1db128c90bbea3b3540c38b614ddba93b568ca2d9092a385db.js"></script>
+<script src="/js/app.min.617a05c100ed36a2346c25067114dbd48e917ccf7bb370a378b95a03e7391fcc.js"></script>
+<script src="/js/slider.min.f92d330d81618514c6cf222f52373aaeabc71ed77029f6f8de943119eca03366.js"></script>
+<script src="/js/docs.min.57e70442d23d85863b92cbcb3eaad8708567534c99c0358279825714e6c1ad09.js"></script>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-99605331-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    <script>
+      ga('send', 'pageview', {
+        'Branch':  'master'
+      });
+    </script>
+    <script>
+      var captureOutboundLink = function(url) {
+        ga('send', 'event', 'outbound', 'click', url, {
+          'transport': 'beacon',
+          'hitCallback': function(){ document.location = url; }
+        });
+      }
+    </script> 
+  </body>
+</html>

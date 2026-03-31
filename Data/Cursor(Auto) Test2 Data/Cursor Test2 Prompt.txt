@@ -1,0 +1,127 @@
+You are implementing an offline network traffic collector and behavior profiler intended to stress-test an AI coding agent’s ability to build protocol parsers, correlation logic, and high-quality reporting.
+
+Deliver a complete, runnable repository in Python 3.12 with a CLI that ingests PCAP/PCAPNG files, reconstructs flows, extracts application-layer transactions (where possible), computes statistics, and outputs both machine-readable artifacts and a human-readable report.
+
+Technology constraints (use exactly these unless impossible, then document the exception in README):
+- Language: Python 3.12
+- PCAP parsing: dpkt (preferred) or scapy for offline reading (do not require tshark)
+- HTTP/2 framing/HPACK: use hyper-h2 (h2) and hpack libraries
+- Config: pydantic settings + YAML config support
+- Tests: pytest
+- Formatting/linting: ruff (and mypy if feasible)
+
+Important limitation
+Assume you cannot decrypt TLS unless the traffic is plaintext. Therefore:
+- You must still produce valuable flow-level profiling for encrypted traffic (timing/bytes/concurrency) even when HTTP parsing is impossible.
+- You must parse HTTP/1.1 and HTTP/2 only when the payload is plaintext in the capture.
+- For gRPC: detect gRPC over HTTP/2 via headers and extract method/service names from “:path”; do not attempt protobuf decoding.
+
+CLI requirements
+Provide a CLI named “netprof” with subcommands:
+1) netprof analyze <pcap_path> --out <output_dir> [--config config.yaml]
+2) netprof summarize <output_dir> (recomputes and prints key metrics)
+3) netprof fixtures generate (creates deterministic synthetic PCAP fixtures used by tests)
+
+Input requirements
+- Accept .pcap and .pcapng (if pcaphandle for pcapng is difficult, document and support .pcap at minimum)
+- Support analyzing multiple files in a directory (optional, but preferred)
+- Process files in a streaming manner (do not read entire file into memory)
+
+Flow reconstruction requirements
+- Reconstruct TCP flows keyed by 5-tuple (src_ip, src_port, dst_ip, dst_port, protocol) plus direction.
+- Track per-flow:
+  - start_ts, end_ts, duration
+  - bytes_client_to_server, bytes_server_to_client
+  - packet counts per direction
+  - estimated RTT (best-effort via SYN/SYN-ACK or timestamp deltas where possible)
+  - concurrency timeline: how many active flows over time (coarse buckets acceptable)
+- Implement TCP stream reassembly sufficient for HTTP parsing:
+  - Handle out-of-order segments and retransmissions best-effort.
+  - Provide a bounded memory strategy (e.g., per-flow reassembly window, eviction rules).
+
+Application-layer extraction (best-effort)
+A) HTTP/1.1 (plaintext)
+- Detect and parse requests/responses from reassembled streams.
+- Extract:
+  - host, method, path, status_code
+  - request/response header subsets
+  - request_bytes, response_bytes
+  - request_ts (first byte), response_ts (first response byte), end_ts (last byte) -> compute latency
+- Handle keep-alive and multiple transactions per connection best-effort.
+
+B) HTTP/2 (plaintext)
+- Detect HTTP/2 client preface (“PRI * HTTP/2.0\r\n\r\nSM\r\n\r\n”) within the reassembled stream.
+- Parse frames and HPACK-decode headers to reconstruct per-stream transactions.
+- Extract:
+  - :method, :authority, :path, :status
+  - stream_id, start_ts, first_response_ts, end_ts, bytes_in/out per stream
+- Support multiple concurrent streams on one TCP connection.
+
+C) gRPC detection (over HTTP/2)
+- Detect gRPC streams via headers:
+  - content-type includes “application/grpc”
+- Extract RPC identity from :path formatted like “/pkg.Service/Method”
+- Extract message sizes by reading the gRPC message framing (compressed flag + 4-byte length) when DATA frames contain full messages; best-effort is acceptable.
+- Do not decode protobuf payloads.
+
+Correlation keys and outputs
+Define and use stable correlation IDs:
+- flow_id: stable hash of 5-tuple + capture file id
+- txn_id:
+  - HTTP/1.1: flow_id + sequential transaction index
+  - HTTP/2: flow_id + stream_id
+Output files (required):
+- out/summary.json
+  - top talkers (IPs), top destinations, top ports, active flow peaks, total bytes, total flows
+  - latency percentiles for parsed HTTP transactions (p50/p90/p99 in milliseconds)
+- out/flows.jsonl
+  - one JSON object per flow with the metrics listed above
+- out/transactions.jsonl
+  - one JSON object per HTTP transaction / HTTP2 stream / gRPC call (when detectable)
+- out/profile.md
+  - human-readable report with:
+    - overview counts
+    - tables for top endpoints, status codes, latency percentiles
+    - a brief “behavior profile” section describing patterns (burstiness, heavy endpoints, long-tail latency)
+- out/errors.log
+  - parse errors, truncated streams, and why certain parsing was skipped
+
+Architecture requirements
+- Implement a clean internal API with:
+  - parsers/ (pcap reader, flow tracker, tcp reassembly)
+  - protocols/ (http1, http2, grpc detectors)
+  - models/ (typed dataclasses/pydantic models for Flow, Transaction)
+  - report/ (markdown report builder)
+  - cli/
+- Make it easy to add a new protocol decoder as a plugin.
+
+Testing requirements (must be automated)
+1) Deterministic fixture generation:
+- Implement “netprof fixtures generate” that creates small synthetic .pcap fixtures in a local directory used by tests.
+- Use scapy to craft TCP sessions with payloads:
+  - HTTP/1.1 request/response fixture (at least 2 requests on one keep-alive connection).
+  - HTTP/2 fixture generated by using h2 to produce valid bytes for a minimal request/response exchange; embed those bytes into TCP payload segments (it is acceptable that this fixture is minimal and simplified).
+2) Unit tests:
+- Flow keying, directionality, byte accounting
+- TCP reassembly correctness on out-of-order segments
+- HTTP/1.1 transaction extraction correctness
+- HTTP/2 stream extraction correctness on the synthetic fixture
+3) Integration test:
+- Run netprof analyze on the fixtures and assert exact expected counts and key fields in summary.json and transactions.jsonl.
+
+Repository requirements
+Provide:
+- pyproject.toml with pinned dependencies
+- README.md with:
+  - quickstart and example commands
+  - explanation of what can/cannot be parsed under TLS encryption
+  - how correlation IDs are computed
+  - performance considerations and memory bounds
+  - how to extend with new protocols
+- Makefile (or scripts):
+  - make test
+  - make lint
+  - make analyze-fixtures (runs analyze on fixtures and prints a summary)
+
+Do not ask me questions. If any detail is ambiguous, choose a reasonable default and document it in README under “Assumptions”.
+Deliver working code, not pseudocode.
